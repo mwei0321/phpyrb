@@ -1,7 +1,7 @@
 <?php
 /**
 *  +----------------------------------------------------------------------------------------------+
-*   | Explain:  home page
+*   | Explain:  Admin Login
 *  +----------------------------------------------------------------------------------------------+
 *   | Author: ONLY <491518132@qq.com>
 *  +----------------------------------------------------------------------------------------------+
@@ -10,19 +10,24 @@
 *   | Link :		http://www.phpyrb.com	     
 *  +----------------------------------------------------------------------------------------------+
 **/
-	namespace Blog\Controller;
-	use \Blog\Controller\IniController;
 
-	class IndexController extends IniController{
-		protected $article;
+	namespace Admin\Controller;
+	use Admin\Controller\IniController;
+
+	class LoginController extends IniController{
 		function _initialize(){
-			parent::_initialize();
-			$this->article = D('Article');
+			
 		}
 		
-		function index(){
-			$artlist = $this->article->artlist();
-			$this->assign('artlist',$artlist);
-			$this->display();
+		function Login(){
+			
+		}
+		
+		function Logout(){
+			
+		}
+		
+		function cooke(){
+			
 		}
 	}

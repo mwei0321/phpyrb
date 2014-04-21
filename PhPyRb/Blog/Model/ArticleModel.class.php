@@ -1,7 +1,7 @@
 <?php
 /**
 *  +----------------------------------------------------------------------------------------------+
-*   | Explain:  home page
+*   | Explain:  文章模型类
 *  +----------------------------------------------------------------------------------------------+
 *   | Author: ONLY <491518132@qq.com>
 *  +----------------------------------------------------------------------------------------------+
@@ -10,19 +10,16 @@
 *   | Link :		http://www.phpyrb.com	     
 *  +----------------------------------------------------------------------------------------------+
 **/
-	namespace Blog\Controller;
-	use \Blog\Controller\IniController;
-
-	class IndexController extends IniController{
-		protected $article;
+	namespace Blog\Model;
+	use Think\Model;
+	class ArticleModel extends Model{
+		protected $Article;
 		function _initialize(){
-			parent::_initialize();
-			$this->article = D('Article');
+			$this->Article = M('Article');
 		}
 		
-		function index(){
-			$artlist = $this->article->artlist();
-			$this->assign('artlist',$artlist);
-			$this->display();
+		function artlist($_limit = '0,15'){
+			$artlist = $this->Article->order('uptime DESC')->limit($_limit)->select();
+			return $artlist;
 		}
 	}

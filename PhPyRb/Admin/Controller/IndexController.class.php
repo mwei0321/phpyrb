@@ -5,23 +5,24 @@
 *  +----------------------------------------------------------------------------------------------+
 *   | Author: ONLY <491518132@qq.com>
 *  +----------------------------------------------------------------------------------------------+
-*   | Creater Time : 2014-1-17 	
+*   | Creater Time : 2014-1-17
 *  +----------------------------------------------------------------------------------------------+
 *   | Link :		http://www.phpyrb.com	     
 *  +----------------------------------------------------------------------------------------------+
 **/
 	namespace Admin\Controller;
-	use Think\Controller;
-
-	class IndexController extends Controller{
+	use Admin\Controller\IniController;
+	use PhPyRb\Page;
+	
+	class IndexController extends IniController{
 		
-		protected $user;
-		
-		function __construct(){
-			$this->user = 'admin';
+		function _initalize(){
+			
 		}
 		
 		function index(){
+			import('Page');
+			$page = new Page($totalRows, $listRows);
 			$this->display();
 		}
 	}

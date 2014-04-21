@@ -35,6 +35,19 @@ $conf = array(
 // 		'DEFAULT_V_LAYER'       =>  'Template', // 设置默认的视图层名称  默认为 view
 // 		'TMPL_ACTION_ERROR' 	=> THINK_PATH . 'Tpl/dispatch_jump.tpl',//默认错误跳转对应的模板文件
 // 		'TMPL_ACTION_SUCCESS' 	=> THINK_PATH . 'Tpl/dispatch_jump.tpl',//默认成功跳转对应的模板文件
+		
+// 		'HTML_PATH'			=> './Html/',
+// 		'HTML_CACHE_ON'     =>    true, // 开启静态缓存
+// 		'HTML_CACHE_TIME'   =>    60,   // 全局静态缓存有效期（秒）
+// 		'HTML_FILE_SUFFIX'  =>    '.html', // 设置静态缓存文件后缀
+// 		'HTML_CACHE_RULES'  =>     array(  // 定义静态缓存规则     
+		// 定义格式1 数组方式     
+// 		'静态地址'    =>     array('静态规则', '有效期', '附加规则'),
+		// 定义格式2 字符串方式     
+// 		'静态地址'    =>     '静态规则', 
+// 			'Blog:' => array('Blog-{:action}-{id}')
+// 		),
+		
 );
 
 return array_merge($db,$conf);

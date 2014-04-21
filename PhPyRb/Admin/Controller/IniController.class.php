@@ -1,7 +1,7 @@
 <?php
 /**
 *  +----------------------------------------------------------------------------------------------+
-*   | Explain:  home page
+*   | Explain:  Project Public Function
 *  +----------------------------------------------------------------------------------------------+
 *   | Author: ONLY <491518132@qq.com>
 *  +----------------------------------------------------------------------------------------------+
@@ -10,19 +10,13 @@
 *   | Link :		http://www.phpyrb.com	     
 *  +----------------------------------------------------------------------------------------------+
 **/
-	namespace Blog\Controller;
-	use \Blog\Controller\IniController;
 
-	class IndexController extends IniController{
-		protected $article;
-		function _initialize(){
-			parent::_initialize();
-			$this->article = D('Article');
-		}
-		
-		function index(){
-			$artlist = $this->article->artlist();
-			$this->assign('artlist',$artlist);
-			$this->display();
+	namespace Admin\Controller;
+	use Think\Controller;
+	
+	class IniController extends Controller{
+		protected $User;
+		function _initalize(){
+			$this->User = D('User');
 		}
 	}

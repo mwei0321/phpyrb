@@ -1,7 +1,7 @@
 <?php
 /**
 *  +----------------------------------------------------------------------------------------------+
-*   | Explain:  home page
+*   | Explain:  User Model Function
 *  +----------------------------------------------------------------------------------------------+
 *   | Author: ONLY <491518132@qq.com>
 *  +----------------------------------------------------------------------------------------------+
@@ -10,19 +10,15 @@
 *   | Link :		http://www.phpyrb.com	     
 *  +----------------------------------------------------------------------------------------------+
 **/
-	namespace Blog\Controller;
-	use \Blog\Controller\IniController;
 
-	class IndexController extends IniController{
-		protected $article;
+	namespace Admin\Controller;
+	use Think\Model;
+	
+	class UserModel extends Model{
+		protected $User;
 		function _initialize(){
-			parent::_initialize();
-			$this->article = D('Article');
+			$this->User = M('User');
 		}
 		
-		function index(){
-			$artlist = $this->article->artlist();
-			$this->assign('artlist',$artlist);
-			$this->display();
-		}
-	}
+		
+	}	

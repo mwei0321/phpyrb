@@ -45,8 +45,9 @@
 
    <div class="content">
         <div class="left">
+        	<volist name="artlist" id='a'>
         	<div class="article first">
-             		<h2 class="h123"><a href="/index.php?m=Article&a=index&artid=17" target="_blank">python 基础学习笔记1</a></h2>
+             		<h2 class="h123"><a href="{:U('Index/index',array(artid=>$a['id']))}" target="_blank">{$a['list']}</a></h2>
                     <p class="tag">标 签：
 					<a href="/index.php?m=Article&a=tagart&tagid=21"><span>python</span></a>					</p>
 					<div class="clr"></div>
@@ -57,40 +58,7 @@
 						-->
                     </div>
                     <div class="clr"></div>
-                    <div class="cont" id="maxart">
-                    	<p>
-	1.python基础运算符：加(+)、减(-) 、乘(*)、除(/) 、除(//)、赋值(=) 、取余(%)、 乘方(**);说明是传统的除法，而是浮点除法，会对结果进行四舍五入。
-</p>
-<p>
-	<br />
-</p>
-<p>
-	2.python比较运算符：小于(&lt;) 、小于等于(&lt;=) 、大于(&gt;) 、大于等于(&gt;=)、 等于(==)&nbsp;、不等于(&nbsp;!=)、不等于(&lt;&gt;) ,python目前支持两种“不等于”，不过python日后会被淘汰，所以尽量使用 (!=)。
-</p>
-<p>
-	<br />
-</p>
-<p>
-	3.Python 逻辑运算符:与(and)、 或(or)、 非(not);
-</p>
-<p>
-	4.python支持赋值有:整数、浮点数、字符、字符串、表达式等。
-</p>
-<p>
-	5.python不支持自增(++1)、自减(--1)，但支持 n *=5,n +=5等这样的运算式。
-</p>
-<p>
-	6.python的变量是区分大小写.
-</p>
-<p>
-	7.Python字符串是指引号之间的字符集合，包括单引号或双引号或三引号，可以用索引运算符( [ ] )和切片运算符( [ : ] )得到子字符串，第一个字符的索引是 0，最后一个字符的索引是－1.
-</p>
-<p>
-	8.Python字符连接可以用加号( + )，例：n=‘aa’+'bb';n=aabb。还可以用乘号(*),表示把字符串重复多少次，例：n=2*'aa';n=aaaa.
-</p>
-<p>
-	9.可以将列表和元组当成普通的“数组”，它能保存任意数量任意类型的Python 对象。和数组一样，通过从0 开始的数字索引访问元素，但是列表和元组可以存储不同类型的对象。列表和元组有几处重要的区别。列表元素用中括号( [ ])包裹，元素的个数及元素的值可以改变。元组元素用小括号(( ))包裹，不可以更改（尽管他们的内容可以）。元组可以看成是只读的列表。通过切片运算( [ ] 和 [ : ] )可以得到子集，这一点与字符串的使用方法一样。
-</p>                    </div>
+                    <div class="cont" id="maxart">{$a['title']}</div>
                     <div class="info">
                     	<p>
                     		<span><a href="/index.php?m=Index&a=index&cateid=4" target="_blank">Python</a></span> / 
@@ -101,6 +69,7 @@
 						</p>
 					</div>
                 </div>		   <div><div class="clr"></div>
+			</volist>
 		   </div>
 		   <div id="page">
 		   		<p>  <a class='textpage' href='/index.php?m=Index&a=index&cateid=4&p=2'>Next</a>     <span class='nowpage'>1</span><a href='/index.php?m=Index&a=index&cateid=4&p=2'>2</a><a href='/index.php?m=Index&a=index&cateid=4&p=3'>3</a><a href='/index.php?m=Index&a=index&cateid=4&p=4'>4</a><a href='/index.php?m=Index&a=index&cateid=4&p=5'>5</a>  <a class='textpage' href='/index.php?m=Index&a=index&cateid=4&p=6' >下5页</a> <a class='textpage' href='/index.php?m=Index&a=index&cateid=4&p=9' >Last</a></p>

@@ -53,7 +53,7 @@ abstract class Controller {
      * @return void
      */
     protected function display($templateFile='',$charset='',$contentType='',$content='',$prefix='') {
-    	$this->view->display($templateFile,$charset,$contentType,$content,$prefix);
+        $this->view->display($templateFile,$charset,$contentType,$content,$prefix);
     }
 
     /**
