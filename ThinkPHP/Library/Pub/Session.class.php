@@ -10,7 +10,7 @@
 // +----------------------------------------------------------------------
 // $Id: Session.class.php 2702 2012-02-02 12:35:01Z liu21st $
 
-namespace PhPyRb;
+namespace Pub;
 
 define("HTTP_SESSION_STARTED",      1);
 define("HTTP_SESSION_CONTINUED",    2);
