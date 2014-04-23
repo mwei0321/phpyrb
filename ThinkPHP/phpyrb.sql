@@ -10,13 +10,13 @@ Target Server Type    : MYSQL
 Target Server Version : 50524
 File Encoding         : 65001
 
-Date: 2014-04-22 21:10:04
+Date: 2014-04-23 17:26:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for album
+-- Table structure for `album`
 -- ----------------------------
 DROP TABLE IF EXISTS `album`;
 CREATE TABLE `album` (
@@ -35,7 +35,7 @@ CREATE TABLE `album` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for article
+-- Table structure for `article`
 -- ----------------------------
 DROP TABLE IF EXISTS `article`;
 CREATE TABLE `article` (
@@ -93,7 +93,7 @@ INSERT INTO `article` VALUES ('37', '1', '4', '16,19,20,21,22', '0', 'django如�
 INSERT INTO `article` VALUES ('39', '0', '0', '', '0', '', '', '0', '0', '0');
 
 -- ----------------------------
--- Table structure for category
+-- Table structure for `category`
 -- ----------------------------
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
@@ -121,21 +121,7 @@ INSERT INTO `category` VALUES ('10', '2', '1', 'Apache+MySQL', '1');
 INSERT INTO `category` VALUES ('23', '2', '1', 'Other', '1');
 
 -- ----------------------------
--- Table structure for cate_tag
--- ----------------------------
-DROP TABLE IF EXISTS `cate_tag`;
-CREATE TABLE `cate_tag` (
-  `cateid` int(11) NOT NULL COMMENT '分类ID',
-  `tagid` int(11) NOT NULL COMMENT '标签ID',
-  PRIMARY KEY (`cateid`,`tagid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of cate_tag
--- ----------------------------
-
--- ----------------------------
--- Table structure for comment
+-- Table structure for `comment`
 -- ----------------------------
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
@@ -156,7 +142,7 @@ INSERT INTO `comment` VALUES ('2', '1', '1', 'dgbrfbnyt', '1', '0');
 INSERT INTO `comment` VALUES ('3', '2', '1', 'SFVEV', '1', '0');
 
 -- ----------------------------
--- Table structure for content
+-- Table structure for `content`
 -- ----------------------------
 DROP TABLE IF EXISTS `content`;
 CREATE TABLE `content` (
@@ -164,7 +150,8 @@ CREATE TABLE `content` (
   `keyword` varchar(200) NOT NULL COMMENT '关键字',
   `description` text NOT NULL COMMENT '描述',
   `content` longtext NOT NULL COMMENT '内容',
-  PRIMARY KEY (`artid`)
+  PRIMARY KEY (`artid`),
+  KEY `keyword` (`keyword`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章内容';
 
 -- ----------------------------
@@ -206,7 +193,7 @@ INSERT INTO `content` VALUES ('36', '', '', '<h3 align=\"center\">\r\n	django模
 INSERT INTO `content` VALUES ('37', 'django如何安装mysql,django如何连接msyql.', 'django安装mysql支持,django如何连接mysql,django连接mysql设置,django连接mysql代码.', '<div align=\"center\">\r\n	<h3>\r\n		<br />\r\n	</h3>\r\n	<h3>\r\n		django如何连接mysql\r\n	</h3>\r\n	<p>\r\n		adfasdfasdfasdfasdfasdfasdf\r\n	</p>\r\n	<p align=\"left\">\r\n		2.如何你还没有安装 MySQLdb,可以用如下的命令安装：\r\n	</p>\r\n<pre class=\"brush:bash\">easy_install MySQLdb </pre>\r\n	<p align=\"left\">\r\n		3.如何确定 mysqldb 安装成功，可以用如下方法：\r\n	</p>\r\n<pre class=\"brush:python\">python\r\nimport MySQLdb\r\n</pre>\r\n	<p align=\"left\">\r\n		如何没有报错的话，那恭喜你，你安装成功了，如何没有，请重复上面的步骤.\r\n	</p>\r\n	<p align=\"left\">\r\n		4.django 连接 mysql 的原代码如下：\r\n	</p>\r\n<pre class=\"brush:python\">import MySQLdb\r\n\r\ndef __init__(self):\r\n    db = MySQLdb.connect(user=\'root\', db=\'mydb\', passwd=\'\', host=\'localhost\')\r\n    cursor = db.cursor()\r\n    cursor.execute(\'SELECT name FROM mydb\')\r\n    names = [row[0] for row in cursor.fetchall()]\r\n    db.close()\r\n\r\n</pre>\r\n	<p>\r\n		<br />\r\n	</p>\r\n</div>');
 
 -- ----------------------------
--- Table structure for photo
+-- Table structure for `photo`
 -- ----------------------------
 DROP TABLE IF EXISTS `photo`;
 CREATE TABLE `photo` (
@@ -224,12 +211,13 @@ CREATE TABLE `photo` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for tag
+-- Table structure for `tag`
 -- ----------------------------
 DROP TABLE IF EXISTS `tag`;
 CREATE TABLE `tag` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `uid` int(11) NOT NULL COMMENT '用户ID',
+  `cateid` int(11) NOT NULL COMMENT '分类ID',
   `name` varchar(30) NOT NULL COMMENT '标签名',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态（0 隐藏、1显示）',
   PRIMARY KEY (`id`)
@@ -238,21 +226,21 @@ CREATE TABLE `tag` (
 -- ----------------------------
 -- Records of tag
 -- ----------------------------
-INSERT INTO `tag` VALUES ('11', '1', 'Skill', '1');
-INSERT INTO `tag` VALUES ('12', '1', 'Program', '1');
-INSERT INTO `tag` VALUES ('13', '1', 'Linux', '1');
-INSERT INTO `tag` VALUES ('14', '1', 'Vim', '1');
-INSERT INTO `tag` VALUES ('15', '1', 'git', '1');
-INSERT INTO `tag` VALUES ('16', '1', 'mysql', '1');
-INSERT INTO `tag` VALUES ('17', '1', 'debian', '1');
-INSERT INTO `tag` VALUES ('18', '1', 'jquery', '1');
-INSERT INTO `tag` VALUES ('19', '1', 'php', '1');
-INSERT INTO `tag` VALUES ('20', '1', 'wamp', '1');
-INSERT INTO `tag` VALUES ('21', '1', 'python', '1');
-INSERT INTO `tag` VALUES ('22', '1', 'django', '1');
+INSERT INTO `tag` VALUES ('11', '1', '0', 'Skill', '1');
+INSERT INTO `tag` VALUES ('12', '1', '0', 'Program', '1');
+INSERT INTO `tag` VALUES ('13', '1', '0', 'Linux', '1');
+INSERT INTO `tag` VALUES ('14', '1', '0', 'Vim', '1');
+INSERT INTO `tag` VALUES ('15', '1', '0', 'git', '1');
+INSERT INTO `tag` VALUES ('16', '1', '0', 'mysql', '1');
+INSERT INTO `tag` VALUES ('17', '1', '0', 'debian', '1');
+INSERT INTO `tag` VALUES ('18', '1', '0', 'jquery', '1');
+INSERT INTO `tag` VALUES ('19', '1', '0', 'php', '1');
+INSERT INTO `tag` VALUES ('20', '1', '0', 'wamp', '1');
+INSERT INTO `tag` VALUES ('21', '1', '0', 'python', '1');
+INSERT INTO `tag` VALUES ('22', '1', '0', 'django', '1');
 
 -- ----------------------------
--- Table structure for users
+-- Table structure for `users`
 -- ----------------------------
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
