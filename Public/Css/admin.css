@@ -486,7 +486,7 @@ ul.content-box-tabs li a.current {
 /*************** Pagination ***************/
 
 #main-content .pagination {
-                text-align: right;
+                text-align: center;
                 padding: 20px 0 5px 0;
                 font-family: Verdana, Arial, Helvetica, sans-serif;
                 font-size: 10px;

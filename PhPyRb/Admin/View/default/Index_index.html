@@ -32,9 +32,10 @@
       <div class="content-box-header">
         <h3>Content box</h3>
         <ul class="content-box-tabs">
-          <li><a href="#tab1" class="default-tab">Table</a></li>
-          <!-- href must be unique and match the id of target div -->
-          <li><a href="#tab2">Forms</a></li>
+          <li><a href="#tab1" class="default-tab">Article List</a></li>
+          <!-- href must be unique and match the id of target div-->
+          <li><a href="#tab2">Category List</a></li> 
+          <li><a href="#tab3">Tags List</a></li> 
         </ul>
         <div class="clear"></div>
       </div>
@@ -51,126 +52,55 @@
                 <th>
                   <input class="check-all" type="checkbox" />
                 </th>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-                <th>Column 4</th>
-                <th>Column 5</th>
+                <th>ID</th>
+                <th>Article title</th>
+                <th>Article Category</th>
+                <th>Article Tags</th>
+                <th>Article Status</th>
+                <th>Article Hots</th>
+                <th>Article UpData Time</th>
+                <th>Article Operate</th>
               </tr>
             </thead>
             <tfoot>
               <tr>
                 <td colspan="6">
                   <div class="bulk-actions align-left">
-                    <select name="dropdown">
-                      <option value="option1">Choose an action...</option>
-                      <option value="option2">Edit</option>
-                      <option value="option3">Delete</option>
-                    </select>
-                    <a class="button" href="#">Apply to selected</a> </div>
-                  <div class="pagination"> <a href="#" title="First Page">&laquo; First</a><a href="#" title="Previous Page">&laquo; Previous</a> <a href="#" class="number" title="1">1</a> <a href="#" class="number" title="2">2</a> <a href="#" class="number current" title="3">3</a> <a href="#" class="number" title="4">4</a> <a href="#" title="Next Page">Next &raquo;</a><a href="#" title="Last Page">Last &raquo;</a> </div>
+                    </div>
+                  <div class="pagination"> 
+                  	<!--a href="#" title="First Page">&laquo; First</a>
+                  	<a href="#" title="Previous Page">&laquo; Previous</a> 
+                  	<a href="#" class="number" title="1">1</a> 
+                  	<a href="#" class="number" title="2">2</a> 
+                  	<a href="#" class="number current" title="3">3</a> 
+                  	<a href="#" class="number" title="4">4</a> 
+                  	<a href="#" title="Next Page">Next &raquo;</a>
+                  	<a href="#" title="Last Page">Last &raquo;</a --> 
+                  		{$page}
+                  </div>
                   <!-- End .pagination -->
                   <div class="clear"></div>
                 </td>
               </tr>
             </tfoot>
             <tbody>
+            <volist name="artlist" id="a">
               <tr>
                 <td>
                   <input type="checkbox" />
                 </td>
-                <td>Lorem ipsum dolor</td>
-                <td><a href="#" title="title">Sit amet</a></td>
-                <td>Consectetur adipiscing</td>
-                <td>Donec tortor diam</td>
+                <td>{$a['id']}</td>
+                <td><a href="#" title="title">{$a['title']}</a></td>
+                <td>{$category[$a['cateid']]['name']}</td>
+                <td>{$a['tagname']}</td>
+                <td>{$status[$a['status']]}</td>
+                <td>{$a['hots']}</td>
+                <td>{$a['uptime']|date='Y-m-d H-m-s',###}</td>
                 <td>
                   <!-- Icons -->
                   <a href="#" title="Edit"><img src="/Public/Image/icons/pencil.png" alt="Edit" /></a> <a href="#" title="Delete"><img src="/Public/Image/icons/cross.png" alt="Delete" /></a> <a href="#" title="Edit Meta"><img src="/Public/Image/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
               </tr>
-              <tr>
-                <td>
-                  <input type="checkbox" />
-                </td>
-                <td>Lorem ipsum dolor</td>
-                <td><a href="#" title="title">Sit amet</a></td>
-                <td>Consectetur adipiscing</td>
-                <td>Donec tortor diam</td>
-                <td>
-                  <!-- Icons -->
-                  <a href="#" title="Edit"><img src="/Public/Image/icons/pencil.png" alt="Edit" /></a> <a href="#" title="Delete"><img src="/Public/Image/icons/cross.png" alt="Delete" /></a> <a href="#" title="Edit Meta"><img src="/Public/Image/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
-              </tr>
-              <tr>
-                <td>
-                  <input type="checkbox" />
-                </td>
-                <td>Lorem ipsum dolor</td>
-                <td><a href="#" title="title">Sit amet</a></td>
-                <td>Consectetur adipiscing</td>
-                <td>Donec tortor diam</td>
-                <td>
-                  <!-- Icons -->
-                  <a href="#" title="Edit"><img src="/Public/Image/icons/pencil.png" alt="Edit" /></a> <a href="#" title="Delete"><img src="/Public/Image/icons/cross.png" alt="Delete" /></a> <a href="#" title="Edit Meta"><img src="/Public/Image/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
-              </tr>
-              <tr>
-                <td>
-                  <input type="checkbox" />
-                </td>
-                <td>Lorem ipsum dolor</td>
-                <td><a href="#" title="title">Sit amet</a></td>
-                <td>Consectetur adipiscing</td>
-                <td>Donec tortor diam</td>
-                <td>
-                  <!-- Icons -->
-                  <a href="#" title="Edit"><img src="/Public/Image/icons/pencil.png" alt="Edit" /></a> <a href="#" title="Delete"><img src="/Public/Image/icons/cross.png" alt="Delete" /></a> <a href="#" title="Edit Meta"><img src="/Public/Image/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
-              </tr>
-              <tr>
-                <td>
-                  <input type="checkbox" />
-                </td>
-                <td>Lorem ipsum dolor</td>
-                <td><a href="#" title="title">Sit amet</a></td>
-                <td>Consectetur adipiscing</td>
-                <td>Donec tortor diam</td>
-                <td>
-                  <!-- Icons -->
-                  <a href="#" title="Edit"><img src="/Public/Image/icons/pencil.png" alt="Edit" /></a> <a href="#" title="Delete"><img src="/Public/Image/icons/cross.png" alt="Delete" /></a> <a href="#" title="Edit Meta"><img src="/Public/Image/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
-              </tr>
-              <tr>
-                <td>
-                  <input type="checkbox" />
-                </td>
-                <td>Lorem ipsum dolor</td>
-                <td><a href="#" title="title">Sit amet</a></td>
-                <td>Consectetur adipiscing</td>
-                <td>Donec tortor diam</td>
-                <td>
-                  <!-- Icons -->
-                  <a href="#" title="Edit"><img src="/Public/Image/icons/pencil.png" alt="Edit" /></a> <a href="#" title="Delete"><img src="/Public/Image/icons/cross.png" alt="Delete" /></a> <a href="#" title="Edit Meta"><img src="/Public/Image/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
-              </tr>
-              <tr>
-                <td>
-                  <input type="checkbox" />
-                </td>
-                <td>Lorem ipsum dolor</td>
-                <td><a href="#" title="title">Sit amet</a></td>
-                <td>Consectetur adipiscing</td>
-                <td>Donec tortor diam</td>
-                <td>
-                  <!-- Icons -->
-                  <a href="#" title="Edit"><img src="/Public/Image/icons/pencil.png" alt="Edit" /></a> <a href="#" title="Delete"><img src="/Public/Image/icons/cross.png" alt="Delete" /></a> <a href="#" title="Edit Meta"><img src="/Public/Image/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
-              </tr>
-              <tr>
-                <td>
-                  <input type="checkbox" />
-                </td>
-                <td>Lorem ipsum dolor</td>
-                <td><a href="#" title="title">Sit amet</a></td>
-                <td>Consectetur adipiscing</td>
-                <td>Donec tortor diam</td>
-                <td>
-                  <!-- Icons -->
-                  <a href="#" title="Edit"><img src="/Public/Image/icons/pencil.png" alt="Edit" /></a> <a href="#" title="Delete"><img src="/Public/Image/icons/cross.png" alt="Delete" /></a> <a href="#" title="Edit Meta"><img src="/Public/Image/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
-              </tr>
+             </volist>
             </tbody>
           </table>
         </div>

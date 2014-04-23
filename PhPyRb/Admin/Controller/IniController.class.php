@@ -16,7 +16,7 @@
 	
 	class IniController extends Controller{
 		protected $User;
-		function _initalize(){
+		function _initialize(){
 			$this->User = D('User');
 		}
 	}

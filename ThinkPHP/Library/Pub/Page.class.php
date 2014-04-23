@@ -68,7 +68,7 @@ class Page{
 	 * @return string
 	 */
 	private function url($page){
-		return str_replace('[PAGE]', $page, $this->url);
+		return str_replace('PAGE', $page, $this->url);
 	}
 
 	/**
@@ -79,7 +79,7 @@ class Page{
 		if(0 == $this->totalRows) return '';
 
 		/* 生成URL */
-		$this->parameter[$this->p] = '[PAGE]';
+		$this->parameter[$this->p] = 'PAGE';
 		$this->url = U(ACTION_NAME, $this->parameter);
 		/* 计算分页信息 */
 		$this->totalPages = ceil($this->totalRows / $this->listRows); //总页数
