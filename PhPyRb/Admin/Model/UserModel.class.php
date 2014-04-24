@@ -20,5 +20,8 @@
 			$this->User = M('User');
 		}
 		
-		
+		function login($_where = array()){
+			$userinfo = $this->User->where($_where)->find();
+			return $userinfo;
+		}
 	}	

@@ -18,5 +18,8 @@
 		protected $User;
 		function _initialize(){
 			$this->User = D('User');
+			if(empty($_SESSION['userinfo'])){
+				header("Location:".U('Login/index'));
+			}
 		}
 	}
