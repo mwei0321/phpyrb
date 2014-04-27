@@ -10,13 +10,13 @@ Target Server Type    : MYSQL
 Target Server Version : 50524
 File Encoding         : 65001
 
-Date: 2014-04-23 17:26:59
+Date: 2014-04-27 23:25:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for `album`
+-- Table structure for album
 -- ----------------------------
 DROP TABLE IF EXISTS `album`;
 CREATE TABLE `album` (
@@ -35,7 +35,7 @@ CREATE TABLE `album` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `article`
+-- Table structure for article
 -- ----------------------------
 DROP TABLE IF EXISTS `article`;
 CREATE TABLE `article` (
@@ -47,53 +47,54 @@ CREATE TABLE `article` (
   `title` varchar(150) NOT NULL COMMENT '文章标题',
   `author` varchar(30) NOT NULL COMMENT '作者名称',
   `hots` int(11) NOT NULL COMMENT '点击率',
+  `keyword` varchar(100) DEFAULT NULL COMMENT '关键字',
   `addtime` int(11) NOT NULL COMMENT '添加时间',
   `uptime` int(11) NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COMMENT='文章表';
+) ENGINE=MyISAM AUTO_INCREMENT=74 DEFAULT CHARSET=utf8 COMMENT='文章表';
 
 -- ----------------------------
 -- Records of article
 -- ----------------------------
-INSERT INTO `article` VALUES ('1', '1', '9', '13,14,17', '1', 'debian 初始安装', 'PhPyRb-MaWei', '339', '1371746494', '1373192263');
-INSERT INTO `article` VALUES ('2', '1', '6', '18', '1', 'Jquery 随屏滚动特效', 'PhPyRb-MaWei', '235', '1371782692', '1372669889');
-INSERT INTO `article` VALUES ('3', '1', '3', '16,19', '1', 'php空间的在线解压 ZIP', 'PhPyRb-MaWei', '227', '1371871456', '1372669921');
-INSERT INTO `article` VALUES ('4', '1', '6', '18', '1', 'Jquery随屏滚动特效', 'PhPyRb-MaWei', '215', '1371872464', '1372756985');
-INSERT INTO `article` VALUES ('6', '1', '3', '16,19', '1', 'php面试题 陷阱题', 'PhPyRb-MaWei', '264', '1371896734', '1372757248');
-INSERT INTO `article` VALUES ('7', '1', '10', '16,19', '1', 'MySql常用语句', 'PhPyRb-MaWei', '247', '1371899755', '1373789463');
-INSERT INTO `article` VALUES ('18', '1', '4', '16,21', '0', 'python mysql基础 学习', 'PhPyRb-MaWei', '150', '1373942637', '1374059025');
-INSERT INTO `article` VALUES ('8', '1', '10', '16,19,20', '1', 'wamp虚拟主机配置', 'PhPyRb-MaWei', '239', '1371961592', '1373451770');
-INSERT INTO `article` VALUES ('9', '1', '9', '13,17', '1', 'Liunx配置IP和DNS', 'PhPyRb-MaWei', '156', '1371987080', '1372757673');
-INSERT INTO `article` VALUES ('10', '1', '9', '13,14,17', '1', 'Linux配置`.bashrc`,  `vim`， Linux配置命令缩写', 'PhPyRb-MaWei', '305', '1371987485', '1374460586');
-INSERT INTO `article` VALUES ('11', '1', '9', '13,15', '1', 'Linux安装git', 'PhPyRb-MaWei', '216', '1371988171', '1373452568');
-INSERT INTO `article` VALUES ('12', '1', '10', '16,19', '1', 'mysql分组group ', 'PhPyRb-MaWei', '241', '1372063686', '1372757732');
-INSERT INTO `article` VALUES ('13', '1', '6', '18', '1', '  jQuery 获取高度宽度', 'PhPyRb-MaWei', '117', '1372415916', '1372757748');
-INSERT INTO `article` VALUES ('15', '1', '9', '13,14', '1', 'vim基本命令,vim常用命令', 'PhPyRb-MaWei', '222', '1372865638', '1380112061');
-INSERT INTO `article` VALUES ('14', '1', '4', '', '0', 'python各种类型转换-int,str,char,float,ord,hex,oct等', 'PhPyRb-MaWei', '0', '1372761865', '1372762175');
-INSERT INTO `article` VALUES ('17', '1', '4', '21', '1', 'python 基础学习笔记1', 'PhPyRb-MaWei', '190', '1373437782', '1373440508');
-INSERT INTO `article` VALUES ('19', '1', '4', '16,21', '1', 'python安装mysql', 'PhPyRb-MaWei', '196', '1373956731', '1373957762');
-INSERT INTO `article` VALUES ('20', '1', '3', '', '0', 'php 文件下载详解', 'PhPyRb-MaWei', '0', '1375523177', '1375523177');
-INSERT INTO `article` VALUES ('21', '1', '9', '13,14,17', '1', 'vim中tab转成空格', 'PhPyRb-MaWei', '148', '1377268337', '1377268337');
-INSERT INTO `article` VALUES ('22', '1', '9', '13,17', '1', 'vps 安全登录的方法 ssh 登录', 'PhPyRb-MaWei', '188', '1377271802', '1377513177');
-INSERT INTO `article` VALUES ('31', '1', '4', '21,22', '0', 'django 正则表达式－Python Django  学习笔记3', 'PhPyRb-MaWei', '113', '1382514720', '1384676800');
-INSERT INTO `article` VALUES ('24', '1', '4', '21,22', '1', 'django 安装初始化-Python Django 学习笔记1', 'PhPyRb-MaWei', '209', '1377760757', '1384676849');
-INSERT INTO `article` VALUES ('25', '1', '23', '14', '1', 'Sublime 快捷键', 'PhPyRb-MaWei', '139', '1378371104', '1378371170');
-INSERT INTO `article` VALUES ('26', '1', '4', '13,17,19,21,22', '1', '反向代理', 'PhPyRb-MaWei', '101', '1378779640', '1378779640');
-INSERT INTO `article` VALUES ('27', '1', '10', '16', '1', 'mysql 数据库导入、导出', 'PhPyRb-MaWei', '148', '1378909247', '1380795718');
-INSERT INTO `article` VALUES ('28', '1', '4', '21,22', '0', 'django post csrf', 'PhPyRb-MaWei', '114', '1380115040', '1380115380');
-INSERT INTO `article` VALUES ('29', '1', '9', '13,17', '1', 'lftp 命令如何使用', 'PhPyRb-MaWei', '128', '1380801134', '1380802115');
-INSERT INTO `article` VALUES ('30', '1', '6', '18', '1', ' jQuery 如何为动态添加的元素绑定事件', 'PhPyRb-MaWei', '126', '1381134321', '1381135077');
-INSERT INTO `article` VALUES ('32', '1', '4', '21,22', '1', 'django url 详解 - Python Django  学习笔记4', 'PhPyRb-MaWei', '120', '1382521106', '1391165657');
-INSERT INTO `article` VALUES ('33', '1', '4', '21,22', '1', 'django 新建工程和项目－Python Django 学习笔记2', 'PhPyRb-MaWei', '125', '1382521966', '1384676829');
-INSERT INTO `article` VALUES ('34', '1', '4', '14,15,16,21,22', '0', 'django 模板详解', 'PhPyRb', '75', '1384676770', '1391166390');
-INSERT INTO `article` VALUES ('35', '1', '4', '16,17,19,20,21,22', '0', 'django模型详', 'PhPyRb', '82', '1385174807', '1391165851');
-INSERT INTO `article` VALUES ('38', '1', '4', '17,21', '1', 'pytonb', 'PhPyRb-MaWei', '0', '1391166501', '1391166501');
-INSERT INTO `article` VALUES ('36', '1', '4', '', '0', 'django模型详解之数据库操作 － Python Django 学习笔记7', 'PhPyRb-MaWei', '8', '1385279767', '1389189068');
-INSERT INTO `article` VALUES ('37', '1', '4', '16,19,20,21,22', '0', 'django如何连接mysql,django如何安装mysql', 'PhPyRb-MaWei', '9', '1389189913', '1391165757');
-INSERT INTO `article` VALUES ('39', '0', '0', '', '0', '', '', '0', '0', '0');
+INSERT INTO `article` VALUES ('1', '1', '9', '13,14,17', '0', 'debian 初始安装', 'PhPyRb-MaWei', '339', 'debian初始安装,debian安装设置,debian安装vim,debian安装代码提示,debian安装PHP环境,debian安装lnmp', '1371746494', '1373192263');
+INSERT INTO `article` VALUES ('2', '1', '6', '18', '1', 'Jquery 随屏滚动特效', 'PhPyRb-MaWei', '235', 'Jquery随屏滚动特效 Jquery滚动特效 Jquery特效滚动 Jquery特效随屏滚动 ', '1371782692', '1372669889');
+INSERT INTO `article` VALUES ('3', '1', '3', '16,19', '1', 'php空间的在线解压 ZIP', 'PhPyRb-MaWei', '227', 'php空间的在线解压 php空间的在线解压ZIP php空间解压ZIP 在线解压ZIP 在线解压zip 空间php解压 php空间解压', '1371871456', '1372669921');
+INSERT INTO `article` VALUES ('4', '1', '6', '18', '1', 'Jquery随屏滚动特效', 'PhPyRb-MaWei', '215', 'Jquery随屏滚动特效 jquery滚动 jquery滚动特效 jquery特效', '1371872464', '1372756985');
+INSERT INTO `article` VALUES ('6', '1', '3', '16,19', '1', 'php面试题 陷阱题', 'PhPyRb-MaWei', '264', 'php面试题 php陷阱题 php基础题 php常见面试题 php考题', '1371896734', '1372757248');
+INSERT INTO `article` VALUES ('7', '1', '10', '16,19', '1', 'MySql常用语句', 'PhPyRb-MaWei', '247', 'MySql常用语句 有用的MySQL语句 MySql语句', '1371899755', '1373789463');
+INSERT INTO `article` VALUES ('18', '1', '4', '16,21', '0', 'python mysql基础 学习', 'PhPyRb-MaWei', '150', 'python mysql连接,python mysql', '1373942637', '1374059025');
+INSERT INTO `article` VALUES ('8', '1', '10', '16,19,20', '1', 'wamp虚拟主机配置', 'PhPyRb-MaWei', '239', 'wamp5,apache 虚拟主机配置 wamp5虚拟主机配置 apache虚拟主机配置', '1371961592', '1373451770');
+INSERT INTO `article` VALUES ('9', '1', '9', '13,17', '1', 'Liunx配置IP和DNS', 'PhPyRb-MaWei', '156', 'Liunx配置IP和DNS debian配置ip debian配置dns liunx配置ip和dns', '1371987080', '1372757673');
+INSERT INTO `article` VALUES ('10', '1', '9', '13,14,17', '1', 'Linux配置`.bashrc`,  `vim`， Linux配置命令缩写', 'PhPyRb-MaWei', '305', 'Linux配置`.bashrc`,  `vim`  Linux配置命令缩写', '1371987485', '1374460586');
+INSERT INTO `article` VALUES ('11', '1', '9', '13,15', '1', 'Linux安装git', 'PhPyRb-MaWei', '216', 'Linux安装git git linux配置安装 liunx git', '1371988171', '1373452568');
+INSERT INTO `article` VALUES ('12', '1', '10', '16,19', '1', 'mysql分组group ', 'PhPyRb-MaWei', '241', 'mysql分组group mysql gorup mysql分组统计 mysql分组显示', '1372063686', '1372757732');
+INSERT INTO `article` VALUES ('13', '1', '6', '18', '1', '  jQuery 获取高度宽度', 'PhPyRb-MaWei', '117', '  jQuery 获取屏幕高度、宽度,jquery 高度，jquery宽度', '1372415916', '1372757748');
+INSERT INTO `article` VALUES ('15', '1', '9', '13,14', '1', 'vim基本命令,vim常用命令', 'PhPyRb-MaWei', '222', 'vim基本命令,vim常用命令', '1372865638', '1380112061');
+INSERT INTO `article` VALUES ('14', '1', '4', '', '0', 'python各种类型转换-int,str,char,float,ord,hex,oct等', 'PhPyRb-MaWei', '0', 'python各种类型转换-int,str,char,float,ord,hex,oct等 ', '1372761865', '1372762175');
+INSERT INTO `article` VALUES ('17', '1', '4', '21', '1', 'python 基础学习笔记1', 'PhPyRb-MaWei', '190', 'python 基础笔记 python基础 ', '1373437782', '1373440508');
+INSERT INTO `article` VALUES ('19', '1', '4', '16,21', '1', 'python安装mysql', 'PhPyRb-MaWei', '196', 'python安装mysql', '1373956731', '1373957762');
+INSERT INTO `article` VALUES ('20', '1', '3', '', '0', 'php 文件下载详解', 'PhPyRb-MaWei', '0', 'php 文件下载详解', '1375523177', '1375523177');
+INSERT INTO `article` VALUES ('21', '1', '9', '13,14,17', '1', 'vim中tab转成空格', 'PhPyRb-MaWei', '148', 'vim中将tab自动转换成空格 ', '1377268337', '1377268337');
+INSERT INTO `article` VALUES ('22', '1', '9', '13,17', '1', 'vps 安全登录的方法 ssh 登录', 'PhPyRb-MaWei', '188', 'vps 安全登录的方法 ssh  登录', '1377271802', '1377513177');
+INSERT INTO `article` VALUES ('31', '1', '4', '21,22', '0', 'django 正则表达式－Python Django  学习笔记3', 'PhPyRb-MaWei', '113', '正则表达式用法，正则表达式详解，python中正则表达式。', '1382514720', '1384676800');
+INSERT INTO `article` VALUES ('24', '1', '4', '21,22', '1', 'django 安装初始化-Python Django 学习笔记1', 'PhPyRb-MaWei', '209', 'django 初始化安装，python django学习笔记', '1377760757', '1384676849');
+INSERT INTO `article` VALUES ('25', '1', '23', '14', '1', 'Sublime 快捷键', 'PhPyRb-MaWei', '139', 'Sublime 常用的快捷键。', '1378371104', '1378371170');
+INSERT INTO `article` VALUES ('26', '1', '4', '13,17,19,21,22', '1', '反向代理', 'PhPyRb-MaWei', '101', 'Python使用反向代理，lnmp反向代理。', '1378779640', '1378779640');
+INSERT INTO `article` VALUES ('27', '1', '10', '16', '1', 'mysql 数据库导入、导出', 'PhPyRb-MaWei', '148', 'mysql 数据库导入、导出', '1378909247', '1380795718');
+INSERT INTO `article` VALUES ('28', '1', '4', '21,22', '0', 'django post csrf', 'PhPyRb-MaWei', '114', 'Python Django POST Forbidden (403)', '1380115040', '1380115380');
+INSERT INTO `article` VALUES ('29', '1', '9', '13,17', '1', 'lftp 命令如何使用', 'PhPyRb-MaWei', '128', 'liunx lftp,debian lftp', '1380801134', '1380802115');
+INSERT INTO `article` VALUES ('30', '1', '6', '18', '1', ' jQuery 如何为动态添加的元素绑定事件', 'PhPyRb-MaWei', '126', ' jQuery 如何为动态添加的元素绑定事件', '1381134321', '1381135077');
+INSERT INTO `article` VALUES ('32', '1', '4', '21,22', '1', 'django url 详解 - Python Django  学习笔记4', 'PhPyRb-MaWei', '120', 'django的url配置、用法。', '1382521106', '1391165657');
+INSERT INTO `article` VALUES ('33', '1', '4', '21,22', '1', 'django 新建工程和项目－Python Django 学习笔记2', 'PhPyRb-MaWei', '125', 'django如何新建工程和项目', '1382521966', '1384676829');
+INSERT INTO `article` VALUES ('34', '1', '4', '14,15,16,21,22', '0', 'django 模板详解', 'PhPyRb', '75', 'django模型，', '1384676770', '1391166390');
+INSERT INTO `article` VALUES ('35', '1', '4', '16,17,19,20,21,22', '0', 'django模型详', 'PhPyRb', '82', '新建模型', '1385174807', '1391165851');
+INSERT INTO `article` VALUES ('38', '1', '4', '17,21', '1', 'pytonb', 'PhPyRb-MaWei', '0', null, '1391166501', '1391166501');
+INSERT INTO `article` VALUES ('36', '1', '4', '', '0', 'django模型详解之数据库操作 － Python Django 学习笔记7', 'PhPyRb-MaWei', '8', '', '1385279767', '1389189068');
+INSERT INTO `article` VALUES ('37', '1', '4', '16,19,20,21,22', '0', 'django如何连接mysql,django如何安装mysql', 'PhPyRb-MaWei', '9', 'django如何安装mysql,django如何连接msyql.', '1389189913', '1391165757');
+INSERT INTO `article` VALUES ('39', '0', '0', '', '0', '', '', '0', null, '0', '0');
 
 -- ----------------------------
--- Table structure for `category`
+-- Table structure for category
 -- ----------------------------
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
@@ -102,47 +103,50 @@ CREATE TABLE `category` (
   `uid` int(11) NOT NULL COMMENT '用户ID',
   `name` varchar(30) NOT NULL COMMENT '分类名',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态（0 隐藏、1显示）',
+  `menu` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '菜单显示',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='分类表';
 
 -- ----------------------------
 -- Records of category
 -- ----------------------------
-INSERT INTO `category` VALUES ('1', '0', '1', 'Skill', '1');
-INSERT INTO `category` VALUES ('2', '1', '1', 'Program', '1');
-INSERT INTO `category` VALUES ('3', '2', '1', 'PHP', '1');
-INSERT INTO `category` VALUES ('4', '2', '1', 'Python', '1');
-INSERT INTO `category` VALUES ('5', '2', '1', 'Ruby', '1');
-INSERT INTO `category` VALUES ('6', '2', '1', 'Jquery', '1');
-INSERT INTO `category` VALUES ('7', '2', '1', 'HTML', '1');
-INSERT INTO `category` VALUES ('8', '2', '1', 'CSS', '1');
-INSERT INTO `category` VALUES ('9', '2', '1', 'Linux', '1');
-INSERT INTO `category` VALUES ('10', '2', '1', 'Apache+MySQL', '1');
-INSERT INTO `category` VALUES ('23', '2', '1', 'Other', '1');
+INSERT INTO `category` VALUES ('1', '0', '1', 'Skill', '1', '0');
+INSERT INTO `category` VALUES ('2', '1', '1', 'Program', '1', '0');
+INSERT INTO `category` VALUES ('3', '2', '1', 'PHP', '1', '1');
+INSERT INTO `category` VALUES ('4', '2', '1', 'Python', '1', '1');
+INSERT INTO `category` VALUES ('5', '2', '1', 'Ruby', '1', '1');
+INSERT INTO `category` VALUES ('6', '2', '1', 'Jquery', '1', '1');
+INSERT INTO `category` VALUES ('7', '2', '1', 'HTML', '1', '1');
+INSERT INTO `category` VALUES ('8', '2', '1', 'CSS', '1', '1');
+INSERT INTO `category` VALUES ('9', '2', '1', 'Linux', '1', '1');
+INSERT INTO `category` VALUES ('10', '2', '1', 'Apache+MySQL', '1', '1');
+INSERT INTO `category` VALUES ('23', '2', '1', 'Other', '1', '1');
 
 -- ----------------------------
--- Table structure for `comment`
+-- Table structure for comment
 -- ----------------------------
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `artid` int(11) NOT NULL COMMENT '文章ID',
-  `uid` int(11) NOT NULL COMMENT '用户ID （游客为 0）',
+  `uid` int(11) NOT NULL COMMENT '用户ID',
   `content` text NOT NULL COMMENT '内容',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态（0 隐藏、1显示）',
   `addtime` int(11) NOT NULL COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='评论、留言本';
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='评论、留言本';
 
 -- ----------------------------
 -- Records of comment
 -- ----------------------------
-INSERT INTO `comment` VALUES ('1', '1', '1', 'fdbdfgbdftywntn', '1', '0');
-INSERT INTO `comment` VALUES ('2', '1', '1', 'dgbrfbnyt', '1', '0');
-INSERT INTO `comment` VALUES ('3', '2', '1', 'SFVEV', '1', '0');
+INSERT INTO `comment` VALUES ('1', '1', '0', 'fdbdfgbdftywntn', '1', '0');
+INSERT INTO `comment` VALUES ('2', '1', '0', 'dgbrfbnyt', '1', '0');
+INSERT INTO `comment` VALUES ('3', '2', '0', 'SFVEV', '1', '0');
+INSERT INTO `comment` VALUES ('4', '3', '0', 'uu', '1', '0');
+INSERT INTO `comment` VALUES ('5', '3', '0', 'jjh', '1', '0');
 
 -- ----------------------------
--- Table structure for `content`
+-- Table structure for content
 -- ----------------------------
 DROP TABLE IF EXISTS `content`;
 CREATE TABLE `content` (
@@ -193,7 +197,7 @@ INSERT INTO `content` VALUES ('36', '', '', '<h3 align=\"center\">\r\n	django模
 INSERT INTO `content` VALUES ('37', 'django如何安装mysql,django如何连接msyql.', 'django安装mysql支持,django如何连接mysql,django连接mysql设置,django连接mysql代码.', '<div align=\"center\">\r\n	<h3>\r\n		<br />\r\n	</h3>\r\n	<h3>\r\n		django如何连接mysql\r\n	</h3>\r\n	<p>\r\n		adfasdfasdfasdfasdfasdfasdf\r\n	</p>\r\n	<p align=\"left\">\r\n		2.如何你还没有安装 MySQLdb,可以用如下的命令安装：\r\n	</p>\r\n<pre class=\"brush:bash\">easy_install MySQLdb </pre>\r\n	<p align=\"left\">\r\n		3.如何确定 mysqldb 安装成功，可以用如下方法：\r\n	</p>\r\n<pre class=\"brush:python\">python\r\nimport MySQLdb\r\n</pre>\r\n	<p align=\"left\">\r\n		如何没有报错的话，那恭喜你，你安装成功了，如何没有，请重复上面的步骤.\r\n	</p>\r\n	<p align=\"left\">\r\n		4.django 连接 mysql 的原代码如下：\r\n	</p>\r\n<pre class=\"brush:python\">import MySQLdb\r\n\r\ndef __init__(self):\r\n    db = MySQLdb.connect(user=\'root\', db=\'mydb\', passwd=\'\', host=\'localhost\')\r\n    cursor = db.cursor()\r\n    cursor.execute(\'SELECT name FROM mydb\')\r\n    names = [row[0] for row in cursor.fetchall()]\r\n    db.close()\r\n\r\n</pre>\r\n	<p>\r\n		<br />\r\n	</p>\r\n</div>');
 
 -- ----------------------------
--- Table structure for `photo`
+-- Table structure for photo
 -- ----------------------------
 DROP TABLE IF EXISTS `photo`;
 CREATE TABLE `photo` (
@@ -211,12 +215,13 @@ CREATE TABLE `photo` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `tag`
+-- Table structure for tag
 -- ----------------------------
 DROP TABLE IF EXISTS `tag`;
 CREATE TABLE `tag` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `uid` int(11) NOT NULL COMMENT '用户ID',
+  `menu` tinyint(1) NOT NULL DEFAULT '0' COMMENT '菜单显示',
   `cateid` int(11) NOT NULL COMMENT '分类ID',
   `name` varchar(30) NOT NULL COMMENT '标签名',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态（0 隐藏、1显示）',
@@ -226,21 +231,19 @@ CREATE TABLE `tag` (
 -- ----------------------------
 -- Records of tag
 -- ----------------------------
-INSERT INTO `tag` VALUES ('11', '1', '0', 'Skill', '1');
-INSERT INTO `tag` VALUES ('12', '1', '0', 'Program', '1');
-INSERT INTO `tag` VALUES ('13', '1', '0', 'Linux', '1');
-INSERT INTO `tag` VALUES ('14', '1', '0', 'Vim', '1');
-INSERT INTO `tag` VALUES ('15', '1', '0', 'git', '1');
-INSERT INTO `tag` VALUES ('16', '1', '0', 'mysql', '1');
-INSERT INTO `tag` VALUES ('17', '1', '0', 'debian', '1');
-INSERT INTO `tag` VALUES ('18', '1', '0', 'jquery', '1');
-INSERT INTO `tag` VALUES ('19', '1', '0', 'php', '1');
-INSERT INTO `tag` VALUES ('20', '1', '0', 'wamp', '1');
-INSERT INTO `tag` VALUES ('21', '1', '0', 'python', '1');
-INSERT INTO `tag` VALUES ('22', '1', '0', 'django', '1');
+INSERT INTO `tag` VALUES ('13', '1', '0', '0', 'Linux', '1');
+INSERT INTO `tag` VALUES ('14', '1', '0', '0', 'Vim', '1');
+INSERT INTO `tag` VALUES ('15', '1', '0', '0', 'git', '1');
+INSERT INTO `tag` VALUES ('16', '1', '0', '0', 'mysql', '1');
+INSERT INTO `tag` VALUES ('17', '1', '0', '0', 'debian', '1');
+INSERT INTO `tag` VALUES ('18', '1', '0', '0', 'jquery', '1');
+INSERT INTO `tag` VALUES ('19', '1', '0', '0', 'php', '1');
+INSERT INTO `tag` VALUES ('20', '1', '0', '0', 'wamp', '1');
+INSERT INTO `tag` VALUES ('21', '1', '0', '0', 'python', '1');
+INSERT INTO `tag` VALUES ('22', '1', '0', '0', 'django', '1');
 
 -- ----------------------------
--- Table structure for `users`
+-- Table structure for users
 -- ----------------------------
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
