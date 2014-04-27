@@ -1,7 +1,7 @@
 <?php
 /**
 *  +----------------------------------------------------------------------------------------------+
-*   | Explain:  文章模型类
+*   | Explain:  文章
 *  +----------------------------------------------------------------------------------------------+
 *   | Author: ONLY <491518132@qq.com>
 *  +----------------------------------------------------------------------------------------------+
@@ -10,13 +10,25 @@
 *   | Link :		http://www.phpyrb.com	     
 *  +----------------------------------------------------------------------------------------------+
 **/
-	namespace Blog\Model;
-	use Think\Model;
-	class ArticleModel extends Model{
-		protected $Article;
+	namespace Blog\Controller;
+	use Blog\Controller\IniController;
+use Pub\Page;
+		
+	class ArticleController extends IniController{
+		protected $article;
 		function _initialize(){
-			$this->Article = M('Article');
+			parent::_initialize();
+			$this->assign('hots',C('Article')->articles('0,15','hots DESC'));
 		}
 		
-
+		function index(){
+			$count = C('Article')->count();
+			$page = new Page($count, 5);
+			$artlist = C('Article')->articles("$page->firstRow,$page->listRows");
+			$countcomm = C('Article')->countcomm(arr2to1($artlist));
+			$this->assign('page',$page->show());
+			$this->assign('countcomm',$countcomm);
+			$this->assign('artlist',$artlist);
+			$this->display();
+		}
 	}

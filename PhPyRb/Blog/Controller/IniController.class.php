@@ -13,10 +13,22 @@
 
 	namespace Blog\Controller;
 	use Think\Controller;
+	use PhPyRb\Article;
 	
 	class IniController extends Controller{
-		protected $user;
+		protected $article;
 		function _initialize(){
-			$this->user = 'admin';
+			import('Article');
+			import('Page');
+			C('Article',new Article());
+			if(! S('CateList')){
+				S('CateList',C('Article')->catelist(),10000);
+			}
+			if(! S('Tags')){
+				S('Tags',C('Article')->tags(),10000);
+			}
+			$this->assign('catemean',C('Article')->level(S('CateList'),2));
+			$this->assign('cates',S('CateList'));
+			$this->assign('tags',S('Tags'));
 		}
 	}

@@ -11,17 +11,17 @@
 *  +----------------------------------------------------------------------------------------------+
 **/
 	namespace Blog\Controller;
-	use \Blog\Controller\IniController;
-
+	use Blog\Controller\IniController;
+	
 	class IndexController extends IniController{
 		protected $article;
 		function _initialize(){
 			parent::_initialize();
-			$this->article = D('Article');
 		}
 		
 		function index(){
-			$artlist = $this->article->artlist();
+			$artlist = C('Article')->artlist();
+// 			dump($artlist);
 			$this->assign('artlist',$artlist);
 			$this->display();
 		}

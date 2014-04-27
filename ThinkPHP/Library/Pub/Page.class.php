@@ -18,7 +18,7 @@ class Page{
 	public $parameter; // 分页跳转时要带的参数
 	public $totalRows; // 总行数
 	public $totalPages; // 分页总页面数
-	public $rollPage   = 11;// 分页栏每页显示的页数
+	public $rollPage   = 5;// 分页栏每页显示的页数
 	public $lastSuffix = true; // 最后一页是否显示总页数
 
 	private $p       = 'p'; //分页参数名
@@ -27,12 +27,13 @@ class Page{
 
 	// 分页显示定制
 	private $config  = array(
-			'header' => '<a href="javascript:void(0);">%TOTAL_ROW% 条记录</a>',
+			'header' => '<a class="textpage" href="javascript:void(0);">%TOTAL_ROW% 条</a>',
 			'prev'   => '<<',
 			'next'   => '>>',
 			'first'  => '1...',
 			'last'   => '...%TOTAL_PAGE%',
-			'theme'  => '%HEADER% %FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END% <a href="javascript:void(0);">%NOW_PAGE%/%TOTAL_PAGE%页</a>',
+// 			'theme'  => '%HEADER% %FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END% <a href="javascript:void(0);">%NOW_PAGE%/%TOTAL_PAGE%页</a>',
+			'theme'  => '%FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END% ',
 	);
 
 	/**
@@ -131,7 +132,7 @@ class Page{
 				}
 			}else{
 				if($page > 0 && $this->totalPages != 1){
-					$link_page .= '<a class="number current" href="#">' . $page . '</a>';
+					$link_page .= '<a class="nowpage" href="#">' . $page . '</a>';
 				}
 			}
 		}

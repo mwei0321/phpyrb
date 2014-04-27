@@ -5,7 +5,7 @@ body { margin:0; padding:0; width:100%; color:#9a9a9a; font:normal 12px/1.8em Ar
 a { color:#2cadff; text-decoration:none;}
 a:hover { text-decoration:underline;text-decoration:none;}
 .clr { clear:both; padding:0; margin:0; width:100%; font-size:0px; line-height:0px;}
-.header {height:155px;background:url(../Image/header.gif) repeat-x;}
+.header {height:155px;background:url(/Public/Image/header.gif) repeat-x;}
 .header .logo{height:95px; font-size:18px;margin:0 auto;width:82%;min-width:1100px;}
 .header .logo h1{height:60px;padding-top:18px;color:#1f7fbb; font:normal 46px/1.2em Arial, Helvetica, sans-serif;}
 .header .menu_nav { height:50px;text-align:center;margin:0 auto;width:82%;min-width:1100px;}
@@ -54,7 +54,7 @@ body .date a img{border:none;background:none;}
 .content .right .sidebar ul li{margin-left:22px;border-bottom:1px #cdcdcd dashed;min-height:22px;height:auto;margin-top:7px;line-height:22px;}
 .content .right .sidebar ul li a{color:#999;}
 #page{width:80%;min-width:800px;float:right;}
-#page p{height:35px;max-width:450px;width:auto;font-size:14px;padding:5px auto;margin:20px auto;line-height:35px;}
+#page p{height:35px;max-width:350px;width:auto;font-size:14px;padding:5px auto;margin:20px auto;line-height:35px;}
 #page a,#page span{width:27px;border:1px solid #ccc;height:25px;margin:3px; 5px auto 0px;display:block;float:left;line-height:25px;text-align:center;}
 #page .nowpage {color:#eee;background:#B2B2B2; font-weight:700;border:1px solid #888;}
 #page p .textpage{width:40px;}

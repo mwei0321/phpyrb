@@ -59,4 +59,9 @@
 		function edit(){
 			$this->display();
 		}
+		
+		
+		function add_up(){
+			
+		}
 	}

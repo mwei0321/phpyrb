@@ -31,8 +31,72 @@
 		 * @date 2014-4-17 下午1:50:15
 		 */
 		function artlist($_limit = '0,25',$_order = 'id DESC',$_where = array('uid'=>'1')){
+			$status = array('status'=>1);
+			$_where = array_merge($_where,$status);
 			$artlsit = $this->article->where($_where)->order($_order)->limit($_limit)->select();
+			$artlsit = $this->_strtoarr($artlsit);
+// 			echo $this->article->getLastSql();
 			return $artlsit;
+		}
+		
+		/**
+		* 返回文章评论数
+		* @param  string $_artid
+		* @return array $count
+		* @author MaWei (http://www.phpyrb.com)
+		* @date 2014-4-27  下午5:54:02
+		*/
+		function countcomm($_artid){
+			$comm = M();
+			$sql = "SELECT count(id),artid FROM `comment` WHERE status=1 and (`artid` in (".implode(',', $_artid).")) GROUP BY artid";
+			$count = $comm->query($sql);
+			return $count;
+		}
+		
+		/**
+		* 返回文章的评论
+		* @param  array 
+		* @param  string 
+		* @return array 
+		* @author MaWei (http://www.phpyrb.com)
+		* @date 2014-4-27  下午5:54:42
+		*/
+		function comment($_artid,$_limit = '0,15'){
+			$comm = M('Comment');
+			$comment = $comm->where(array('artid'=>$_artid))->order('id DESC')->limit($_limit)->select();
+			return $comment;
+		}
+		
+		/**
+		* 返回最新的文章
+		* @param  string $_limit
+		* @param  string $_order
+		* @param  string $_uid
+		* @return array $newest
+		* @author MaWei (http://www.phpyrb.com)
+		* @date 2014-4-27  下午5:33:45
+		*/
+		function articles($_limit = '0,5',$_order = 'id DESC',$_uid = 1){
+			$field = "id,title,author,hots,uptime,keyword,tags,cateid,content";
+			$sql = "SELECT $field FROM `article` a LEFT JOIN `content` c ON a.id=c.artid WHERE a.uid=$_uid AND a.`status`=1 ORDER BY $_order LIMIT $_limit";
+			$art = M();
+			$newest = $art->query($sql);
+			return $newest;
+		}
+		
+		/**
+		* 把数组里的某个字符变成数组
+		* @param  array $_data
+		* @param  string $_field
+		* @return array $_data
+		* @author MaWei (http://www.phpyrb.com)
+		* @date 2014-4-27  下午4:45:42
+		*/
+		function _strtoarr($_data,$_field="tags"){
+			foreach ($_data as $k => $v){
+				$_data["$k"]["$_field"] = explode(',', $v["$_field"]);
+			}
+			return $_data;
 		}
 		
 		/**
@@ -134,7 +198,7 @@
 				if($_pid == $v['pid']){
 					self::$catelevel[$k] = $v;
 					self::$catelevel[$k]['level'] = $_level;
-					self::$catelevel[$k]['tree'] = $this->tree($_level);
+					self::$catelevel[$k]['tree'] = $this->_tree($_level);
 					unset($_data[$k]);
 					$this->level($_data,self::$catelevel[$k]['id'],$_level+1);					
 				}				
@@ -149,7 +213,7 @@
 		 * @author MaWei ( http://www.phpyrb.com )
 		 * @date 2014-4-17 下午1:50:15
 		 */
-		function tree($_level){
+		function _tree($_level){
 			$str = '|----';
 			for ($i = 1;$i < $_level; $i++){
 				$str .= $str;
