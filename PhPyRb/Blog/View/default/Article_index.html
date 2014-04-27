@@ -30,10 +30,10 @@
                 <div class="info">
                 	<p>
                 		<span><a href="{:U('Article/cate',array('cateid'=>$a['cateid']))}" target="_blank">{$cates[$a['cateid']]['name']}</a></span> / 
-						<span><a href="/index.php?m=Article&a=index&artid=17" target="_blank">评 论&nbsp;(0)</a></span> / 
-						<span>热度&nbsp;(188 ℃)</span> / 
-						<span>2013-07-10</span> / 
-						<span><a href="/index.php?m=Article&a=index&artid=17" target="_blank">阅读全文&nbsp;</a></span>
+						<span><a href="{:U('Article/comment',array('artid'=>$a['id']))}" target="_blank">评 论&nbsp;({$a['hots']})</a></span> / 
+						<span>热度&nbsp;({$a['hots']}℃)</span> / 
+						<span>{$a['uptime']|date='Y-m-d',###}</span> / 
+						<span><a href="{:U('Article/comment',array('artid'=>$a['id']))}" target="_blank">阅读全文&nbsp;</a></span>
 					</p>
 			      </div>
                 </div>

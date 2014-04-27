@@ -46,9 +46,10 @@
 		* @author MaWei (http://www.phpyrb.com)
 		* @date 2014-4-27  下午5:54:02
 		*/
-		function countcomm($_artid){
+		function countcomm($_artid = array()){
 			$comm = M();
 			$sql = "SELECT count(id),artid FROM `comment` WHERE status=1 and (`artid` in (".implode(',', $_artid).")) GROUP BY artid";
+// 			echo $sql;
 			$count = $comm->query($sql);
 			return $count;
 		}
@@ -81,6 +82,7 @@
 			$sql = "SELECT $field FROM `article` a LEFT JOIN `content` c ON a.id=c.artid WHERE a.uid=$_uid AND a.`status`=1 ORDER BY $_order LIMIT $_limit";
 			$art = M();
 			$newest = $art->query($sql);
+// 			echo $sql;
 			return $newest;
 		}
 		

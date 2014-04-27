@@ -26,6 +26,8 @@ use Pub\Page;
 			$page = new Page($count, 5);
 			$artlist = C('Article')->articles("$page->firstRow,$page->listRows");
 			$countcomm = C('Article')->countcomm(arr2to1($artlist));
+// 			$countcomm = fieldtokey($countcomm,artid);
+			dump($countcomm);
 			$this->assign('page',$page->show());
 			$this->assign('countcomm',$countcomm);
 			$this->assign('artlist',$artlist);
