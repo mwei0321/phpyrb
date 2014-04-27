@@ -10,8 +10,8 @@
 *   | Link :		http://www.phpyrb.com	     
 *  +----------------------------------------------------------------------------------------------+
 **/
-	namespace Admin\Controller;
-	use Admin\Controller\IniController;
+	namespace User\Controller;
+	use User\Controller\IniController;
 	use Pub\Page;
 	use PhPyRb\Article;
 	

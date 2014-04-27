@@ -11,7 +11,7 @@
 *  +----------------------------------------------------------------------------------------------+
 **/
 
-	namespace Admin\Controller;
+	namespace User\Controller;
 	use Think\Controller;
 
 	class LoginController extends Controller{
@@ -25,7 +25,7 @@
 		 * @date 2014-4-17 下午1:50:15
 		 */
 		function index(){
-			echo sha1('phpyrb'.'phpyrb'.'mw');
+// 			echo sha1('phpyrb'.'phpyrb'.'mw');
 			$this->display();
 		}
 		
@@ -42,7 +42,7 @@
 			$model = M("Users");
 			$info = $model->where($where)->find();
 			$_SESSION['userinfo'] = $info;
-			$this->redirect('Index/index');
+			$this->redirect('Article/index');
 		}
 		
 		/**
