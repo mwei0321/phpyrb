@@ -388,7 +388,7 @@ class Image {
     	$b = Array(225, 236, 166, 125);
     	$key = mt_rand(0, 3);
     
-    	$font = ROOT_PATH.'Public/Fonts/msyh.ttf';
+    	$font = ROOT_PATH.'/Public/fonts/simhei.ttf';
     	$_x=($width / $length);   //字体长度
     
     
@@ -407,7 +407,7 @@ class Image {
     		imagesetpixel($im, mt_rand(0, $width), mt_rand(0, $height), $stringColor);
     	}
 //     	for ($i = 0; $i < $length; $i++) {
-//     	     imagestring($im, 8, $i * 10 + 7, mt_rand(1, 8), $randval{$i}, $stringColor);
+//     	     imagestring($im, 22, $i * 10 + 7, mt_rand(1, 8), $randval{$i}, $stringColor);
 //     	}
     
     	for ($i = 0; $i < $length; $i++){

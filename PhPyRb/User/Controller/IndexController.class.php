@@ -1,23 +1,22 @@
 <?php
-	/**
-	*  +----------------------------------------------------------------------------------------------+
-	*   | Explain: 文章 
-	*  +----------------------------------------------------------------------------------------------+
-	*   | Author: ONLY <1123265518@qq.com>
-	*	+----------------------------------------------------------------------------------------------+
-	*   | Creater Time : 2014-4-24 下午4:58:00
-	*  +----------------------------------------------------------------------------------------------+
-	*   | Link :		http://www.phpyrb.com	     
-	*  +----------------------------------------------------------------------------------------------+
-	**/
-	
-	namespace Admin\Controller;
-	use Admin\Controller\IniController;
+/**
+*  +----------------------------------------------------------------------------------------------+
+*   | Explain:  home page
+*  +----------------------------------------------------------------------------------------------+
+*   | Author: ONLY <1123265518@qq.com>
+*  +----------------------------------------------------------------------------------------------+
+*   | Creater Time : 2014-1-17
+*  +----------------------------------------------------------------------------------------------+
+*   | Link :		http://www.phpyrb.com	     
+*  +----------------------------------------------------------------------------------------------+
+**/
+	namespace User\Controller;
+	use User\Controller\IniController;
 	use Pub\Page;
 	use PhPyRb\Article;
 	
-	class ArticleController extends IniController{
-	protected $Article,$categorys,$tags;
+	class IndexController extends IniController{
+		protected $Article,$categorys,$tags;
 		function _initialize(){
 			parent::_initialize();
 			import('Article');
@@ -53,12 +52,6 @@
 			$artshow = $page->show();
 			$this->assign('page',$artshow);
 			$this->assign('artlist',$artlist);
-			$this->display();
-		}
-		
-		function edit(){
-			$cate = $this->Article->level(S('CateList'));
-			$this->assign('cate',$cate);
 			$this->display();
 		}
 	}

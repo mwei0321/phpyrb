@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+    <head>
+        <title>
+            <block name="title">
+                python学习,马伟博客,python博客,php博客 ,Python博客,马伟个人博客,PhPyRb博客
+            </block>
+        </title>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <meta name="keywords" content="<block name="keywords">PHP,Pythoy,Ruby,Js,Jquery,HTML5,Css,Ajax,python学习,个人主页,博客,网站建设,PHP建站</block>" />
+        <meta name="description" content="<block name="content">pythob学习,深圳PHP博客,马伟个人博客,python博客</block>" />
+        <link href="./Public/Css/base.css" rel="stylesheet" type="text/css" />
+        <link type="text/css" rel="stylesheet" href="./Public/SyntaxHighlighter/styles/shCore.css"/>
+        <link type="text/css" rel="stylesheet" href="./Public/SyntaxHighlighter/styles/shThemeDefault.css"/>
+    </head>
+    <body>
+        <div class="header">
+            <div class="logo">
+                <h1><a href="/index.php?m=Index&a=index">PhPyRb<span> Blog</span></a>
+                    <small style="font-size:13px;">
+                        &nbsp;&nbsp;&nbsp;MaWei
+                    </small>
+                </h1>
+            </div>
+            <div class="menu_nav">
+            	<ul>
+                	<volist name="catemean" id="c">
+                        <li>
+                            <a href="{:U('Article/cate',array('cateid'=>$c['id']))}">{$c['name']}</a>
+                        </li>
+					</volist>
+				</ul>
+                <div class="search">
+                    <form method="get" action="/index.php?m=Index&a=search">
+                        <input type="search" name="keyword" style="width:160px;height:36px;line-height:36px;background:none;border:0px;font-size:16px;"/><input type="submit" value=" " style="width:72px;height:25px;margin-left:3px;border:none;background:url(Public/Image/searchbtn.png) no-repeat 0 -1px;"/><input type="hidden" name="m" value="Index"><input type="hidden" name="a" value="search">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="left">
+				<block name="left_content">	
+				</block>
+                <div id="page">
+                    <p>
+                    	{$page}
+                    </p>
+                </div>
+            </div>
+            <!-- start right -->
+            <div class="right">
+                <div class="sidebar">
+                    <h2>文章分类</h2>
+                    <div class="clr"></div>
+                    <ul class="sb_menu">
+                    	<volist name="catemean" id="c">
+	                        <li>
+	                            <a href="{:U('Article/cate',array('cateid'=>$c['id']))}">{$c['name']}</a>&nbsp;(2)
+	                        </li>
+						</volist>
+                    </ul>
+                </div>
+                <div class="sidebar">
+                    <h2>热门标签</h2>
+                    <div class="clr">
+                    </div>
+					<volist name="tags" id="t" >
+                    	<ul class="sb_menu two">
+	                        <li>
+	                            <a href="{:U('Article/tags',array('tagid'=>$t['id']))}">{$t['name']}</a>
+	                        </li>
+						</ul>
+					</volist>
+                </div>
+                <div class="sidebar">
+                    <h2>热门文章</h2>
+                    <div class="clr">
+                    </div>
+                    <ul class="sb_menu"><block name="hots"></block>
+                    </ul>
+                </div>
+            </div>
+            <!-- end right -->
+        </div>
+        <div class="clr">
+        </div>
+        <div class="footer">
+            <p class="lr">
+                © Copyright <a href="http://www.phpyrb.com">http://www.phpyrb.com http://www.cloudsskill.com</a>.
+            </p>
+            <p class="lf">
+                Collect from: <a href="http://www.phpyrb.com" title="马伟博客" target="_blank">马伟博客</a>
+            </p>
+            <div class="clr">
+            </div>
+        </div>
+        <script type="text/javascript" src="./Public/SyntaxHighlighter/scripts/shCore.js">
+        </script>
+        <script type="text/javascript">
+            SyntaxHighlighter.config.clipboardSwf = './Public/SyntaxHighlighter/scripts/clipboard.swf';
+            SyntaxHighlighter.all();
+        </script>
+        <script type="text/javascript" src="./Public/Js/jquery-1.9.1.min.js">
+        </script>
+        <script type="text/javascript" src="./Public/SyntaxHighlighter/scripts/shBrushCss.js">
+        </script>
+        <script type="text/javascript" src="./Public/SyntaxHighlighter/scripts/shBrushJScript.js">
+        </script>
+        <script type="text/javascript" src="./Public/SyntaxHighlighter/scripts/shBrushPython.js">
+        </script>
+        <script type="text/javascript" src="./Public/SyntaxHighlighter/scripts/shBrushSql.js">
+        </script>
+        <script type="text/javascript" src="./Public/SyntaxHighlighter/scripts/shBrushBash.js">
+        </script>
+        <script type="text/javascript" src="./Public/SyntaxHighlighter/scripts/shBrushPython.js">
+        </script>
+        <script type="text/javascript" src="./Public/SyntaxHighlighter/scripts/shBrushPhp.js">
+        </script>
+        <div style="display:hidden;">
+            <script type="text/javascript">
+                var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F6238436e2f7b68b79f031f095826dc4b' type='text/javascript'%3E%3C/script%3E"));
+            </script>
+        </div>
+    </body>
+</html>

@@ -11,13 +11,14 @@
 *  +----------------------------------------------------------------------------------------------+
 **/
 
-	namespace Admin\Controller;
+	namespace User\Controller;
 	use Think\Controller;
 	
 	class IniController extends Controller{
 		protected $User;
 		function _initialize(){
 			$this->User = D('User');
+			$_SESSION['userinfo']['id'] = 1;
 // 			if(empty($_SESSION['userinfo'])){
 // 				header("Location:".U('Login/index'));
 // 			}

@@ -18,8 +18,5 @@
 			$this->Article = M('Article');
 		}
 		
-		function artlist($_limit = '0,15'){
-			$artlist = $this->Article->order('uptime DESC')->limit($_limit)->select();
-			return $artlist;
-		}
+
 	}

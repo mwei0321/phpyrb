@@ -27,7 +27,7 @@
 					$onearray[] = $val["$_field"];
 				}
 			}
-			$onearr[] = $v["$_field"];
+			$onearray[] = $v["$_field"];
 		}
 		return $onearray;
 	}
