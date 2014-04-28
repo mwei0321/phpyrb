@@ -129,12 +129,12 @@
 		 * @author MaWei ( http://www.phpyrb.com )
 		 * @date 2014-4-17 下午1:50:15
 		 */
-		function level($_data,$_pid = 0, $_level = 1){
+		function level($_data,$_pid = 0, $_level = 0){
 			foreach ($_data as $k => $v){
 				if($_pid == $v['pid']){
 					self::$catelevel[$k] = $v;
 					self::$catelevel[$k]['level'] = $_level;
-					self::$catelevel[$k]['tree'] = $this->tree($_level);
+					self::$catelevel[$k]['tree'] = $this->_tree($_level);
 					unset($_data[$k]);
 					$this->level($_data,self::$catelevel[$k]['id'],$_level+1);					
 				}				
@@ -149,7 +149,7 @@
 		 * @author MaWei ( http://www.phpyrb.com )
 		 * @date 2014-4-17 下午1:50:15
 		 */
-		function tree($_level){
+		function _tree($_level){
 			$str = '|----';
 			for ($i = 1;$i < $_level; $i++){
 				$str .= $str;

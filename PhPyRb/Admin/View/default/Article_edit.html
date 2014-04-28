@@ -1,4 +1,4 @@
-<include file="Admin:header" />
+<include file="Public:header" />
 <script src="__PUBLIC__/kindeditor/kindeditor-min.js"></script>
  </script>
     <!-- End .clear -->
@@ -20,7 +20,7 @@
               <select name="categorys" style="min-width:120px;width:auto;">
 			  	<option value="0">Select Categorys</option>
                 <volist name="cate" id="c">
-					<option value="{$c['id']}" {if $art['cateid'] == $c['id']} selected="selected" {/if}>{$c['name']}</option>
+					<option value="{$c['id']}" {if $art['cateid'] == $c['id']} selected="selected" {/if}>{$c['tree']}{$c['name']}</option>
 				</volist>
               </select>
             </p>

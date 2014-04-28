@@ -57,6 +57,8 @@
 		}
 		
 		function edit(){
+			$cate = $this->Article->level(S('CateList'));
+			$this->assign('cate',$cate);
 			$this->display();
 		}
 	}

@@ -473,6 +473,18 @@ class  Template {
             return  '<?php echo '.$name.';?>';
         }elseif('~' == $flag){ // 执行某个函数
             return  '<?php '.$name.';?>';
+            // hydata add 添加if判断
+        } elseif (substr ( $tagStr, 0, 3 ) == 'if ') { // hydata add
+            return '<?php if(' . substr ( $tagStr, 3 ) . ') : ?>';
+        } elseif (substr ( $tagStr, 0, 7 ) == 'elseif ') {
+            return '<?php elseif(' . substr ( $tagStr, 7 ) . '): ?>';
+        } elseif ($tagStr == 'else') {
+            return '<?php else :?>';
+        } elseif ($tagStr == '/if') {
+            return '<?php endif;?>';
+        } elseif (substr ( $tagStr, 0, 4 ) == 'php ') {
+            return '<?php ' . substr ( $tagStr, 4 ) . ';?>';
+            	// hydata add end
         }elseif(substr($tagStr,0,2)=='//' || (substr($tagStr,0,2)=='/*' && substr(rtrim($tagStr),-2)=='*/')){
             //注释标签
             return '';
