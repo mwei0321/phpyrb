@@ -1,13 +1,5 @@
 <extend name="Public:base" />
 
-<!-- 菜单 -->
-<block name="menu_nav">
-	<ul>
-      <li class="menufrist"><a href="/index.php?m=Index&a=index">Home</a></li>
-	  <li><a href="/index.php?m=Index&a=index&cateid=3">PHP</a></li><li><a href="/index.php?m=Index&a=index&cateid=4">Python</a></li><li><a href="/index.php?m=Index&a=index&cateid=6">Jquery</a></li><li><a href="/index.php?m=Index&a=index&cateid=7">HTML</a></li><li><a href="/index.php?m=Index&a=index&cateid=8">CSS</a></li><li><a href="/index.php?m=Index&a=index&cateid=9">Linux</a></li><li><a href="/index.php?m=Index&a=index&cateid=10">Apache+MySQL</a></li><li><a href="/index.php?m=Index&a=index&cateid=23">Other</a></li>
-    </ul>
-</block>
-
 <!-- 左边的内容 -->
 <block name="left_content">
 	<volist name="artlist" id="a">
@@ -30,7 +22,7 @@
                 <div class="info">
                 	<p>
                 		<span><a href="{:U('Article/cate',array('cateid'=>$a['cateid']))}" target="_blank">{$cates[$a['cateid']]['name']}</a></span> / 
-						<span><a href="{:U('Article/comment',array('artid'=>$a['id']))}" target="_blank">评 论&nbsp;({$a['hots']})</a></span> / 
+						<span><a href="{:U('Article/comment',array('artid'=>$a['id']))}" target="_blank">评 论&nbsp;({if $countcomm[$a['id']]}{$countcomm[$a['id']]['count']}{else}0{/if})</a></span> / 
 						<span>热度&nbsp;({$a['hots']}℃)</span> / 
 						<span>{$a['uptime']|date='Y-m-d',###}</span> / 
 						<span><a href="{:U('Article/comment',array('artid'=>$a['id']))}" target="_blank">阅读全文&nbsp;</a></span>
@@ -44,7 +36,7 @@
 	</volist>
 </block>
 <div class="clr"></div>
-<!-- 右边的导航 -->
+<!-- 右边的热门文章 -->
 <block name="hots">
 	<volist name="hots" id="h">
 		<li>

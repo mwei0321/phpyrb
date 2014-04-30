@@ -48,7 +48,7 @@
 		*/
 		function countcomm($_artid = array()){
 			$comm = M();
-			$sql = "SELECT count(id),artid FROM `comment` WHERE status=1 and (`artid` in (".implode(',', $_artid).")) GROUP BY artid";
+			$sql = "SELECT count(id) count,artid FROM `comment` WHERE status=1 and (`artid` in (".implode(',', $_artid).")) GROUP BY artid";
 // 			echo $sql;
 			$count = $comm->query($sql);
 			return $count;
@@ -82,6 +82,7 @@
 			$sql = "SELECT $field FROM `article` a LEFT JOIN `content` c ON a.id=c.artid WHERE a.uid=$_uid AND a.`status`=1 ORDER BY $_order LIMIT $_limit";
 			$art = M();
 			$newest = $art->query($sql);
+			$newest = $this->_strtoarr($newest);
 // 			echo $sql;
 			return $newest;
 		}
@@ -110,11 +111,12 @@
 		 */
 		function artinfo($_artid){
 			$model = M();
-			$where = is_array($_artid) ? "id IN (".implode(',', $_artid).")" : $_artid;
-			$sql = "SELECT * FROM `article` as a LEFT JOIN `content` as c ON a.id=c.artid WHERE id=".$where;
+// 			$where = is_array($_artid) ? "id IN (".implode(',', $_artid).")" : $_artid;
+			$sql = "SELECT * FROM `article` as a LEFT JOIN `content` as c ON a.id=c.artid WHERE id=".$_artid;
 			$artinfo = $model->query($sql);
-			$artinfo = fieldtokey($artinfo);
-			return $artinfo;
+// 			$artinfo = fieldtokey($artinfo);
+			$artinfo = $this->_strtoarr($artinfo);
+			return array_shift($artinfo);
 		}
 		
 		

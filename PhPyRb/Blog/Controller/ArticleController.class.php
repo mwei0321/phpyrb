@@ -26,11 +26,16 @@ use Pub\Page;
 			$page = new Page($count, 5);
 			$artlist = C('Article')->articles("$page->firstRow,$page->listRows");
 			$countcomm = C('Article')->countcomm(arr2to1($artlist));
-// 			$countcomm = fieldtokey($countcomm,artid);
-			dump($countcomm);
+			$countcomm = fieldtokey($countcomm,artid);
 			$this->assign('page',$page->show());
 			$this->assign('countcomm',$countcomm);
 			$this->assign('artlist',$artlist);
+			$this->display();
+		}
+		
+		function content(){
+			$info = C('Article')->artinfo($_REQUEST['artid']);
+			$this->assign('info',$info);
 			$this->display();
 		}
 	}

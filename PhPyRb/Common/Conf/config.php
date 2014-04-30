@@ -4,6 +4,7 @@ require_once './dbconf.php';
 
 $conf = array(
 		//'配置项'=>'配置值'
+		'MODULE_ALLOW_LIST'     => array('Blog','Admin','User'),
 		'DEFAULT_MODULE'     	=> 'Blog', //默认模块    
 		'SESSION_AUTO_START' 	=> true, //是否开启session
 		

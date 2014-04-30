@@ -22,20 +22,22 @@
                     </small>
                 </h1>
             </div>
-            <div class="menu_nav">
-            	<ul>
-                	<volist name="catemean" id="c">
-                        <li>
-                            <a href="{:U('Article/cate',array('cateid'=>$c['id']))}">{$c['name']}</a>
-                        </li>
-					</volist>
-				</ul>
-                <div class="search">
-                    <form method="get" action="/index.php?m=Index&a=search">
-                        <input type="search" name="keyword" style="width:160px;height:36px;line-height:36px;background:none;border:0px;font-size:16px;"/><input type="submit" value=" " style="width:72px;height:25px;margin-left:3px;border:none;background:url(Public/Image/searchbtn.png) no-repeat 0 -1px;"/><input type="hidden" name="m" value="Index"><input type="hidden" name="a" value="search">
-                    </form>
-                </div>
-            </div>
+			<div class="menu">
+	            <div class="menu_nav">
+	            	<ul>
+	                	<volist name="catemean" id="c">
+	                        <li>
+	                            <a href="{:U('Article/cate',array('cateid'=>$c['id']))}">{$c['name']}</a>
+	                        </li>
+						</volist>
+					</ul>
+	                <div class="search">
+	                    <form method="get" action="/index.php?m=Index&a=search">
+	                        <input type="search" name="keyword" style="width:160px;height:36px;line-height:36px;background:none;border:0px;font-size:16px;"/><input type="submit" value=" " style="width:72px;height:25px;margin-left:3px;border:none;background:url(Public/Image/searchbtn.png) no-repeat 0 -1px;"/><input type="hidden" name="m" value="Index"><input type="hidden" name="a" value="search">
+	                    </form>
+	                </div>
+	            </div>
+			</div>
         </div>
         <div class="content">
             <div class="left">
@@ -46,20 +48,11 @@
                     	{$page}
                     </p>
                 </div>
+				<div class="clr"></div>
+				<block name="comment"></block>
             </div>
             <!-- start right -->
             <div class="right">
-                <div class="sidebar">
-                    <h2>文章分类</h2>
-                    <div class="clr"></div>
-                    <ul class="sb_menu">
-                    	<volist name="catemean" id="c">
-	                        <li>
-	                            <a href="{:U('Article/cate',array('cateid'=>$c['id']))}">{$c['name']}</a>&nbsp;(2)
-	                        </li>
-						</volist>
-                    </ul>
-                </div>
                 <div class="sidebar">
                     <h2>热门标签</h2>
                     <div class="clr">
@@ -77,6 +70,17 @@
                     <div class="clr">
                     </div>
                     <ul class="sb_menu"><block name="hots"></block>
+                    </ul>
+                </div>
+				<div class="sidebar">
+                    <h2>文章分类</h2>
+                    <div class="clr"></div>
+                    <ul class="sb_menu">
+                    	<volist name="catemean" id="c">
+	                        <li>
+	                            <a href="{:U('Article/cate',array('cateid'=>$c['id']))}">{$c['name']}</a>&nbsp;(2)
+	                        </li>
+						</volist>
                     </ul>
                 </div>
             </div>

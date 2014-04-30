@@ -8,7 +8,8 @@ a:hover { text-decoration:underline;text-decoration:none;}
 .header {height:155px;background:url(../Image/header.gif) repeat-x;}
 .header .logo{height:95px; font-size:18px;margin:0 auto;width:82%;min-width:1100px;}
 .header .logo h1{height:60px;padding-top:18px;color:#1f7fbb; font:normal 46px/1.2em Arial, Helvetica, sans-serif;}
-.header .menu_nav { height:50px;text-align:center;margin:0 auto;width:82%;min-width:1100px;}
+.header .menu_nav { height:50px;text-align:center;margin:0 auto;width:84%;min-width:1100px;}
+.header .fix{height:50px;text-align:center;margin:0 auto;position:fixed; top: 5px; z-index: 999; display: none; background:#f23;}
 .header .menu_nav .search {width:280px;height:36px;float:right;right:20px;top:3px;position:relative; background:url(../Image/searchbg.png) no-repeat;}
 .header .menu_nav ul {list-style:none;margin-top:10px;}
 .header .menu_nav ul li { height:26px;margin:12px 5px;float:left; }
@@ -30,7 +31,7 @@ body .date a img{border:none;background:none;}
 .content .left .article{width:95%;height:auto;background:#fff;position:relative;}
 .content .left .h123{font-size:22px;float:left;position:absolute;margin:15px auto 0px -2px;heigt:35px;padding:0 30px;line-height:35px;color:#888;background:url(../Image/hhh.png) repeat-x;box-shadow: 5px 5px 8px #ccc;}
 .content .left .first{margin-bottom:50px;}
-.content .left .article .cont{width:95%;margin:0 auto 50px auto; overflow:hidden;background:#fdfdfd;font-size:1.1em;}
+.content .left .article .cont{width:95%;margin:10px auto 60px auto; overflow:hidden;background:#fdfdfd;font-size:1.1em;}
 .content .left .article #maxart{ max-height:215px;}
 .content .left #oneart{min-height:400px;height:auto;}
 /*.content .left #minart{min-height:300px;height:auto;}*/
@@ -42,18 +43,18 @@ body .date a img{border:none;background:none;}
 .content .left .article .info p{float:right;margin-right:40px;color:#fff; font-weight:550;}
 .content .left .article .info p span {width:50px;margin:0 5px;line-height:26px;font-size:110%;}
 .content .left .article .info p span a {color:#fefefe;}
-.content .left .article .cont p{height:30px;margin:5px auto 10px auto;}
-/*.content .left .article .cont p span{width:150px;height:25px;border:1px solid #ccc;display:block;float:left;margin-right:25px;}*/
+/*  .content .left .article .cont p{height:30px;margin:5px auto 10px auto;}
+/*.content .left .article .cont p span{width:150px;height:25px;border:1px solid #ccc;display:block;float:left;margin-right:25px;}
 .content .left .article .cont p label{height:20px;margin:10px auto;width:120px;}
-.content .left .article .cont p label input{border:none;width:100px;}
-
+.content .left .article .cont p label input{border:none;width:100px;} **/
+.content .left .article .comment{border:solid 1px #ccc;box-shadow: 5px -5px 6px #aaa; padding:0px auto 25px;}
 .content .right{width:21%;min-width:230px;margin:10px 10px 50px auto}
 .content .right .sidebar{padding:10px 10px 20px 10px;overflow:hidden;}
 .content .right .sidebar h2{font-size:18px;height:30px;margin-bottom:15px;line-height:30px;padding-left:10px;background:url(../Image/sidbar.gif) repeat-x;color:#efefef;box-shadow: 5px 5px 6px #aaa;}
 .content .right .sidebar .two {width:45%;float:left;}
 .content .right .sidebar ul li{margin-left:22px;border-bottom:1px #cdcdcd dashed;min-height:22px;height:auto;margin-top:7px;line-height:22px;}
 .content .right .sidebar ul li a{color:#999;}
-#page{width:80%;min-width:800px;float:right;}
+#page{width:80%;min-width:800px;float:right; margin:10px auto 50px;}
 #page p{height:35px;max-width:450px;width:auto;font-size:14px;padding:5px auto;margin:20px auto;line-height:35px;}
 #page a,#page span{width:27px;border:1px solid #ccc;height:25px;margin:3px; 5px auto 0px;display:block;float:left;line-height:25px;text-align:center;}
 #page .nowpage {color:#eee;background:#B2B2B2; font-weight:700;border:1px solid #888;}
