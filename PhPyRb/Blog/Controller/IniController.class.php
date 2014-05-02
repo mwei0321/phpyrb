@@ -22,11 +22,16 @@
 			import('Page');
 			C('Article',new Article());
 			if(! S('CateList')){
-				S('CateList',C('Article')->catelist(),10000);
+				S('CateList',C('Article')->catelist(),500000);
 			}
 			if(! S('Tags')){
-				S('Tags',C('Article')->tags(),10000);
+				S('Tags',C('Article')->tags(),500000);
 			}
+			if(! S('CateCT')){
+				S('CateCT',C('Article')->catecount(),100000);
+			}
+			$_SESSION['userinfo'] ? FALSE : $_SESSION['userinfo']['userid'] = 1;
+			$this->assign('catecount',C('Article')->catecount());
 			$this->assign('catemean',C('Article')->level(S('CateList'),2));
 			$this->assign('cates',S('CateList'));
 			$this->assign('tags',S('Tags'));

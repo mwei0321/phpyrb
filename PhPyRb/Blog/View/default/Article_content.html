@@ -1,12 +1,17 @@
 <extend name="Public:base" />
 
+<!-- 关键字 -->
+<block name="keywords">{$info['keyword']}</block>
+<!-- 描述 -->
+<block name="description">{$info['description']}</block>
+
 <!-- 左边内容  --> 
 <block name="left_content">
 	<div class="article first" id="oneart">
  		<h2 class="h123"><a href="{:U('Article/content',array('artid'=>$info['id']))}">{$info['title']}</a></h2>
 		<p class="tag">标 签：
 		<volist name="info['tags']" id="t">
-		<a href="{:U('Article/tags',array('tag'=>$t))}"><span>{$tags[$t]['name']}</span></a>
+		<a href="{:U('Article/catags',array('tag'=>$t))}"><span>{$tags[$t]['name']}</span></a>
 		</volist>
         <div class="date" style="border:none;box-shadow:none;z-index:-100;">
        <!-- 	<p class="image"><a href="/index.php?m=Index&a=index"><img alt="PhPyRb博客!马伟博客!" src="./Public/Image/logo.jpg" /></a></p>
@@ -17,10 +22,11 @@
         <div class="cont" id="minart">{$info['content']}</div>
         <div class="info">
         	<p>
-        		<span><a href="{:U('Article/cate',array('tagid'=>$info['cateid']))}" target="_blank">Python</a></span> / 
+        		<span><a href="{:U('Article/catags',array('tag'=>$info['cateid']))}" target="_blank">Python</a></span> / 
 				<span>评 论&nbsp;({if $countcomm[$info['id']]}{$countcomm[$info['id']]['count']}{else}0{/if})</span> / 
 				<span>{$info['uptime']|date="Y-m-d",###}</span> / 
-				<span>热度&nbsp;({$info['hots']} ℃)</span> 
+				<span>热度&nbsp;({$info['hots']} ℃)</span> /
+				<span>{$info['author']}</span> 
 			</p>
         </div>
     </div>
@@ -28,33 +34,40 @@
 
  <!-- 文章评论  -->
 	<block name="comment">
-	       <div class="article">
-	            <div class="comment" >
-	            	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero. Suspendisse bibendum.</p>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero. Suspendisse bibendum.</p>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero. Suspendisse bibendum.</p>
-	            </div>
-				<div class="info">
-		        	<p>
-		        		<span><a href="{:U('Article/cate',array('tagid'=>$info['cateid']))}" target="_blank">Python</a></span> / 
-						<span>评 论&nbsp;({if $countcomm[$info['id']]}{$countcomm[$info['id']]['count']}{else}0{/if})</span> / 
-						<span>{$info['uptime']|date="Y-m-d",###}</span> / 
-						<span>热度&nbsp;({$info['hots']} ℃)</span> 
-					</p>
-		        </div>
-	  		</div>
-	        
-	        <div class="article comment">
-	            <h2 class="h123">Cemmtent</h2>
-	            <div class="date" style="border:none;box-shadow:none;z-index:-100;">
-	                <p class="image"><a href="/index.php?m=Index&a=index"><img alt="PhPyRb博客!马伟博客!" src="./Public/Image/logo.jpg" /></a></p> 
-	                <p class="time"><a href="/index.php?m=Index&a=index">Ma Wei</a></p>
-	            </div>
-	            <div class="clr"></div>
-	            <div class="cont" >
-	                <form method="POST" action="">
-	                <p><span><label>名 称：<input name="name" type="text" /></label></span>&nbsp;&nbsp;<span><label>邮 箱：<input name="email" type="text" /></label></span>&nbsp;&nbsp;<span><label>主 页：<input name="blog" type="text" /></label></span></p>
-	                <textarea name="comment" rows="6" cols="80%" ></textarea></form>
+			<volist name="comment" id="c">
+		       <div class="article" style="margin-top:20px;">
+		            <div class="comm" >
+		            	{$c['content']}
+		            </div>
+					<div class="info">
+			        	<p>
+			        		<span>{$c['uname']}</span> / 
+							<span>{$c['uptime']|date="Y-m-d",###}</span>
+						</p>
+			        </div>
+		  		</div>
+			 </volist>
+			{if $commpage}
+	        <div id="page">
+                <p>
+                	{$commpage}
+                </p>
+            </div>
+			{/if}
+			 <div class="clr"></div>
+	        <div class="comment">
+	            <div class="comt" >
+	                <form method="POST" action="{:U('Article/comment')}">
+	                	<input type="hidden" name="artid" value="{$artid}">
+		                <p>
+		                	<span><label>Name：<input name="name" type="text" /></label></span>&nbsp;&nbsp;
+							<span><label>Email：<input name="email" type="text" /></label></span>&nbsp;&nbsp;
+							<span><label>Home：<input name="home" type="text" value="http://"/></label></span>
+							<input type="submit" value="Submit" style="width:60px;cursor:pointer; height:24px;color:#999;border:1px solid #ccc;"/>
+						</p>
+		                <textarea name="comment" rows="6" cols="88%" ></textarea>
+					</form>
+					<p style="color:#999;margin-left:53%;">希望各位朋友多评论，多给点意见，谢谢！</p>
 	            </div>
 	          </div>
 	</block>

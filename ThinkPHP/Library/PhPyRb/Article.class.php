@@ -30,9 +30,8 @@
 		 * @author MaWei ( http://www.phpyrb.com )
 		 * @date 2014-4-17 下午1:50:15
 		 */
-		function artlist($_limit = '0,25',$_order = 'id DESC',$_where = array('uid'=>'1')){
-			$status = array('status'=>1);
-			$_where = array_merge($_where,$status);
+		function artlist($_limit = '0,25',$_order = 'id DESC',$_where = FALSE){
+			$_where = $_where ? $_where : array('status'=>1,'uid'=>$_SESSION['userinfo']['userid']);
 			$artlsit = $this->article->where($_where)->order($_order)->limit($_limit)->select();
 			$artlsit = $this->_strtoarr($artlsit);
 // 			echo $this->article->getLastSql();
@@ -55,6 +54,38 @@
 		}
 		
 		/**
+		* 返回分类下的文章数
+		* @param  string $_uid
+		* @return array $count
+		* @author MaWei (http://www.phpyrb.com)
+		* @date 2014-5-1  下午10:14:58
+		*/
+		function catecount(){
+			$cate = M();
+			$sql = "SELECT count(id) cout,cateid FROM `article` WHERE uid=".$_SESSION['userinfo']['userid']." GROUP BY cateid";
+			$count = $cate->query($sql);
+			return fieldtokey($count,'cateid');
+		}
+		
+		/**
+		* 关键字搜索
+		* @param  array $_keywords
+		* @param  string $_limit
+		* @return array $result
+		* @author MaWei (http://www.phpyrb.com)
+		* @date 2014-5-2  下午6:04:06
+		*/
+		function search($_keywords,$_limit = "0,15",$_count = FALSE){
+			$field = empty($_count) ? "id,title,author,hots,uptime,keyword,tags,cateid,content" : 'count(id) cout';
+			$sql = "SELECT $field FROM `article` a LEFT JOIN `content` c ON a.id=c.artid WHERE ((a.`title` like '%".$_keywords."%') OR (a.`keyword` like '%".$_keywords."%')) AND a.`status`=1 ORDER BY uptime LIMIT $_limit";
+			$art = M();
+			$result = $art->query($sql);
+// 			echo $sql;
+			$result = empty($_count) ? $result = $this->_strtoarr(fieldtokey($result)) : $result['0']['cout'];
+			return $result;
+		}
+		
+		/**
 		* 返回文章的评论
 		* @param  array 
 		* @param  string 
@@ -64,7 +95,7 @@
 		*/
 		function comment($_artid,$_limit = '0,15'){
 			$comm = M('Comment');
-			$comment = $comm->where(array('artid'=>$_artid))->order('id DESC')->limit($_limit)->select();
+			$comment = $comm->where(array('artid'=>$_artid,'status'=>1))->order('id DESC')->limit($_limit)->select();
 			return $comment;
 		}
 		
@@ -77,14 +108,15 @@
 		* @author MaWei (http://www.phpyrb.com)
 		* @date 2014-4-27  下午5:33:45
 		*/
-		function articles($_limit = '0,5',$_order = 'id DESC',$_uid = 1){
-			$field = "id,title,author,hots,uptime,keyword,tags,cateid,content";
-			$sql = "SELECT $field FROM `article` a LEFT JOIN `content` c ON a.id=c.artid WHERE a.uid=$_uid AND a.`status`=1 ORDER BY $_order LIMIT $_limit";
+		function articles($_limit = '0,5',$_where = FALSE,$_order = 'id DESC',$_count = FALSE){
+			$_where = $_where ? $_where : 'a.uid='.$_SESSION['userinfo']['id'].' ';
+			$field = empty($_count) ? "id,title,author,hots,uptime,keyword,tags,cateid,content" : 'count(id) cout';
+			$sql = "SELECT $field FROM `article` a LEFT JOIN `content` c ON a.id=c.artid WHERE $_where AND a.`status`=1 ORDER BY $_order LIMIT $_limit";
 			$art = M();
-			$newest = $art->query($sql);
-			$newest = $this->_strtoarr($newest);
+			$result = $art->query($sql);
 // 			echo $sql;
-			return $newest;
+			$result = empty($_count) ? $result = $this->_strtoarr(fieldtokey($result)) : $result['0']['cout'];
+			return $result;
 		}
 		
 		/**
@@ -152,7 +184,7 @@
 		 * @author MaWei ( http://www.phpyrb.com )
 		 * @date 2014-4-17 下午1:50:15
 		 */
-		function catelist($_where = array('uid'=>'1')){
+		function catelist($_where = array('uid'=>'1','status'=>1)){
 			$model = M('Category');
 			$catelist = $model->where($_where)->select();
 			$catelist = fieldtokey($catelist);
@@ -166,7 +198,7 @@
 		 * @author MaWei ( http://www.phpyrb.com )
 		 * @date 2014-4-17 下午1:50:15
 		 */
-		function tags($_where = array('uid'=>'1')){
+		function tags($_where = array('uid'=>'1','status'=>1)){
 			$model = M('Tag');
 			$tags = $model->where($_where)->select();
 			$tags = fieldtokey($tags);
@@ -182,9 +214,10 @@
 		 * @author MaWei ( http://www.phpyrb.com )
 		 * @date 2014-4-17 下午1:50:15
 		 */
-		function count($_model = 'Article',$_where = array('uid'=>1)){
+		function count($_model = 'Article',$_where = array('uid'=>1,'status'=>1)){
 			$model = M("$_model");
 			$count = $model->where($_where)->count();
+// 			echo $model->getLastSql();
 			return $count;
 		}
 		

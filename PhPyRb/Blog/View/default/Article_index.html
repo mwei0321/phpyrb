@@ -2,12 +2,13 @@
 
 <!-- 左边的内容 -->
 <block name="left_content">
+	{if $artlist}
 	<volist name="artlist" id="a">
 		<div class="article first">
          		<h2 class="h123"><a href="{:U("Article/content",array('artid'=>$a['id']))}" target="_blank">{$a['title']}</a></h2>
                 <p class="tag">标 签：
 				<volist name="a['tags']" id="t">
-					<a href="{:U('Article/tags',array('tag'=>$t))}"><span>{$tags[$t]['name']}</span></a>
+					<a href="{:U('Article/catags',array('tag'=>$t))}"><span>{$tags[$t]['name']}</span></a>
 				</volist>
 				</p>
 				<div class="clr"></div>
@@ -21,11 +22,12 @@
                 <div class="cont" id="maxart">{$a['content']}</div>
                 <div class="info">
                 	<p>
-                		<span><a href="{:U('Article/cate',array('cateid'=>$a['cateid']))}" target="_blank">{$cates[$a['cateid']]['name']}</a></span> / 
+                		<span><a href="{:U('Article/catags',array('cate'=>$a['cateid']))}" target="_blank">{$cates[$a['cateid']]['name']}</a></span> / 
 						<span><a href="{:U('Article/comment',array('artid'=>$a['id']))}" target="_blank">评 论&nbsp;({if $countcomm[$a['id']]}{$countcomm[$a['id']]['count']}{else}0{/if})</a></span> / 
 						<span>热度&nbsp;({$a['hots']}℃)</span> / 
 						<span>{$a['uptime']|date='Y-m-d',###}</span> / 
-						<span><a href="{:U('Article/comment',array('artid'=>$a['id']))}" target="_blank">阅读全文&nbsp;</a></span>
+						<span><a href="{:U('Article/comment',array('artid'=>$a['id']))}" target="_blank">阅读全文&nbsp;</a></span> /
+						<span>{$a['author']}</span> 
 					</p>
 			      </div>
                 </div>
@@ -34,6 +36,9 @@
                     </div>
                 </div>
 	</volist>
+	{else}
+	<p style="text-align:center;">暂无搜索结果！</p>
+	{/if}
 </block>
 <div class="clr"></div>
 <!-- 右边的热门文章 -->

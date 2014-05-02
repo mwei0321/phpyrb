@@ -8,7 +8,7 @@
         </title>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
         <meta name="keywords" content="<block name="keywords">PHP,Pythoy,Ruby,Js,Jquery,HTML5,Css,Ajax,python学习,个人主页,博客,网站建设,PHP建站</block>" />
-        <meta name="description" content="<block name="content">pythob学习,深圳PHP博客,马伟个人博客,python博客</block>" />
+        <meta name="description" content="<block name="description">pythob学习,深圳PHP博客,马伟个人博客,python博客</block>" />
         <link href="./Public/Css/base.css" rel="stylesheet" type="text/css" />
         <link type="text/css" rel="stylesheet" href="./Public/SyntaxHighlighter/styles/shCore.css"/>
         <link type="text/css" rel="stylesheet" href="./Public/SyntaxHighlighter/styles/shThemeDefault.css"/>
@@ -16,24 +16,26 @@
     <body>
         <div class="header">
             <div class="logo">
-                <h1><a href="/index.php?m=Index&a=index">PhPyRb<span> Blog</span></a>
+                <h1><a href="{:U('Article/index')}">PhPyRb<span> Blog</span></a>
                     <small style="font-size:13px;">
                         &nbsp;&nbsp;&nbsp;MaWei
                     </small>
                 </h1>
+				<p><span>Ph</span>P + <span>Py</span>thon + <span>R</span>u<span>b</span>y</p>
             </div>
 			<div class="menu">
 	            <div class="menu_nav">
 	            	<ul>
 	                	<volist name="catemean" id="c">
 	                        <li>
-	                            <a href="{:U('Article/cate',array('cateid'=>$c['id']))}">{$c['name']}</a>
+	                            <a href="{:U('Article/catags',array('cate'=>$c['id']))}">{$c['name']}</a>
 	                        </li>
 						</volist>
 					</ul>
 	                <div class="search">
-	                    <form method="get" action="/index.php?m=Index&a=search">
-	                        <input type="search" name="keyword" style="width:160px;height:36px;line-height:36px;background:none;border:0px;font-size:16px;"/><input type="submit" value=" " style="width:72px;height:25px;margin-left:3px;border:none;background:url(Public/Image/searchbtn.png) no-repeat 0 -1px;"/><input type="hidden" name="m" value="Index"><input type="hidden" name="a" value="search">
+	                    <form method="get" action="{:U('Article/search')}">
+	                        <input type="search" name="keywords" value="{$_REQUEST['keywords']}" style="width:160px;height:36px;line-height:36px;background:none;border:0px;font-size:16px;"/>
+							<input type="submit" value=" " style="width:72px;height:25px;margin-left:3px;cursor:pointer; border:none;background:url(Public/Image/searchbtn.png) no-repeat 0 -1px;"/>
 	                    </form>
 	                </div>
 	            </div>
@@ -43,11 +45,13 @@
             <div class="left">
 				<block name="left_content">	
 				</block>
+				{if $page}
                 <div id="page">
                     <p>
                     	{$page}
                     </p>
                 </div>
+				{/if}
 				<div class="clr"></div>
 				<block name="comment"></block>
             </div>
@@ -60,7 +64,7 @@
 					<volist name="tags" id="t" >
                     	<ul class="sb_menu two">
 	                        <li>
-	                            <a href="{:U('Article/tags',array('tagid'=>$t['id']))}">{$t['name']}</a>
+	                            <a href="{:U('Article/catags',array('tag'=>$t['id']))}">{$t['name']}</a>
 	                        </li>
 						</ul>
 					</volist>
@@ -78,7 +82,7 @@
                     <ul class="sb_menu">
                     	<volist name="catemean" id="c">
 	                        <li>
-	                            <a href="{:U('Article/cate',array('cateid'=>$c['id']))}">{$c['name']}</a>&nbsp;(2)
+	                            <a href="{:U('Article/catags',array('cate'=>$c['id']))}">{$c['name']}</a>&nbsp; ({if $catecount[$c['id']]}{$catecount[$c['id']]['cout']}{else}0{/if})
 	                        </li>
 						</volist>
                     </ul>
@@ -90,7 +94,7 @@
         </div>
         <div class="footer">
             <p class="lr">
-                © Copyright <a href="http://www.phpyrb.com">http://www.phpyrb.com http://www.cloudsskill.com</a>.
+                © Copyright <a href="http://www.phpyrb.com">http://www.phpyrb.com</a>.
             </p>
             <p class="lf">
                 Collect from: <a href="http://www.phpyrb.com" title="马伟博客" target="_blank">马伟博客</a>
