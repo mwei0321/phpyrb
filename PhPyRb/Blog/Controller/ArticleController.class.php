@@ -29,7 +29,7 @@ use Pub\Page;
 		*/
 		function index(){
 			$count = C('Article')->count();
-			$page = new Page($count, 5);
+			$page = new Page($count, 10);
 			$artlist = C('Article')->articles("$page->firstRow,$page->listRows");
 			$countcomm = C('Article')->countcomm(arr2to1($artlist));
 			$countcomm = fieldtokey($countcomm,artid);

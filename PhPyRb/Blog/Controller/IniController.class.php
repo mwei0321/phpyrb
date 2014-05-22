@@ -30,7 +30,7 @@
 			if(! S('CateCT')){
 				S('CateCT',C('Article')->catecount(),100000);
 			}
-			$_SESSION['userinfo'] ? FALSE : $_SESSION['userinfo']['userid'] = 1;
+			$_SESSION['userinfo']['id'] = 1;
 			$this->assign('catecount',C('Article')->catecount());
 			$this->assign('catemean',C('Article')->level(S('CateList'),2));
 			$this->assign('cates',S('CateList'));

@@ -1,8 +1,9 @@
- <include file="Public:header" />
-    <!-- End .clear -->
-    <div class="content-box">
-      <!-- Start Content Box -->
-      <div class="content-box-header">
+<!-- 引入公同模板 -->
+<extend name="Public:base" />
+
+<!-- 内容 -->
+<block name="content" >
+	<div class="content-box-header">
         <h3>Article List Mange</h3>
         <div class="clear"></div>
       </div>
@@ -36,7 +37,7 @@
                   <input type="checkbox" />
                 </td>
                 <td>{$a['id']}</td>
-                <td><a href="#" title="title">{$a['title']}</a></td>
+                <td><a href="{:U('Blog/Article/content',array('artid'=>$a['id']))}" title="title">{$a['title']}</a></td>
                 <td>{$category[$a['cateid']]['name']}</td>
                 <td>{$a['tagname']}</td>
                 <td>{$status[$a['status']]}</td>
@@ -44,8 +45,8 @@
                 <td>{$a['uptime']|date='Y-m-d H-m-s',###}</td>
                 <td>
                   <!-- Icons -->
-                  <a href="#" title="Edit"><img src="/Public/Image/icons/pencil.png" alt="Edit" /></a> 
-                  <a href="#" title="Delete"><img src="/Public/Image/icons/cross.png" alt="Delete" /></a> 
+                  <a href="{:U('Article/edit',array('artid'=>$a['id']))}" title="Edit"><img src="/Public/Image/icons/pencil.png" alt="Edit" /></a> 
+                  <a href="{:U('Article/delart',array('artid'=>$a['id']))}" title="Delete"><img src="/Public/Image/icons/cross.png" alt="Delete" /></a> 
                   <a href="#" title="Edit Meta"><img src="/Public/Image/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> 
                 </td>
               </tr>
@@ -67,117 +68,10 @@
           </table>
         </div>
         <!-- End #tab1 -->
-        <div class="tab-content" id="tab2">
-          <form action="#" method="post">
-            <fieldset>
-            <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
-            <p>
-              <label>Small form input</label>
-              <input class="text-input small-input" type="text" id="small-input" name="small-input" />
-              <span class="input-notification success png_bg">Successful message</span>
-              <!-- Classes for input-notification: success, error, information, attention -->
-              <br />
-              <small>A small description of the field</small> </p>
-            <p>
-              <label>Medium form input</label>
-              <input class="text-input medium-input datepicker" type="text" id="medium-input" name="medium-input" />
-              <span class="input-notification error png_bg">Error message</span> </p>
-            <p>
-              <label>Large form input</label>
-              <input class="text-input large-input" type="text" id="large-input" name="large-input" />
-            </p>
-            <p>
-              <label>Checkboxes</label>
-              <input type="checkbox" name="checkbox1" />
-              This is a checkbox
-              <input type="checkbox" name="checkbox2" />
-              And this is another checkbox </p>
-            <p>
-              <label>Radio buttons</label>
-              <input type="radio" name="radio1" />
-              This is a radio button<br />
-              <input type="radio" name="radio2" />
-              This is another radio button </p>
-            <p>
-              <label>This is a drop down list</label>
-              <select name="dropdown" class="small-input">
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-                <option value="option4">Option 4</option>
-              </select>
-            </p>
-            <p>
-              <label>Textarea with WYSIWYG</label>
-              <textarea class="text-input textarea wysiwyg" id="textarea" name="textfield" cols="79" rows="15"></textarea>
-            </p>
-            <p>
-              <input class="button" type="submit" value="Submit" />
-            </p>
-            </fieldset>
-            <div class="clear"></div>
-            <!-- End .clear -->
-          </form>
-        </div>
-        <!-- End #tab2 -->
+        
       </div>
       <!-- End .content-box-content -->
     </div>
-    <!-- End .content-box -->
-    <div class="content-box column-left">
-      <div class="content-box-header">
-        <h3>Content box left</h3>
-      </div>
-      <!-- End .content-box-header -->
-      <div class="content-box-content">
-        <div class="tab-content default-tab">
-          <h4>Maecenas dignissim</h4>
-          <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in porta lectus. Maecenas dignissim enim quis ipsum mattis aliquet. Maecenas id velit et elit gravida bibendum. Duis nec rutrum lorem. Donec egestas metus a risus euismod ultricies. Maecenas lacinia orci at neque commodo commodo. </p>
-        </div>
-        <!-- End #tab3 -->
-      </div>
-      <!-- End .content-box-content -->
-    </div>
-    <!-- End .content-box -->
-    <div class="content-box column-right closed-box">
-      <div class="content-box-header">
-        <!-- Add the class "closed" to the Content box header to have it closed by default -->
-        <h3>Content box right</h3>
-      </div>
-      <!-- End .content-box-header -->
-      <div class="content-box-content">
-        <div class="tab-content default-tab">
-          <h4>This box is closed by default</h4>
-          <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in porta lectus. Maecenas dignissim enim quis ipsum mattis aliquet. Maecenas id velit et elit gravida bibendum. Duis nec rutrum lorem. Donec egestas metus a risus euismod ultricies. Maecenas lacinia orci at neque commodo commodo. </p>
-        </div>
-        <!-- End #tab3 -->
-      </div>
-      <!-- End .content-box-content -->
-    </div>
-    <!-- End .content-box -->
-    <div class="clear"></div>
-    <!-- Start Notifications -->
-    <div class="notification attention png_bg"> <a href="#" class="close"><img src="/Public/Image/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-      <div> Attention notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero. </div>
-    </div>
-    <div class="notification information png_bg"> <a href="#" class="close"><img src="/Public/Image/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-      <div> Information notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero. </div>
-    </div>
-    <div class="notification success png_bg"> <a href="#" class="close"><img src="/Public/Image/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-      <div> Success notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero. </div>
-    </div>
-    <div class="notification error png_bg"> <a href="#" class="close"><img src="/Public/Image/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-      <div> Error notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero. </div>
-    </div>
-    <!-- End Notifications -->
-    <div id="footer"> <small>
-      <!-- Remove this notice or replace it with whatever you want -->
-      &#169; Copyright 2010 Your Company | Powered by <a href="#">admin templates</a> | <a href="#">Top</a> </small> </div>
-    <!-- End #footer -->
-  </div>
-  <!-- End #main-content -->
-</div>
+	
+</block>
 
-</body>
-<!-- Download From www.exet.tk-->
-</html>

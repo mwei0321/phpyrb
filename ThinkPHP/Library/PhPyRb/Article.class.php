@@ -31,7 +31,7 @@
 		 * @date 2014-4-17 下午1:50:15
 		 */
 		function artlist($_limit = '0,25',$_order = 'id DESC',$_where = FALSE){
-			$_where = $_where ? $_where : array('status'=>1,'uid'=>$_SESSION['userinfo']['userid']);
+			$_where = $_where ? $_where : array('status'=>1,'uid'=>$_SESSION['userinfo']['id']);
 			$artlsit = $this->article->where($_where)->order($_order)->limit($_limit)->select();
 			$artlsit = $this->_strtoarr($artlsit);
 // 			echo $this->article->getLastSql();
@@ -62,7 +62,7 @@
 		*/
 		function catecount(){
 			$cate = M();
-			$sql = "SELECT count(id) cout,cateid FROM `article` WHERE uid=".$_SESSION['userinfo']['userid']." GROUP BY cateid";
+			$sql = "SELECT count(id) cout,cateid FROM `article` WHERE uid=".$_SESSION['userinfo']['id']." GROUP BY cateid";
 			$count = $cate->query($sql);
 			return fieldtokey($count,'cateid');
 		}
@@ -161,20 +161,19 @@
 		 * @author MaWei ( http://www.phpyrb.com )
 		 * @date 2014-4-17 下午1:50:15
 		 */
-		function add_updata($_model = 'Article',$_data = array(),$_upfiled = 'id'){
+		function add_updata($_data = array(),$_model = 'Article',$_upfiled = 'id'){
 			$model = M("$_model");
-			$reid = FALSE;
 			if($_data["$_upfiled"]){
-				$where = array();
 				if($_upfiled != 'id'){
+					$where = array();
 					$where["$_upfiled"] = $_data["$_upfiled"];
 					unset($_data["$_upfiled"]);
+					return $model->where($where)->save($_data);
 				}
-				$reid = $model->where($where)->save($_data);
+				return $model->save($_data);
 			}else{
-				$reid = $model->add($_data);
+				return $model->add($_data);
 			}
-			return $reid;
 		}
 		
 		/**
@@ -230,7 +229,7 @@
 		 * @author MaWei ( http://www.phpyrb.com )
 		 * @date 2014-4-17 下午1:50:15
 		 */
-		function level($_data,$_pid = 0, $_level = 0){
+		function level($_data,$_pid = 0, $_level = 1){
 			foreach ($_data as $k => $v){
 				if($_pid == $v['pid']){
 					self::$catelevel[$k] = $v;

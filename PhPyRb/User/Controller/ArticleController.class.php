@@ -23,19 +23,24 @@
 			import('Article');
 			import('Page');
 			$this->Article = new Article();
-			if(! S('CateList')){
-				S('CateList',$this->Article->catelist(),10000);
-			}
-			if(! S('Tags')){
-				S('Tags',$this->Article->tags(),10000);
-			}
-// 			$this->assign('category',$this->Article->catelist());
-// 			$this->assign('tags',$this->Article->tags());
-			$this->assign('category',S('CateList'));
-			$this->assign('tags',S('CateList'));
+// 			if(! S('CateList')){
+// 				S('CateList',$this->Article->catelist(),10000);
+// 			}
+// 			if(! S('Tags')){
+// 				S('Tags',$this->Article->tags(),10000);
+// 			}
+			$this->assign('category',$this->Article->catelist());
+			$this->assign('tags',$this->Article->tags());
+// 			$this->assign('category',S('CateList'));
+// 			$this->assign('tags',S('CateList'));
 			$this->assign('status',array('hidden','show'));
 		}
 		
+		/**
+		* 文章列表
+		* @author MaWei (http://www.phpyrb.com)
+		* @date 2014-5-23  上午12:02:49
+		*/
 		function index(){
 			$artcount = $this->Article->count();
 			$tags = $this->Article->tags();
@@ -44,8 +49,7 @@
 			$artlist = $this->Article->artlist($limit);
 			foreach ($artlist as $k => $v){
 				$str = '';
-				$tag = explode(',', $v['tags']);
-				foreach ($tag as $key => $val){
+				foreach ($v['tags'] as $key => $val){
 					$str .= $tags["$val"]['name'].'  ';
 				}
 				$artlist[$k]['tagname'] = $str;
@@ -56,14 +60,73 @@
 			$this->display();
 		}
 		
+		/**
+		* 文章添加修改页面
+		* @author MaWei (http://www.phpyrb.com)
+		* @date 2014-5-23  上午12:01:35
+		*/
 		function edit(){
 			$cate = $this->Article->level(S('CateList'));
+			if($_REQUEST['artid']){
+				$artinfo = $this->Article->artinfo($_REQUEST['artid']);
+// 				dump($artinfo);exit;
+				$this->assign('artinfo',$artinfo);
+			}
 			$this->assign('cate',$cate);
 			$this->display();
 		}
 		
-		
-		function add_up(){
+		/**
+		* 文章添加修改入数据库
+		* @author MaWei (http://www.phpyrb.com)
+		* @date 2014-5-23  上午12:01:56
+		*/
+		function add_updata(){
+			$data = array();
+			$_REQUEST['artid'] ? $data['id'] = $_REQUEST['artid'] : FALSE;
+			$data['title'] = $_REQUEST['title'];
+			$data['uid'] = $_SESSION['userinfo']['id'];
+			$data['cateid'] = $_REQUEST['cate'];
+			$data['author'] = $_REQUEST['author'];
+			$data['keyword'] = $_REQUEST['keyword'];
+			$data['status'] = $_REQUEST['status'];
+			$data['tags'] = implode(',', $_REQUEST['tags']);
+			$_REQUEST['artid'] ? $data['uptime'] = time() : $data['uptime'] = $data['addtime'] = time();
+			$artid = $this->Article->add_updata($data);
+			if($artid === FALSE){
+				$this->error('更新失败！',U('Article/edit',array('artid'=>$_REQUEST['artid'])));
+			}else {
+				$temp = array();
+				$temp['artid'] = $_REQUEST['artid'] ? $_REQUEST['artid'] : $artid;
+				$temp['description'] = $_REQUEST['description'];
+				$temp['content'] = $_REQUEST['content'];
+				$ret = $this->Article->add_updata($temp,'Content','artid');
+				if($ret === FALSE){
+					$this->error('文章内容更新失败',U('Article/edit',array('artid'=>$_REQUEST['artid'])));
+				}else {
+					$this->success('文章添加修改成功！',U('Article/index'));
+				}
+			}
 			
+		}
+		
+		/**
+		* 文章删除
+		* @author MaWei (http://www.phpyrb.com)
+		* @date 2014-5-23  上午12:02:28
+		*/
+		function delart(){
+			$artid = $_REQUEST['artid'];
+			$reid = M('Article')->delete($artid);
+			if($reid === FALSE){
+				$this->error('删除失败！',U('Article/index'));
+			}else {
+				$reid = M('Content')->where(array('artid'=>$artid))->delete();
+				if($reid === FALSE){
+					$this->error('删除失败！',U('Article/index'));
+				}else {
+					$this->success('删除成功！',U('Article/index'));
+				}
+			}
 		}
 	}

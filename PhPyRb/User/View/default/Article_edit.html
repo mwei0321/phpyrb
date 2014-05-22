@@ -1,101 +1,78 @@
-<include file="Public:header" />
-<script src="__PUBLIC__/kindeditor/kindeditor-min.js"></script>
- </script>
-    <!-- End .clear -->
-    <div class="content-box">
-      <!-- Start Content Box -->
-      <div class="content-box-header">
-        <h3>Content box</h3>
+<!-- 引入公同模板 -->
+<extend name="Public:base" />
+
+<!-- 内容 -->
+<block name="content" >
+	<div class="content-box-header">
+        <h3>Article Edit</h3>
         <div class="clear"></div>
       </div>
       <!-- End .content-box-header -->
       <div class="content-box-content">
-        <div class="tab-content default-tab" id="tab1">
-          <form action="{:U('Article/add')}" method="post" class='valid'>
-          	<input type="hidden" name="artid" value="{$art['id']}" />
+        <div class="tab-content default-tab" id="tablebox">
+          <form action="{:U('Article/add_updata')}" method="post">
+          	<input type="hidden" name="artid" value="{$artinfo['id']}" />
             <fieldset>
             <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
             <p>
-              <label>Article Categorys</label>
-              <select name="categorys" style="min-width:120px;width:auto;">
-			  	<option value="0">Select Categorys</option>
-                <volist name="cate" id="c">
-					<option value="{$c['id']}" {if $art['cateid'] == $c['id']} selected="selected" {/if}>{$c['tree']}{$c['name']}</option>
+              <label>Article Title</label>
+              <input class="text-input medium-input datepicker" type="text" name="title" value="{$artinfo['title']}"/>
+              <!-- span class="input-notification error png_bg">Error message</span --> </p>
+			<p>
+              <label>Article Category</label>
+              <select name="cate">
+              	<volist name="cate" id="c">
+                <option value="{$c['id']}" {if $c['id'] == $artinfo['cateid']} selected="selected" {/if}>{$c['tree']}{$c['name']}</option>
 				</volist>
               </select>
             </p>
 			<p>
-              <label>Article Title</label>
-              <input class="text-input small-input" type="text" id="small-input" name="artname" datatype="s1-150" errormsg="标题至少2个字符,最多150个字符！" value="{$art['title']}"/>
-              <!-- Classes for input-notification: success, error, information, attention --
-              <br /> 
-              <small >A small description of the field</small> </p> -->
-            <p>
-              <label>Article Author</label>
-              <input class="text-input small-input" type="text" id="small-input" datatype="s2-50" errormsg="作者至少2个字符,最多50个字符！" name="author" value="{if $art['author']}{$art['author']}{else}PhPyRb-MaWei{/if}"/>
-			</p>
-			<p>
-              <label>Status</label>
-              <select name="status" style="min-width:120px;width:auto;">
-			  	<option value="">Select Type</option>
-				<option value="1" {if $art['status'] == 1} selected="selected" {/if}>Show</option>
-				<option value="0" {if $art['status'] == "0"} selected="selected" {/if}>Hidden</option>
+              <label>Article Status</label>
+              <select name="status" >
+                <option value="1" {if $artinfo['status']} selected="selected" {/if}>show</option>
+                <option value="0" {if $artinfo['status'] == '0'} selected="selected" {/if}>hidden</option>
               </select>
             </p>
-			<p>
-              <label>Article Keyword</label>
-              <input class="text-input medium-input datepicker" type="text" id="medium-input" name="keyword" datatype="s1-50" errormsg="关键字至少1个字符,最多200个字符！" value="{$art['kword']}"/>
-			 <!-- <span class="input-notification error png_bg">Error message</span> </p> -->
             <p>
+              <label>Article Author</label>
+              <input class="text-input" type="text" name="author" value="{if $artinfo['author']} {$artinfo['author']} {else} MaWei {/if}"/>
+            </p>
+			<p>
+              <label>Article KeyWord</label>
+              <input class="text-input large-input" type="text" name="keyword" value="{$artinfo['keyword']}"/>
+            </p>
+			<p>
               <label>Article Description</label>
-              <input class="text-input large-input" type="text" id="large-input" name="description" datatype="s1-50" errormsg="描述至少1个字符,最多200个字符！" value="{$art['description']}"/>
-			</p>
-			<p class="tags">
+              <input class="text-input large-input" type="text" name="description" value="{$artinfo['description']}"/>
+            </p>
+            <p>
               <label>Article Tags</label>
-			  <volist name="tag" id="t">
-			  	<span><input type="checkbox" name="tags[]" value="{$t['id']}" {if in_array($t['id'],$art['tagid'])}checked = true{/if} />
-             	{$t['name']}</span>
+			  <volist name="tags" id="t">
+			  	<input type="checkbox" name="tags[]" value="{$t['id']}" {if in_array($t['id'],$artinfo['tags'])} checked="checked" {/if} />{$t['name']}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			  </volist>
 			</p>
-          <!--  <p>
-              <label>Article Tags</label>
-              <input type="checkbox" name="checkbox1" />
-              This is a checkbox
-              <input type="checkbox" name="checkbox2" />
-              And this is another checkbox 
-			</p>
-            <!-- <p>
+            <!--p>
               <label>Radio buttons</label>
               <input type="radio" name="radio1" />
               This is a radio button<br />
               <input type="radio" name="radio2" />
-              This is another radio button </p> -->
+              This is another radio button </p-->
             <p>
-              <label>文章内容</label>
-              <textarea class="" id="content" name="content" datatype="s1" errormsg="内容至少1个字符" style="width:700px;height:500px;">{$art['content']}</textarea>
+              <label>Article Content</label>
+              <textarea class="text-input textarea wysiwyg" id="content" name="content" cols="79" rows="55">{$artinfo['content']}</textarea>
             </p>
             <p>
               <input class="button" type="submit" value="Submit" />
             </p>
-            </fieldset>
             <div class="clear"></div>
             <!-- End .clear -->
           </form>
         </div>
+		<script src="/Public/kindeditor/kindeditor-min.js"></script>
+		<script>
+	        KindEditor.ready(function(K) {
+	                window.editor = K.create('#content');
+	        });
+		</script>
         <!-- End #tab2 -->
-      </div>
-      <!-- End .content-box-content -->
-    </div>
-    <!-- End .content-box -->
-    <!-- End .content-box -->
-    <!-- End .content-box -->
-    <div class="clear"></div>
-    <!-- Start Notifications -->
-    <!-- End Notifications -->
-    <!-- start #footer -->
-<script>
-        KindEditor.ready(function(K) {
-                window.editor = K.create('#content');
-        });
-</script>
-	<include file="Admin:footer" />
+</block>
