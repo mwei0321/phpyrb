@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50524
 File Encoding         : 65001
 
-Date: 2014-05-04 22:02:13
+Date: 2014-05-25 02:13:34
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -22,13 +22,14 @@ DROP TABLE IF EXISTS `album`;
 CREATE TABLE `album` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `uid` int(11) NOT NULL COMMENT '用户ID',
+  `permission` tinyint(1) unsigned DEFAULT NULL COMMENT '权限',
   `name` varchar(50) NOT NULL COMMENT '相册名',
-  `cover` varchar(150) NOT NULL COMMENT '封面',
-  `description` text NOT NULL COMMENT '描述',
+  `cover` varchar(100) NOT NULL COMMENT '封面',
+  `description` varchar(150) NOT NULL COMMENT '描述',
   `addtime` int(11) NOT NULL COMMENT '添加时间表',
   `uptime` int(11) NOT NULL DEFAULT '0' COMMENT '更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='相册';
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='相册';
 
 -- ----------------------------
 -- Table structure for article
@@ -64,7 +65,7 @@ CREATE TABLE `article_comment` (
   `homepage` varchar(80) DEFAULT NULL COMMENT '个人主页',
   `addtime` int(11) NOT NULL COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COMMENT='评论、留言本';
+) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COMMENT='评论、留言本';
 
 -- ----------------------------
 -- Table structure for category
@@ -77,8 +78,9 @@ CREATE TABLE `category` (
   `name` varchar(30) NOT NULL COMMENT '分类名',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态（0 隐藏、1显示）',
   `menu` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '菜单显示',
+  `description` varchar(120) DEFAULT NULL COMMENT '描述',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='分类表';
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COMMENT='分类表';
 
 -- ----------------------------
 -- Table structure for content
@@ -103,7 +105,7 @@ CREATE TABLE `photo` (
   `path` varchar(120) NOT NULL COMMENT '路径',
   `addtime` int(11) NOT NULL COMMENT '添加时间表',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='照片';
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='照片';
 
 -- ----------------------------
 -- Table structure for photo_comment
@@ -131,6 +133,7 @@ CREATE TABLE `tag` (
   `cateid` int(11) NOT NULL COMMENT '分类ID',
   `name` varchar(30) NOT NULL COMMENT '标签名',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态（0 隐藏、1显示）',
+  `description` varchar(120) DEFAULT NULL COMMENT '标签描述',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COMMENT='标签表';
 

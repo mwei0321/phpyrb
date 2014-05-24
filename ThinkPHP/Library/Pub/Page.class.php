@@ -24,6 +24,7 @@ class Page{
 	private $p       = 'p'; //分页参数名
 	private $url     = ''; //当前链接URL
 	private $nowPage = 1;
+	private $action  = '';
 
 	// 分页显示定制
 	private $config  = array(
@@ -42,7 +43,7 @@ class Page{
 	 * @param array $listRows  每页显示记录数
 	 * @param array $parameter  分页跳转的参数
 	*/
-	public function __construct($totalRows, $listRows, $parameter = array()) {
+	public function __construct($totalRows, $listRows, $parameter = array(),$_url = FALSE) {
 		C('VAR_PAGE') && $this->p = C('VAR_PAGE'); //设置分页参数名称
 		/* 基础设置 */
 		$this->totalRows  = $totalRows; //设置总记录数
@@ -50,6 +51,7 @@ class Page{
 		$this->parameter  = empty($parameter) ? $_GET : $parameter;
 		$this->nowPage    = empty($_GET[$this->p]) ? 1 : intval($_GET[$this->p]);
 		$this->firstRow   = $this->listRows * ($this->nowPage - 1);
+		$this->action     = $_url ? $_url : ACTION_NAME;
 	}
 
 	/**
@@ -81,7 +83,7 @@ class Page{
 
 		/* 生成URL */
 		$this->parameter[$this->p] = 'PAGE';
-		$this->url = U(ACTION_NAME, $this->parameter);
+		$this->url = U($this->action, $this->parameter);
 		/* 计算分页信息 */
 		$this->totalPages = ceil($this->totalRows / $this->listRows); //总页数
 		if(!empty($this->totalPages) && $this->nowPage > $this->totalPages) {

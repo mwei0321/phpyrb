@@ -1,0 +1,27 @@
+
+<!-- 引入公共模板 -->
+<extend name="Public:base" />
+
+<!-- 内容 -->
+<block name="content" >
+	<div class="content-box-header">
+        <h3>Article List Mange</h3>
+        <div class="clear"></div>
+      </div>
+      <!-- End .content-box-header -->
+      <div class="content-box-content">
+        <div class="tab-content default-tab" id="tablebox">
+        <div class="" id="tablebox">
+        	<volist name="album" id="a">
+				<dl style="margin-left:10px;">
+					<dt><a href="{:U('Album/photo',array('albumid'=>$a['id']))}" target="_blank" title="{$a['description']}"><img alt="{$a['description']}" src="{$a['cover']}"/></a></dt>
+					<dd><a href="{:U('Album/photo',array('albumid'=>$a['id']))}" target="_blank" title="{$a['description']}">{$a['name']}</a></dd>
+				</dl>
+			</volist>  
+        <!-- End #tab1 -->
+      	</div>
+		<div class="clear"></div>
+      	<!-- End .content-box-content -->
+    </div>
+</block>
+

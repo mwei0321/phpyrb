@@ -12,7 +12,6 @@
         <div class="tab-content default-tab" id="tablebox">
           <form action="{:U('Article/add_updata')}" method="post">
           	<input type="hidden" name="artid" value="{$artinfo['id']}" />
-            <fieldset>
             <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
             <p>
               <label>Article Title</label>
@@ -21,7 +20,7 @@
 			<p>
               <label>Article Category</label>
               <select name="cate">
-              	<volist name="cate" id="c">
+              	<volist name="category" id="c">
                 <option value="{$c['id']}" {if $c['id'] == $artinfo['cateid']} selected="selected" {/if}>{$c['tree']}{$c['name']}</option>
 				</volist>
               </select>

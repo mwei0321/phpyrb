@@ -12,12 +12,12 @@
 	**/
 	
 	namespace PhPyRb;
+	use Think\Model;
+	use Think\Db\Driver;
 
-	class Article {
-		protected $article,$tags;
+	class Article{
 		static $catelevel;
 		function __construct(){
-			$this->article = M('Article');
 			self::$catelevel = array();
 		}
 		
@@ -32,9 +32,9 @@
 		 */
 		function artlist($_limit = '0,25',$_order = 'id DESC',$_where = FALSE){
 			$_where = $_where ? $_where : array('status'=>1,'uid'=>$_SESSION['userinfo']['id']);
-			$artlsit = $this->article->where($_where)->order($_order)->limit($_limit)->select();
+			$artlsit = M('Article')->where($_where)->order($_order)->limit($_limit)->select();
+// 			echo M('Article')->getLastSql();exit;
 			$artlsit = $this->_strtoarr($artlsit);
-// 			echo $this->article->getLastSql();
 			return $artlsit;
 		}
 		
@@ -94,7 +94,7 @@
 		* @date 2014-4-27  下午5:54:42
 		*/
 		function comment($_artid,$_limit = '0,15'){
-			$comm = M('Comment');
+			$comm = M('ArticleComment');
 			$comment = $comm->where(array('artid'=>$_artid,'status'=>1))->order('id DESC')->limit($_limit)->select();
 			return $comment;
 		}
@@ -163,17 +163,20 @@
 		 */
 		function add_updata($_data = array(),$_model = 'Article',$_upfiled = 'id'){
 			$model = M("$_model");
+			$reid = FALSE;
 			if($_data["$_upfiled"]){
-				if($_upfiled != 'id'){
-					$where = array();
-					$where["$_upfiled"] = $_data["$_upfiled"];
-					unset($_data["$_upfiled"]);
-					return $model->where($where)->save($_data);
-				}
-				return $model->save($_data);
+				$where = array();
+				$where["$_upfiled"] = $_data["$_upfiled"];
+				unset($_data["$_upfiled"]);
+// 				dump($_data);exit;
+				$reid = $model->where($where)->save($_data);
 			}else{
-				return $model->add($_data);
+				$reid = $model->add($_data);
 			}
+// 			dump($_data);
+// 			echo $model->getLastSql();
+// 			exit;
+			return $reid;
 		}
 		
 		/**
@@ -251,10 +254,11 @@
 		 */
 		function _tree($_level){
 			$str = '|----';
+			$tree = '';
 			for ($i = 1;$i < $_level; $i++){
-				$str .= $str;
+				$tree .= $str;
 			}
-			return $str;
+			return $tree;
 		}
 		
 	}

@@ -13,27 +13,12 @@
 	
 	namespace User\Controller;
 	use User\Controller\IniController;
-	use Pub\Page;
-	use PhPyRb\Article;
 	
 	class ArticleController extends IniController{
 	protected $Article,$categorys,$tags;
 		function _initialize(){
 			parent::_initialize();
-			import('Article');
-			import('Page');
-			$this->Article = new Article();
-// 			if(! S('CateList')){
-// 				S('CateList',$this->Article->catelist(),10000);
-// 			}
-// 			if(! S('Tags')){
-// 				S('Tags',$this->Article->tags(),10000);
-// 			}
-			$this->assign('category',$this->Article->catelist());
-			$this->assign('tags',$this->Article->tags());
-// 			$this->assign('category',S('CateList'));
-// 			$this->assign('tags',S('CateList'));
-			$this->assign('status',array('hidden','show'));
+			$this->assign('view','article');
 		}
 		
 		/**
@@ -42,11 +27,11 @@
 		* @date 2014-5-23  上午12:02:49
 		*/
 		function index(){
-			$artcount = $this->Article->count();
-			$tags = $this->Article->tags();
+			$artcount = S('Article')->count();
+			$tags = S('Article')->tags();
 			$page = new Page($artcount,30);
 			$limit = "$page->firstRow,$page->listRows";
-			$artlist = $this->Article->artlist($limit);
+			$artlist = S('Article')->artlist($limit);
 			foreach ($artlist as $k => $v){
 				$str = '';
 				foreach ($v['tags'] as $key => $val){
@@ -57,6 +42,7 @@
 			$artshow = $page->show();
 			$this->assign('page',$artshow);
 			$this->assign('artlist',$artlist);
+			$this->assign('action','aindex');
 			$this->display();
 		}
 		
@@ -66,13 +52,12 @@
 		* @date 2014-5-23  上午12:01:35
 		*/
 		function edit(){
-			$cate = $this->Article->level(S('CateList'));
 			if($_REQUEST['artid']){
-				$artinfo = $this->Article->artinfo($_REQUEST['artid']);
+				$artinfo = S('Article')->artinfo($_REQUEST['artid']);
 // 				dump($artinfo);exit;
 				$this->assign('artinfo',$artinfo);
 			}
-			$this->assign('cate',$cate);
+			$this->assign('action','aedit');
 			$this->display();
 		}
 		
@@ -92,7 +77,7 @@
 			$data['status'] = $_REQUEST['status'];
 			$data['tags'] = implode(',', $_REQUEST['tags']);
 			$_REQUEST['artid'] ? $data['uptime'] = time() : $data['uptime'] = $data['addtime'] = time();
-			$artid = $this->Article->add_updata($data);
+			$artid = S('Article')->add_updata($data);
 			if($artid === FALSE){
 				$this->error('更新失败！',U('Article/edit',array('artid'=>$_REQUEST['artid'])));
 			}else {
@@ -100,7 +85,7 @@
 				$temp['artid'] = $_REQUEST['artid'] ? $_REQUEST['artid'] : $artid;
 				$temp['description'] = $_REQUEST['description'];
 				$temp['content'] = $_REQUEST['content'];
-				$ret = $this->Article->add_updata($temp,'Content','artid');
+				$ret = S('Article')->add_updata($temp,'Content','artid');
 				if($ret === FALSE){
 					$this->error('文章内容更新失败',U('Article/edit',array('artid'=>$_REQUEST['artid'])));
 				}else {

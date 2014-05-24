@@ -32,26 +32,27 @@
         <li> <a href="#/" class="nav-top-item no-submenu">
           <!-- Add the class "no-submenu" to menu items with no sub menu -->
           Dashboard </a> </li>
-        <li> <a href="{:U('Article/index')}" class="nav-top-item current">
+        <li> <a href="{:U('Article/index')}" class="nav-top-item {if $view == 'article'} current {/if}">
           <!-- Add the class "current" to current menu item -->
           Articles </a>
           <ul>
-            <li><a class="current" href="{:U('Article/index')}">Article List</a></li>
-            <li><a href="{:U('Article/edit')}">Write Articles</a></li>
+            <li><a {if $action == 'aindex'} class="current" {/if} href="{:U('Article/index')}">Article List</a></li>
+            <li><a {if $action == 'aedit'} class="current" {/if} href="{:U('Article/edit')}">Articles Edit</a></li>
             <!-- Add class "current" to sub menu items also -->
             <li><a href="{:U('Article/index')}">Manage Comments</a></li>
           </ul>
         </li>
-        <li> <a href="{:U('Category/index')}" class="nav-top-item"> Category </a>
+        <li> <a href="{:U('CateTag/index')}" class="nav-top-item {if $view == 'catetag'} current {/if}"> Category </a>
           <ul>
-            <li><a href="{:U('Category/index')}">Category List</a></li>
-            <li><a href="{:U('Category/edit')}">Create Category</a></li>
+            <li><a href="{:U('CateTag/index')}" {if $action == 'category'} class="current" {/if}>Category List</a></li>
+            <li><a href="{:U('CateTag/tags')}" {if $action == 'tags'} class="current" {/if}>Tags List</a></li>
+            <li><a href="{:U('CateTag/edit')}" {if $action == 'ctedit'} class="current" {/if}>Create Category  & Tags</a></li>
           </ul>
         </li>
-        <li> <a href="{:U('Album/index')}" class="nav-top-item"> Album </a>
+        <li> <a href="{:U('Album/index')}" class="nav-top-item {if $view == 'Album'} current {/if}"> Album </a>
           <ul>
-            <li><a href="{:U('Album/index')}">Calendar Overview</a></li>
-            <li><a href="{:U('Album/index')}">Add a new Event</a></li>
+            <li><a href="{:U('Album/index')}" {if $action == 'alist'} class="current" {/if}>Album List</a></li>
+            <li><a href="{:U('Album/aledit')}" {if $action == 'albumedit'} class="current" {/if}>Create Album</a></li>
             <li><a href="{:U('Album/index')}">Calendar Settings</a></li>
           </ul>
         </li>

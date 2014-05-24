@@ -20,19 +20,22 @@
 		function _initialize(){
 			import('Article');
 			import('Page');
-			C('Article',new Article());
+			$_SESSION['uid'] = 1;
+			$this->article = new Article();
+// 			S('Article',new Article());
 			if(! S('CateList')){
-				S('CateList',C('Article')->catelist(),500000);
+				S('CateList',$this->article->catelist(),5000);
 			}
 			if(! S('Tags')){
-				S('Tags',C('Article')->tags(),500000);
+				S('Tags',$this->article->tags(),5000);
 			}
 			if(! S('CateCT')){
-				S('CateCT',C('Article')->catecount(),100000);
+				S('CateCT',$this->article->catecount(),5000);
 			}
-			$_SESSION['userinfo']['id'] = 1;
-			$this->assign('catecount',C('Article')->catecount());
-			$this->assign('catemean',C('Article')->level(S('CateList'),2));
+// 			$this->assign('catecount',S('Article')->catecount());
+// 			$this->assign('catemean',S('Article')->level(S('CateList'),2));
+			$this->assign('catecount',$this->article->catecount());
+			$this->assign('catemean',$this->article->level(S('CateList'),2));
 			$this->assign('cates',S('CateList'));
 			$this->assign('tags',S('Tags'));
 		}

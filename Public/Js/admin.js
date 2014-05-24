@@ -14,5 +14,12 @@ $(document).ready(function() {
 		});
 	});
 	
-	
+	/*
+$('#main-nav li').children('ul').hide();
+	$('#main-nav li:first').children('ul').show();
+	$('#main-nav li').click(function (){
+		$(this).children('ul').show();
+		$(this).siblings('li').children('ul').hide();
+	});
+*/
 });

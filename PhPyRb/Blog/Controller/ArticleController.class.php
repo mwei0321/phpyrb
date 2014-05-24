@@ -15,10 +15,9 @@
 use Pub\Page;
 		
 	class ArticleController extends IniController{
-		protected $article;
 		function _initialize(){
 			parent::_initialize();
-			$this->assign('hots',C('Article')->articles('0,15','1','hots DESC'));
+			$this->assign('hots',$this->article->articles('0,15','1','hots DESC'));
 			$this->assign('keywors',$_REQUEST['keywords']);
 		}
 		
@@ -28,10 +27,10 @@ use Pub\Page;
 		* @date 2014-5-2  下午5:31:55
 		*/
 		function index(){
-			$count = C('Article')->count();
+			$count = $this->article->count();
 			$page = new Page($count, 10);
-			$artlist = C('Article')->articles("$page->firstRow,$page->listRows");
-			$countcomm = C('Article')->countcomm(arr2to1($artlist));
+			$artlist = $this->article->articles("$page->firstRow,$page->listRows");
+			$countcomm = $this->article->countcomm(arr2to1($artlist));
 			$countcomm = fieldtokey($countcomm,artid);
 			$this->assign('page',$page->show());
 			$this->assign('countcomm',$countcomm);
@@ -39,14 +38,20 @@ use Pub\Page;
 			$this->display();
 		}
 		
+		/**
+		* 分类标签下的文章
+		* @author MaWei (http://www.phpyrb.com)
+		* @date 2014-5-23  上午11:42:37
+		*/
 		function catags(){
 			$where = $_REQUEST['cate'] ? 'a.cateid='.$_REQUEST['cate'] : 'FIND_IN_SET('.$_REQUEST['tag'].',tags)';
-			$where .= ' AND a.uid='.$_SESSION['userinfo']['userid'];
+			$where .= ' AND a.uid='.$_SESSION['uid'];
 			$countwhere['_string'] = $_REQUEST['cate'] ? 'cateid='.$_REQUEST['cate'] : 'FIND_IN_SET('.$_REQUEST['tag'].',tags)';
-			$countwhere = array_merge($countwhere,array('uid'=>$_SESSION['userinfo']['userid'],'status'=>1));
-			$count = C('Article')->count('Article',$countwhere);
+			$countwhere = array_merge($countwhere,array('uid'=>$_SESSION['uid'],'status'=>1));
+			$count = $this->article->count('Article',$countwhere);
 			$page = new Page($count,15);
-			$artlist = C('Article')->articles("$page->firstRow,$page->listRows",$where);
+			$artlist = $this->article->articles("$page->firstRow,$page->listRows",$where);
+// 			dump($artlist);
 			$this->assign('artlist',$artlist);
 			$this->assign('page',$page->show());
 			$this->display('index');
@@ -59,12 +64,12 @@ use Pub\Page;
 		*/
 		function content(){
 			//文章内容
-			$info = C('Article')->artinfo($_REQUEST['artid']);
+			$info = $this->article->artinfo($_REQUEST['artid']);
 			$this->assign('info',$info);
 			//文章评论
-			$count = C('Article')->count('Comment',array('artid'=>$_REQUEST['artid']));
+			$count = $this->article->count('Comment',array('artid'=>$_REQUEST['artid']));
 			$page = new Page($count,20);
-			$comment = C('Article')->comment($_REQUEST['artid'],"$page->firstRow,$page->listRows");
+			$comment = $this->article->comment($_REQUEST['artid'],"$page->firstRow,$page->listRows");
 			//点击率
 			M('Article')->where(array('id'=>$_REQUEST['artid']))->setInc('hots');
 			$this->assign('commpage',$count > 20 ? $page->show() : FALSE);
@@ -86,7 +91,8 @@ use Pub\Page;
 			$data['content'] = $_REQUEST['comment'];
 			$data['artid'] = $_REQUEST['artid'];
 			$data['addtime'] = time();
-			$reid = C('Article')->add_updata('comment',$data);
+			$data['uid'] = $_SESSION['uid'];
+			$reid = $this->article->add_updata($data,'ArticleComment');
 			if($reid === FALSE){
 				$this->error('评论失败！',U('Article/content',array('artid'=>$_REQUEST['artid'])));
 			}else {
@@ -101,9 +107,9 @@ use Pub\Page;
 		*/
 		function search(){
 			if($_REQUEST['keywords']){
-				$count = C('Article')->search($_REQUEST['keywords'],'0,10',true);
+				$count = $this->article->search($_REQUEST['keywords'],'0,10',true);
 				$page = new Page($count,15);
-				$result = C('Article')->search($_REQUEST['keywords'],"$page->firstRow,$page->listRows");
+				$result = $this->article->search($_REQUEST['keywords'],"$page->firstRow,$page->listRows");
 				$this->assign('artlist',$result);
 				$this->assign('page',$page->show());
 			}

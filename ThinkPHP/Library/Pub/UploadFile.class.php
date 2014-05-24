@@ -9,6 +9,7 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 namespace Pub;
+use Pub\Image;
 /**
  * 文件上传类
  * @category   ORG
@@ -24,10 +25,10 @@ class UploadFile {//类定义开始
         'allowExts'         =>  array(),    // 允许上传的文件后缀 留空不作后缀检查
         'allowTypes'        =>  array(),    // 允许上传的文件类型 留空不做检查
         'thumb'             =>  false,    // 使用对上传图片进行缩略图处理
-        'imageClassPath'    =>  'ORG.Util.Image',    // 图库类包路径
-        'thumbMaxWidth'     =>  '',// 缩略图最大宽度
-        'thumbMaxHeight'    =>  '',// 缩略图最大高度
-        'thumbPrefix'       =>  'thumb_',// 缩略图前缀
+        'imageClassPath'    =>  'Image',    // 图库类包路径
+        'thumbMaxWidth'     =>  '220',// 缩略图最大宽度
+        'thumbMaxHeight'    =>  '240',// 缩略图最大高度
+        'thumbPrefix'       =>  'phpyrb-',// 缩略图前缀
         'thumbSuffix'       =>  '',
         'thumbPath'         =>  '',// 缩略图保存路径
         'thumbFile'         =>  '',// 缩略图文件名
@@ -44,6 +45,7 @@ class UploadFile {//类定义开始
         'uploadReplace'     =>  false,// 存在同名是否覆盖
         'saveRule'          =>  'uniqid',// 上传文件命名规则
         'hashType'          =>  'md5_file',// 上传文件Hash规则函数名
+        'diyname'			=>  '', //自定义文件名
         );
 
     // 错误信息
@@ -182,7 +184,7 @@ class UploadFile {//类定义开始
                 if(!isset($file['key']))   $file['key']    =   $key;
                 $file['extension']  =   $this->getExt($file['name']);
                 $file['savepath']   =   $savePath;
-                $file['savename']   =   $this->getSaveName($file);
+                $file['savename']   =   $this->diyname ? $this->getdiyname($file) : $this->getSaveName($file);
 
                 // 自动检查附件
                 if($this->autoCheck) {
@@ -333,6 +335,18 @@ class UploadFile {//类定义开始
                 $this->error = '未知上传错误！';
         }
         return ;
+    }
+    
+    /**
+    * 自定义文件名
+    * @param  array $_filename
+    * @return string $saveName
+    * @author MaWei (http://www.phpyrb.com)
+    * @date 2014-5-24  下午4:00:29
+    */
+    private function getdiyname($_filename){
+    	$saveName = $this->diyname.'-'.date('Y-m-d-H-m-s').".".$_filename['extension'];
+    	return $saveName;
     }
 
     /**

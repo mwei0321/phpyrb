@@ -162,7 +162,7 @@ class Image {
      * @param boolean $interlace 启用隔行扫描
      * @return void
      */
-    static function thumb($image, $thumbname, $type='', $maxWidth=200, $maxHeight=50, $interlace=true) {
+    static function thumb($image, $thumbname, $type='', $maxWidth=220, $maxHeight=240, $interlace=true) {
         // 获取原图信息
         $info = Image::getImageInfo($image);
         if ($info !== false) {
