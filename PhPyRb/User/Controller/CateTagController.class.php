@@ -31,7 +31,7 @@
 // 			dump(S('CateList'));
 			$count = count(S('CateList'));
 // 			dump($count);exit;
-			$cpage = new Page($count, 5);
+			$cpage = new Page($count, 25);
 			$cate = array_slice(S('CateList'), $cpage->firstRow,$cpage->listRows);
 			$this->assign('cate',$cate);
 			$this->assign('cpage',$cpage->show());
@@ -46,7 +46,7 @@
 		*/
 		function tags(){
 			$tagcount = count(S('Tags'));
-			$tpage = new Page($tagcount, 5);
+			$tpage = new Page($tagcount, 25);
 			$tags = array_slice(S('Tags'), $tpage->firstRow,$tpage->listRows);
 			$this->assign('tag',$tags);
 			$this->assign('tpage',$tpage->show());
@@ -82,6 +82,7 @@
 			$data['menu'] = $_REQUEST['menu'];
 			$data['description'] = $_REQUEST['des'];
 			$_REQUEST['cateid'] || $_REQUEST['tagid'] ? ($_REQUEST['cateid'] ? $data['id'] = $_REQUEST['cateid'] : $data['id'] = $_REQUEST['tagid']) : FALSE;
+			$_REQUEST['type'] ? $data['sort'] = intval($_REQUEST['order']) : FALSE;
 			$model = $_REQUEST['type'] ? 'Category' : 'Tag';
 			$reid = S('Article')->add_updata($data,$model);
 			$url = $_REQUEST['type'] ? U('CateTag/index',array('delcache'=>1)) : U('CateTag/tags',array('delcache'=>1));
@@ -109,7 +110,7 @@
 			if($reid === FALSE){
 				$this->error('删除失败！',U('CateTag/index'));
 			}else {
-				$this->success('删除成功！',U('CateTag/index'));
+				$this->success('删除成功！',U('CateTag/index',array('delcache'=>1)));
 			}
 		}
 	}

@@ -21,6 +21,7 @@
 		function _initialize(){
 			parent::_initialize();
 			import('Photo');
+			import('Pub\Page');
 			$this->photo = new Photo();
 			$this->assign('view','Album');
 		}

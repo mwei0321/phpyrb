@@ -13,6 +13,7 @@
 	
 	namespace User\Controller;
 	use User\Controller\IniController;
+	use Pub\Page;
 	
 	class ArticleController extends IniController{
 	protected $Article,$categorys,$tags;
@@ -27,6 +28,7 @@
 		* @date 2014-5-23  上午12:02:49
 		*/
 		function index(){
+			import('Page');
 			$artcount = S('Article')->count();
 			$tags = S('Article')->tags();
 			$page = new Page($artcount,30);
@@ -70,7 +72,7 @@
 			$data = array();
 			$_REQUEST['artid'] ? $data['id'] = $_REQUEST['artid'] : FALSE;
 			$data['title'] = $_REQUEST['title'];
-			$data['uid'] = $_SESSION['userinfo']['id'];
+			$data['uid'] = $_SESSION['uid'];
 			$data['cateid'] = $_REQUEST['cate'];
 			$data['author'] = $_REQUEST['author'];
 			$data['keyword'] = $_REQUEST['keyword'];

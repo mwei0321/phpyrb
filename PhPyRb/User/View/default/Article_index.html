@@ -37,7 +37,7 @@
                   <input type="checkbox" />
                 </td>
                 <td>{$a['id']}</td>
-                <td><a href="{:U('Blog/Article/content',array('artid'=>$a['id']))}" title="title">{$a['title']}</a></td>
+                <td><a href="{:U('Blog/Article/content',array('artid'=>$a['id']))}" target="_blank" title="title">{$a['title']}</a></td>
                 <td>{$category[$a['cateid']]['name']}</td>
                 <td>{$a['tagname']}</td>
                 <td>{$status[$a['status']]}</td>

@@ -21,8 +21,7 @@
         <div class="tab-content {if $type == 'cate'} default-tab {/if}" id="tab1">
           <form action="{:U('CateTag/add_updata')}" method="post">
           	<input type="hidden" name="type" value="1" />
-			<input type="hidden" name="cateid" value="{$cateid}"
-            <fieldset>
+			<input type="hidden" name="cateid" value="{$cateid}" />
             <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
             <p>
               <label>Category Name</label>
@@ -32,9 +31,9 @@
 			<p>
               <label>Parent Category</label>
               <select name="cate">
-              	<option value="0" {if 0 == $category[$cateid]['cateid']} selected="selected" {/if}>顶级分类</option>
+              	<option value="0" {if 0 == $category[$cateid]['pid']} selected="selected" {/if}>顶级分类</option>
               	<volist name="category" id="c">
-                <option value="{$c['id']}" {if $c['id'] == $category[$cateid]['cateid']} selected="selected" {/if}>{$c['tree']}{$c['name']}</option>
+                <option value="{$c['id']}" {if $c['id'] == $category[$cateid]['pid']} selected="selected" {/if}>{$c['tree']}{$c['name']}</option>
 				</volist>
               </select>
             </p>
@@ -42,16 +41,20 @@
               <label>Category Status</label>
               <select name="status" >
                 <option value="1" {if $category[$cateid]['status']} selected="selected" {/if}>show</option>
-                <option value="0" {if $category[$cateid]['status']} == '0'} selected="selected" {/if}>hidden</option>
+                <option value="0" {if $category[$cateid]['status'] == 0} selected="selected" {/if}>hidden</option>
               </select>
             </p>
 			<p>
               <label>Menu Status Display</label>
               <select name="menu" >
                 <option value="1" {if $category[$cateid]['menu']} selected="selected" {/if}>show</option>
-                <option value="0" {if $category[$cateid]['menu']} == '0'} selected="selected" {/if}>hidden</option>
+                <option value="0" {if $category[$cateid]['menu'] == '0'} selected="selected" {/if}>hidden</option>
               </select>
             </p>
+			<p>
+				<label>Menu Order</label>
+				<input type="text" name="order" value="{$category[$cateid]['sort']}" />
+			</p>
 			<p>
               <label>Category Description</label>
               <input class="text-input large-input" type="text" name="des" value="{$category[$cateid]['description']}"/>

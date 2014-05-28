@@ -8,10 +8,10 @@
 <!-- 左边内容  --> 
 <block name="left_content">
 	<div class="article first" id="oneart">
- 		<h2 class="h123"><a href="{:U('Article/content',array('artid'=>$info['id']))}">{$info['title']}</a></h2>
+ 		<h2 class="h123"><a href="{:U('Article/content',array('artid'=>$info['id']))}" title="{$info['keyword']}">{$info['title']}</a></h2>
 		<p class="tag">标 签：
 		<volist name="info['tags']" id="t">
-		<a href="{:U('Article/catags',array('tag'=>$t))}"><span>{$tags[$t]['name']}</span></a>
+		<a href="{:U('Article/catags',array('tag'=>$t))}" title="{$t['description']}"><span>{$tags[$t]['name']}</span></a>
 		</volist>
         <div class="date" style="border:none;box-shadow:none;z-index:-100;">
        <!-- 	<p class="image"><a href="/index.php?m=Index&a=index"><img alt="PhPyRb博客!马伟博客!" src="./Public/Image/logo.jpg" /></a></p>

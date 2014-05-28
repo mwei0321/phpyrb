@@ -17,7 +17,10 @@ use Pub\Page;
 	class ArticleController extends IniController{
 		function _initialize(){
 			parent::_initialize();
-			$this->assign('hots',$this->article->articles('0,15','1','hots DESC'));
+			if(!S('HotArt')){
+				S('HotArt',$this->article->articles('0,15','1','hots DESC'),10000);
+			}
+			$this->assign('hots',S('HotArt'));
 			$this->assign('keywors',$_REQUEST['keywords']);
 		}
 		

@@ -30,8 +30,8 @@
 		 * @author MaWei ( http://www.phpyrb.com )
 		 * @date 2014-4-17 下午1:50:15
 		 */
-		function artlist($_limit = '0,25',$_order = 'id DESC',$_where = FALSE){
-			$_where = $_where ? $_where : array('status'=>1,'uid'=>$_SESSION['userinfo']['id']);
+		function artlist($_limit = '0,25',$_order = 'uptime DESC',$_where = FALSE){
+			$_where = $_where ? $_where : array('uid'=>$_SESSION['uid']);
 			$artlsit = M('Article')->where($_where)->order($_order)->limit($_limit)->select();
 // 			echo M('Article')->getLastSql();exit;
 			$artlsit = $this->_strtoarr($artlsit);
@@ -54,6 +54,21 @@
 		}
 		
 		/**
+		* 返回菜单
+		* @param  string $_model 
+		* @return array $menu
+		* @author MaWei (http://www.phpyrb.com)
+		* @date 2014-5-25  下午3:01:39
+		*/
+		function menu($_model = 'Category',$_limit = '0,10'){
+			$model = M("$_model");
+			$where = array('uid'=>$_SESSION['uid'],'menu'=>1);
+			$menu = $model->field('name,id,description')->where($where)->order('sort DESC')->limit($_limit)->select();
+// 			echo $model->getlastsql();
+			return $menu;	
+		}
+		
+		/**
 		* 返回分类下的文章数
 		* @param  string $_uid
 		* @return array $count
@@ -62,7 +77,7 @@
 		*/
 		function catecount(){
 			$cate = M();
-			$sql = "SELECT count(id) cout,cateid FROM `article` WHERE uid=".$_SESSION['userinfo']['id']." GROUP BY cateid";
+			$sql = "SELECT count(id) cout,cateid FROM `article` WHERE uid=".$_SESSION['uid']." GROUP BY cateid";
 			$count = $cate->query($sql);
 			return fieldtokey($count,'cateid');
 		}
@@ -77,7 +92,7 @@
 		*/
 		function search($_keywords,$_limit = "0,15",$_count = FALSE){
 			$field = empty($_count) ? "id,title,author,hots,uptime,keyword,tags,cateid,content" : 'count(id) cout';
-			$sql = "SELECT $field FROM `article` a LEFT JOIN `content` c ON a.id=c.artid WHERE ((a.`title` like '%".$_keywords."%') OR (a.`keyword` like '%".$_keywords."%')) AND a.`status`=1 ORDER BY uptime LIMIT $_limit";
+			$sql = "SELECT $field FROM `article` a LEFT JOIN `content` c ON a.id=c.artid WHERE ((a.`title` like '%".$_keywords."%') OR (a.`keyword` like '%".$_keywords."%')) AND a.`status`=1 ORDER BY uptime DESC LIMIT $_limit";
 			$art = M();
 			$result = $art->query($sql);
 // 			echo $sql;
@@ -108,8 +123,8 @@
 		* @author MaWei (http://www.phpyrb.com)
 		* @date 2014-4-27  下午5:33:45
 		*/
-		function articles($_limit = '0,5',$_where = FALSE,$_order = 'id DESC',$_count = FALSE){
-			$_where = $_where ? $_where : 'a.uid='.$_SESSION['userinfo']['id'].' ';
+		function articles($_limit = '0,15',$_where = FALSE,$_order = 'uptime DESC',$_count = FALSE){
+			$_where = $_where ? $_where : 'a.uid='.$_SESSION['uid'].' ';
 			$field = empty($_count) ? "id,title,author,hots,uptime,keyword,tags,cateid,content" : 'count(id) cout';
 			$sql = "SELECT $field FROM `article` a LEFT JOIN `content` c ON a.id=c.artid WHERE $_where AND a.`status`=1 ORDER BY $_order LIMIT $_limit";
 			$art = M();
@@ -188,7 +203,8 @@
 		 */
 		function catelist($_where = array('uid'=>'1','status'=>1)){
 			$model = M('Category');
-			$catelist = $model->where($_where)->select();
+			$catelist = $model->where($_where)->order('sort DESC')->select();
+// 			echo $model->getLastSql();exit;
 			$catelist = fieldtokey($catelist);
 			return $catelist;
 		}
@@ -202,7 +218,7 @@
 		 */
 		function tags($_where = array('uid'=>'1','status'=>1)){
 			$model = M('Tag');
-			$tags = $model->where($_where)->select();
+			$tags = $model->where($_where)->order('id DESC')->select();
 			$tags = fieldtokey($tags);
 // 			dump($model->getLastSql());
 			return $tags;

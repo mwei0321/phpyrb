@@ -27,6 +27,7 @@
                         <th>Parent Category</th>
                         <th>Category Status</th>
                         <th>Menu Display</th>
+                        <th>Menu Order</th>
                         <th>Category Description</th>
                         <th>Operation</th>
                     </tr>
@@ -40,7 +41,8 @@
 	                        <td>{$category[$c['pid']]['name']}</td>
 	                        <td>{$status[$c['status']]}</td>
 	                        <td>{$status[$c['menu']]}</td>
-	                        <td>{$t['description']}</td>
+	                        <td>{$c['sort']}</td>
+	                        <td>{$c['description']}</td>
 	                        <td>
 			                  <!-- Icons -->
 			                  <a href="{:U('CateTag/edit',array('cateid'=>$c['id']))}" title="Edit"><img src="/Public/Image/icons/pencil.png" alt="Edit" /></a> 

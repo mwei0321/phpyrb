@@ -44,7 +44,7 @@
 		$upload -> allowExts = explode(',', $allowExts);
 		// 设置附件上传目录
 		$path = empty($config['path']) ? date('Y-m') . '/'  :  $config['path'];
-		$upload -> savePath = $config['path'] ? $config['path'] : './Uploads/' . $path;
+		$upload -> savePath = $config['path'] ? 'Uploads/' .$config['path'] : './Uploads/' . $path;
 		mkdir($upload -> savePath);
 		$path = 'Uploads/' . $path;
 		// 设置上传文件规则

@@ -5,10 +5,10 @@
 	{if $artlist}
 	<volist name="artlist" id="a">
 		<div class="article first">
-         		<h2 class="h123"><a href="{:U("Article/content",array('artid'=>$a['id']))}" target="_blank">{$a['title']}</a></h2>
+         		<h2 class="h123"><a href="{:U("Article/content",array('artid'=>$a['id']))}" title="{$a['keyword']}" target="_blank">{$a['title']}</a></h2>
                 <p class="tag">标 签：
 				<volist name="a['tags']" id="t">
-					<a href="{:U('Article/catags',array('tag'=>$t))}"><span>{$tags[$t]['name']}</span></a>
+					<a href="{:U('Article/catags',array('tag'=>$t))}" title="{$t['description']}"><span>{$tags[$t]['name']}</span></a>
 				</volist>
 				</p>
 				<div class="clr"></div>
@@ -45,7 +45,7 @@
 <block name="hots">
 	<volist name="hots" id="h">
 		<li>
-		    <a href="{:U('Article/content',array('artid'=>$h['id']))}" alt="{$h['keyword']}">{$h['title']}</a>&nbsp;(216)
+		    <a href="{:U('Article/content',array('artid'=>$h['id']))}" title="{$h['keyword']}">{$h['title']}</a>&nbsp;(216)
 		</li>
 	</volist>
 </block>

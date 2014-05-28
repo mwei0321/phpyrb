@@ -28,10 +28,10 @@
 	            	<ul>
 	                	<volist name="catemean" id="c">
 	                        <li>
-	                            <a href="{:U('Article/catags',array('cate'=>$c['id']))}">{$c['name']}</a>
+	                            <a href="{:U('Article/catags',array('cate'=>$c['id']))}" title="{$c['description']}">{$c['name']}</a>
 	                        </li>
 						</volist>
-						<li><a href="{:U('Album/index')}">image</a></li>
+						<li><a href="{:U('Album/index')}">Album</a></li>
 					</ul>
 	                <div class="search">
 	                    <form method="get" action="{:U('Article/search')}">
@@ -65,7 +65,7 @@
 					<volist name="tags" id="t" >
                     	<ul class="sb_menu two">
 	                        <li>
-	                            <a href="{:U('Article/catags',array('tag'=>$t['id']))}">{$t['name']}</a>
+	                            <a href="{:U('Article/catags',array('tag'=>$t['id']))}" title="{$t['description']}">{$t['name']}</a>
 	                        </li>
 						</ul>
 					</volist>
@@ -81,9 +81,9 @@
                     <h2>文章分类</h2>
                     <div class="clr"></div>
                     <ul class="sb_menu">
-                    	<volist name="catemean" id="c">
+                    	<volist name="cates" id="c">
 	                        <li>
-	                            <a href="{:U('Article/catags',array('cate'=>$c['id']))}">{$c['name']}</a>&nbsp; ({if $catecount[$c['id']]}{$catecount[$c['id']]['cout']}{else}0{/if})
+	                            <a href="{:U('Article/catags',array('cate'=>$c['id']))}" title="{$c['description']}">{$c['name']}</a>&nbsp; ({if $catecount[$c['id']]}{$catecount[$c['id']]['cout']}{else}0{/if})
 	                        </li>
 						</volist>
                     </ul>
