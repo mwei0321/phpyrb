@@ -70,6 +70,7 @@
 		*/
 		function add_updata(){
 			$data = array();
+			$temp = array();
 			$_REQUEST['artid'] ? $data['id'] = $_REQUEST['artid'] : FALSE;
 			$data['title'] = $_REQUEST['title'];
 			$data['uid'] = $_SESSION['uid'];
@@ -79,11 +80,12 @@
 			$data['status'] = $_REQUEST['status'];
 			$data['tags'] = implode(',', $_REQUEST['tags']);
 			$_REQUEST['artid'] ? $data['uptime'] = time() : $data['uptime'] = $data['addtime'] = time();
+			//判断文章是添加还是更新
+			$_REQUEST['artid'] ? FALSE : $temp['types'] = $data['types'] = 'ad';
 			$artid = S('Article')->add_updata($data);
 			if($artid === FALSE){
 				$this->error('更新失败！',U('Article/edit',array('artid'=>$_REQUEST['artid'])));
 			}else {
-				$temp = array();
 				$temp['artid'] = $_REQUEST['artid'] ? $_REQUEST['artid'] : $artid;
 				$temp['description'] = $_REQUEST['description'];
 				$temp['content'] = $_REQUEST['content'];

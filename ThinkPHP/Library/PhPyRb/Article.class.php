@@ -180,15 +180,20 @@
 			$model = M("$_model");
 			$reid = FALSE;
 			if($_data["$_upfiled"]){
-				$where = array();
-				$where["$_upfiled"] = $_data["$_upfiled"];
-				unset($_data["$_upfiled"]);
-// 				dump($_data);exit;
-				$reid = $model->where($where)->save($_data);
+				if($_data['types'] == 'ad'){
+					unset($_data["types"]);
+					$reid = $model->add($_data);
+				}else{
+					$where = array();
+					$where["$_upfiled"] = $_data["$_upfiled"];
+					unset($_data["types"]);
+					unset($_data["$_upfiled"]);
+					$reid = $model->where($where)->save($_data);
+				}
 			}else{
+				unset($_data["types"]);
 				$reid = $model->add($_data);
 			}
-// 			dump($_data);
 // 			echo $model->getLastSql();
 // 			exit;
 			return $reid;

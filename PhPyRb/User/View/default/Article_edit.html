@@ -34,7 +34,7 @@
             </p>
             <p>
               <label>Article Author</label>
-              <input class="text-input" type="text" name="author" value="{if $artinfo['author']} {$artinfo['author']} {else} MaWei {/if}"/>
+              <input class="text-input" type="text" name="author" value="{if $artinfo['author']}{$artinfo['author']}{else}MaWei-PhPyRb{/if}"/>
             </p>
 			<p>
               <label>Article KeyWord</label>
@@ -58,7 +58,7 @@
               This is another radio button </p-->
             <p>
               <label>Article Content</label>
-              <textarea class="text-input textarea wysiwyg" id="content" name="content" cols="79" rows="55">{$artinfo['content']}</textarea>
+              <textarea class="text-input textarea wysiwyg" id="content" name="content" cols="79" rows="35">{$artinfo['content']}</textarea>
             </p>
             <p>
               <input class="button" type="submit" value="Submit" />
