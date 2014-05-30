@@ -32,6 +32,25 @@
 		return $onearray;
 	}
 	
+	/**
+	 * 把处理过的HTML还原
+	 * @param array $_data 
+	 * @param array $_field 要还原的KEY
+	 * @return array $_data
+	 * @author MaWei ( http://www.phpyrb.com )
+	 * @date 2014-4-17 下午1:50:15
+	 */
+	function rehtml($_data,$_filed = array('content')){
+		foreach ($_data as $key => $val){
+			foreach ($val as $k => $v){
+				if(in_array($k, $_filed)){
+					$_data[$key][$k] = html_entity_decode($_data[$key][$k]);
+				}
+			}
+		}
+		return $_data;
+	}
+	
 	function _uploads( $config = array(),$thumb = FALSE) {
 // 		if(S('Upload')){
 // 			S('Upload',new Pub\UploadFile());

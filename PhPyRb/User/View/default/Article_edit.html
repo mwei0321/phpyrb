@@ -67,8 +67,9 @@
             <!-- End .clear -->
           </form>
         </div>
-		<script src="/Public/kindeditor/kindeditor-min.js"></script>
+		<script charset="utf-8" src="/Public/kindeditor/kindeditor-min.js"></script>
 		<script>
+			KindEditor.options.filterMode = false;
 	        KindEditor.ready(function(K) {
 	                window.editor = K.create('#content');
 	        });

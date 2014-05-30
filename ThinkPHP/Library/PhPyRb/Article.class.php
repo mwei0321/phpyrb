@@ -129,6 +129,7 @@
 			$sql = "SELECT $field FROM `article` a LEFT JOIN `content` c ON a.id=c.artid WHERE $_where AND a.`status`=1 ORDER BY $_order LIMIT $_limit";
 			$art = M();
 			$result = $art->query($sql);
+// 			rehtml($result);
 // 			echo $sql;
 			$result = empty($_count) ? $result = $this->_strtoarr(fieldtokey($result)) : $result['0']['cout'];
 			return $result;
@@ -161,6 +162,7 @@
 // 			$where = is_array($_artid) ? "id IN (".implode(',', $_artid).")" : $_artid;
 			$sql = "SELECT * FROM `article` as a LEFT JOIN `content` as c ON a.id=c.artid WHERE id=".$_artid;
 			$artinfo = $model->query($sql);
+// 			$artinfo = rehtml($artinfo);
 // 			$artinfo = fieldtokey($artinfo);
 			$artinfo = $this->_strtoarr($artinfo);
 			return array_shift($artinfo);
