@@ -38,7 +38,9 @@
 			S('Article',new Article(),10000);
 			//缓存分类
 			if(! S('CateList')){
-				S('CateList',S('Article')->level(S('Article')->catelist(array('uid'=>1))),10000);
+				$cate = S('Article')->catelist(array('uid'=>1));
+				$levelcate = S('Article')->level($cate);
+				S('CateList',$levelcate,10000);
 			}
 			//缓存标签
 			if(! S('Tags')){
@@ -47,6 +49,7 @@
 // 			$this->assign('category',S('Article')->catelist());
 // 			$this->assign('tags',S('Article')->tags());
 			$this->assign('category',S('CateList'));
+			
 			$this->assign('tags',S('Tags'));
 			$this->assign('status',array('hidden','show'));
 		}
