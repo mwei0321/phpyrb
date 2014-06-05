@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>html5动画－表</title>
+	</head>
+	<body>
+		<canvas id='can' width="300" height="300" style="">
+			你的浏览器不支持html5和css3
+		</canvas>
+		<script type="text/javascript">
+			//获取画布
+			var ct = document.getElementById('can').getContext('2d');
+			//设置多久刷新一下画布
+			setInterval(clock, 1000);
+			//调用函数
+			clock();
+			//时钟的函数
+			function clock() {
+				//设置画布大小
+				ct.clearRect(0, 0, 300, 300);
+				//实例化一个时间对象，获取当前时间
+				var date = new Date();
+				//还原24小时为12制
+				var hour = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
+				//获取分
+				var minu = date.getMinutes();
+				//获取秒
+				var sec = date.getSeconds();
+				//计算时针偏转量，防止分针过半，时针还对着整点
+				hour = hour + minu / 60;
+				//设置表盘边框线粗细
+				ct.lineWidth = 5;
+				//设置表盘线颜色
+				ct.strokeStyle = 'yellow';
+				//开始确定画笔
+				ct.beginPath();
+				//arc为画圆的一个函数，参数为(圆心x轴,圆心y轴,半径x,半径y,偏转度(0-360),顺时针（true）逆时针(false))
+				ct.arc(150, 150, 100, 0, 360, false);
+				//结束画笔
+				ct.closePath();
+				//保存你画的图案
+				ct.stroke();
+				//表盘内分刻度
+				for ( i = 0; i < 60; i++) {
+					//保存画布，
+					ct.save();
+					//设置分刻度宽度
+					ct.lineWidth = 2;
+					//设置分刻度颜色
+					ct.strokeStyle = 'green';
+					//设置异次元空间的0，0点，意思是另一个地方创建一个画布，然后定位中心点
+					//其它这个时针是由多个画布叠加在一起形成的效果
+					ct.translate(150, 150);
+					//设置每次旋转角度
+					ct.rotate(6 * i * Math.PI / 180);
+					//开始确定画笔
+					ct.beginPath();
+					//画笔开始点
+					ct.moveTo(0, -89);
+					//移动到目标点
+					ct.lineTo(0, -95);
+					//结束画画
+					ct.closePath();
+					//保存你画的图案
+					ct.stroke();
+					//回到之前的画布
+					ct.restore();
+
+				}
+				//时刻度
+				for ( i = 0; i < 12; i++) {
+					//保存画布
+					ct.save();
+					//设置时刻度宽度
+					ct.lineWidth = 3;
+					//设置时刻度颜色
+					ct.strokeStyle = 'red';
+					//设置异次元空间的0，0点
+					ct.translate(150, 150);
+					//设置旋转角度
+					ct.rotate(i * 30 * Math.PI / 180);
+					//开始确定画笔
+					ct.beginPath();
+					//画笔开始点
+					ct.moveTo(0, -85);
+					//移动到目标点
+					ct.lineTo(0, -95);
+					//结束画画
+					ct.closePath();
+					//保存你画的图案
+					ct.stroke();
+					//回到之前的画布
+					ct.restore();
+
+				}
+				//时针
+				ct.save();
+				//设置时针的宽度
+				ct.lineWidth = 5;
+				//设置时针的颜色
+				ct.strokeStyle = 'orange';
+				//设置异次元空间的0，0点
+				ct.translate(150, 150);
+				//设置旋转角度
+				ct.rotate(hour * 30 * Math.PI / 180);
+				//开始确定画笔				
+				ct.beginPath();
+				//画笔开始点
+				ct.moveTo(0, -65);
+				//移动到目标点
+				ct.lineTo(0, 8);
+				//结束画画
+				ct.closePath();
+				//保存你画的图案
+				ct.stroke();
+				//回到之前的画布
+				ct.restore();
+				
+				//分钟
+				ct.save();
+				//设置分针的宽度
+				ct.lineWidth = 3;
+				//设置分针的颜色
+				ct.strokeStyle = "green";
+				//设置异次元空间的0，0点
+				ct.translate(150, 150);
+				//设置旋转角度
+				ct.rotate(minu * 6 * Math.PI / 180);
+				//开始确定画笔
+				ct.beginPath();
+				//画笔开始点
+				ct.moveTo(0, -75);
+				//移动到目标点
+				ct.lineTo(0, 12);
+				//结束画画
+				ct.closePath();
+				//保存你画的图案
+				ct.stroke();
+				//回到之前的画布
+				ct.restore();
+
+				//秒针
+				ct.save();
+				//设置秒针的宽度
+				ct.lineWidth = 2;
+				//设置秒针的颜色
+				ct.strokeStyle = 'red';
+				//设置异次元空间的0，0点
+				ct.translate(150, 150);
+				//设置旋转角度
+				ct.rotate(sec * 6 * Math.PI / 180);
+				//开始确定画笔
+				ct.beginPath();
+				//移动到目标点
+				ct.moveTo(0, -83);
+				//结束画画
+				ct.lineTo(0, 15);
+				//保存你画的图案
+				ct.closePath();
+				//回到之前的画布
+				ct.stroke();
+
+				//设置圆心样式
+				//开始确定画笔
+				ct.beginPath();
+				//arc为画圆的一个函数，参数为(圆心x轴,圆心y轴,半径x,半径y,偏转度(0-360),顺时针（true）逆时针(false))
+				ct.arc(0, 0, 3, 0, 360, false);
+				//保存你画的图案
+				ct.closePath();
+				//填充颜色
+				ct.fillStyle = '#FFF';
+				//填充
+				ct.fill();
+				//回到之前的画布
+				ct.stroke();
+
+				//设置秒针上的圆心样式
+				ct.beginPath();
+				//arc为画圆的一个函数，参数为(圆心x轴,圆心y轴,半径x,半径y,偏转度(0-360),顺时针（true）逆时针(false))
+				ct.arc(0, -70, 3, 0, 360, false);
+				//保存你画的图案
+				ct.closePath();
+				//填充颜色
+				ct.fillStyle = '#FFF';
+				//填充
+				ct.fill();
+				//保存你画的图案
+				ct.stroke();
+				//回到之前的画布
+				ct.restore();
+			}
+		</script>
+	</body>
+</html>
+
