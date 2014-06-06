@@ -111,6 +111,8 @@
 		if(Obj && typeof Obj === 'object'){
 			//合并传入参数
 			$.extend(SOption,Obj);
+		}else{
+			alert('请传入存在的对像元素')
 		}
 
 		//瀑布流元素

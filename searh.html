@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+    <title>qq</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+   	<meta name="keywords" content="python 基础笔记 python基础 " />
+    <meta name="description" content="python的基础运算符，注释，逻辑运算符，运算优先级，字符串，列表，元组等" />
+    <link href="./Public/Css/base.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="header">
+        <!--div class="logo">
+            <h1><a href="/index.php?m=Index&a=index">PhPyRb<span> Blog</span></a><small style="font-size:13px;">&nbsp;&nbsp;&nbsp;MaWei</small></h1>
+        </div -->
+        <div class="menu_nav">
+            <ul>
+	      		<li><a href="##">home</a></li>
+	      		<li><a href="##">home</a></li>
+	      		<li><a href="##">home</a></li>
+	      		<li><a href="##">home</a></li>
+	      		<li><a href="##">home</a></li>
+            </ul>
+        </div>
+   </div>
+	<script type="text/javascript" src="./Public/Js/jquery-1.11.0.min.js"></script>
+	<style>
+		.content .weiboleft{width:150px;height:auto;background:#efefef;margin-left:20px;float:left;}
+		.content .weiboleft dl dd{height:35px;font-size:14px;line-height:35px;text-align:center;}
+		.content .weibocont {float:left;min-width:670px;min-height:800px;font-size:14px;}
+		.content .weibocont .wei{margin-bottom:20px;box-shadow:3px 3px 8px 1px #ccc;border-radius:3px;}
+		.content .weibocont .wei .weiface{width:60px;float:left;padding:20px;height:50px;}
+		.content .weibocont .wei .weiface img{width:60px;height:60px;}
+		.content .weibocont .weimain{float:left;width:auto;margin-top:10px;}
+		.content .weibocont .weimain .userinfo{height:35px;line-height:30px;clear:all;}
+		.content .weibocont .weimain .topic{line-height:22px;padding:3px 0;margin-bottom:10px;}
+		.content .weibocont .weimain .topicimg{clear:both;width:440px;height:auto;}
+		.content .weibocont .weimain .topicimg .mutlimg dd{width:100px;height:100px;float:left;margin:5px;}
+ 		.content .weibocont .weimain .topicimg .mutlimg dd img{width:100px;height:100px;}
+ 		.content .weibocont .weimain .topicimg .singleimg {max-width:140px;max-height:400px;overflow: hidden;padding:5px 15px;}
+ 		.content .weibocont .weimain .topicimg .singleimg img{max-width:140px;}
+ 		.content .weibocont .weimain .weiinfo{clear:both;height:25px;margin-top:10px;font-size:12px;}
+ 		.content .weibocont .weimain .weiinfo .sendtime{width:200px;float:left;}
+ 		.content .weibocont .weimain .weiinfo .operation{width:110px;float:right;}
+ 		.content .weibocont .weimain .weiinfo .operation input{width:15px;height:15px;}
+ 		.content .weibocont .weimain .weiinfo .operation a{height:20px;line-height:20px;}
+ 		.content{}
+	</style>
+	<script>
+		$(document).ready(function () {
+			var aa = $('#aaaaa');
+			var input = aa.children('input');
+			input.focus(function(){
+				$(this).keyup(function () {
+					aa.children('dl').remove();
+					var val = $(this).val();
+					alert(123);
+					$.ajax({
+						type:"POST",
+						url:"{:U('group/manage/seachtag',array('gid'=>4))}",
+						dataType:'json',
+					}).done(function (data){
+						JsonHtml(data,aa);
+					});
+				});
+				
+			});
+		});
+		
+		var JsonHtml = function (JData,Obj) {
+			var html = "<dl class='selectup' style='border:1px solid #ccc;width:120px;position:relative;top:30px;display:block;z-index:999;background:yellow;'>";
+			$.each(JData,function(key,val){
+				html = html+"<dd style='line-height:25px;height:25px;overflow:hidden;text-align:left;'>"+val+"</dd>";
+			});
+			html = html+"</dl>";
+			Obj.append(html);
+			$('.selectup').children('dd').click(function () {
+				alert($(this).text());
+			});
+		}
+	</script>
+    <div class="content">
+   		<!-- start left -->
+        <div>
+			<div id="aaaaa" style="clear:both;">
+				<input type="text" name="text" id="tags" ShowName="name" SendFiter="tag_id" style="clear:both;position:absolute;height:25px;"/>
+				
+			</div>
+			
+		</div>
+        <!-- end right -->
+	</div>
+	<div class="clr"> </div>
+
+   <div class="footer">
+        <p class="lr">© Copyright <a href="http://www.phpyrb.com">http://www.phpyrb.com http://www.cloudsskill.com</a>.</p>
+        <p class="lf">Collect from: <a href="http://www.phpyrb.com" title="马伟博客" target="_blank">马伟博客</a></p>
+        <div class="clr"> </div>
+   </div>
+	
+</body>	
+</html>
