@@ -56,6 +56,13 @@
             <li><a href="{:U('Album/index')}">Calendar Settings</a></li>
           </ul>
         </li>
+        <li> <a href="{:U('Twitter/index')}" class="nav-top-item {if $view == 'Twitter'} current {/if}"> WeiBo </a>
+          <ul>
+            <li><a href="{:U('Twitter/index')}" {if $action == 'wlist'} class="current" {/if}>Album List</a></li>
+            <li><a href="{:U('Twitter/wedit')}" {if $action == 'wmedit'} class="current" {/if}>Create Album</a></li>
+            <li><a href="{:U('Twitter/index')}">Calendar Settings</a></li>
+          </ul>
+        </li>
         <li> <a href="#" class="nav-top-item"> User Settings </a>
           <ul>
             <li><a href="#">General</a></li>

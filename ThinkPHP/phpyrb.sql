@@ -2,21 +2,21 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 50524
+Source Server Version : 50617
 Source Host           : localhost:3306
 Source Database       : phpyrb
 
 Target Server Type    : MYSQL
-Target Server Version : 50524
+Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2014-05-25 14:33:59
+Date: 2014-06-09 18:39:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for admins
+-- Table structure for `admins`
 -- ----------------------------
 DROP TABLE IF EXISTS `admins`;
 CREATE TABLE `admins` (
@@ -31,7 +31,7 @@ CREATE TABLE `admins` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for album
+-- Table structure for `album`
 -- ----------------------------
 DROP TABLE IF EXISTS `album`;
 CREATE TABLE `album` (
@@ -51,7 +51,7 @@ CREATE TABLE `album` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for article
+-- Table structure for `article`
 -- ----------------------------
 DROP TABLE IF EXISTS `article`;
 CREATE TABLE `article` (
@@ -67,7 +67,7 @@ CREATE TABLE `article` (
   `addtime` int(11) NOT NULL COMMENT '添加时间',
   `uptime` int(11) NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COMMENT='文章表';
+) ENGINE=MyISAM AUTO_INCREMENT=58 DEFAULT CHARSET=utf8 COMMENT='文章表';
 
 -- ----------------------------
 -- Records of article
@@ -114,9 +114,12 @@ INSERT INTO `article` VALUES ('44', '1', '23', '15', '1', 'git配置使用 - 客
 INSERT INTO `article` VALUES ('45', '1', '3', '16,19', '1', 'curl_init()函数', 'PhPyRb-MaWei', '27', 'curl_init()函数不可用,curl_init()函数报错的解决办法', '1398583917', '1398583917');
 INSERT INTO `article` VALUES ('46', '1', '0', '16,19', '1', 'mysql如何把一表的某个字体更新到另一表的相同字段', 'PhPyRb-MaWei', '30', 'mysql如何把一表的某个字体更新到另一表的相同字段', '1398611931', '1398612026');
 INSERT INTO `article` VALUES ('47', '1', '10', '16,19,20', '1', 'wamp5虚拟机配置', 'PhPyRb-MaWei', '59', 'wamp5虚拟主机的配置', '1398757407', '1398759789');
+INSERT INTO `article` VALUES ('55', '1', '8', '22,21,20,12,11', '1', 'adfasdfasdfaaaaaaaaaaa', 'MaWei', '0', 'adsfasdaaaaaaaaaa', '1401333860', '1401336632');
+INSERT INTO `article` VALUES ('56', '1', '9', '25,22,13,12,11', '1', 'dfasdfasdfasdfasdf', 'MaWei-PhPyRb', '0', 'asdfasdfasdfasdf', '1401338163', '1401338279');
+INSERT INTO `article` VALUES ('57', '1', '1', '19', '1', 'fweqwe', 'MaWei-PhPyRb', '0', 'asdfasdf', '1401423183', '1401427137');
 
 -- ----------------------------
--- Table structure for article_comment
+-- Table structure for `article_comment`
 -- ----------------------------
 DROP TABLE IF EXISTS `article_comment`;
 CREATE TABLE `article_comment` (
@@ -137,7 +140,7 @@ CREATE TABLE `article_comment` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for category
+-- Table structure for `category`
 -- ----------------------------
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
@@ -148,27 +151,28 @@ CREATE TABLE `category` (
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态（0 隐藏、1显示）',
   `menu` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '菜单显示',
   `description` varchar(120) DEFAULT NULL COMMENT '描述',
+  `sort` tinyint(3) DEFAULT NULL COMMENT '排序',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COMMENT='分类表';
 
 -- ----------------------------
 -- Records of category
 -- ----------------------------
-INSERT INTO `category` VALUES ('1', '0', '1', 'Skill', '1', '1', '');
-INSERT INTO `category` VALUES ('2', '1', '1', 'Program', '1', '1', '');
-INSERT INTO `category` VALUES ('3', '2', '1', 'PHP', '1', '1', '');
-INSERT INTO `category` VALUES ('4', '2', '1', 'Python', '1', '1', '');
-INSERT INTO `category` VALUES ('5', '2', '1', 'Ruby', '1', '1', '');
-INSERT INTO `category` VALUES ('6', '2', '1', 'Jquery', '1', '1', '');
-INSERT INTO `category` VALUES ('7', '2', '1', 'HTML', '1', '1', '');
-INSERT INTO `category` VALUES ('8', '2', '1', 'CSS', '1', '1', '');
-INSERT INTO `category` VALUES ('9', '2', '1', 'Linux', '1', '1', '');
-INSERT INTO `category` VALUES ('10', '2', '1', 'Apache+MySQL', '1', '1', '');
-INSERT INTO `category` VALUES ('23', '2', '1', 'Other', '1', '1', '');
-INSERT INTO `category` VALUES ('24', '2', '1', 'MongoDB', '1', '1', '');
+INSERT INTO `category` VALUES ('1', '0', '1', 'Skill', '1', '1', '', null);
+INSERT INTO `category` VALUES ('2', '1', '1', 'Program', '1', '1', '', null);
+INSERT INTO `category` VALUES ('3', '2', '1', 'PHP', '1', '1', '', null);
+INSERT INTO `category` VALUES ('4', '2', '1', 'Python', '1', '1', '', null);
+INSERT INTO `category` VALUES ('5', '2', '1', 'Ruby', '1', '1', '', null);
+INSERT INTO `category` VALUES ('6', '2', '1', 'Jquery', '1', '1', '', null);
+INSERT INTO `category` VALUES ('7', '2', '1', 'HTML', '1', '1', '', null);
+INSERT INTO `category` VALUES ('8', '2', '1', 'CSS', '1', '1', '', null);
+INSERT INTO `category` VALUES ('9', '2', '1', 'Linux', '1', '1', '', null);
+INSERT INTO `category` VALUES ('10', '2', '1', 'Apache+MySQL', '1', '1', '', null);
+INSERT INTO `category` VALUES ('23', '2', '1', 'Other', '1', '1', '', null);
+INSERT INTO `category` VALUES ('24', '2', '1', 'MongoDB', '1', '1', '', null);
 
 -- ----------------------------
--- Table structure for content
+-- Table structure for `content`
 -- ----------------------------
 DROP TABLE IF EXISTS `content`;
 CREATE TABLE `content` (
@@ -223,9 +227,12 @@ INSERT INTO `content` VALUES ('44', 'git配置，第一次初始化git配置，�
 INSERT INTO `content` VALUES ('45', 'curl_init()函数不可用或报错的解决办法.开启curlr方法。', '<h2 align=\"center\">\r\n	curl_init()函数不可用或报错的解决办法\r\n</h2>\r\n<p>\r\n	1. curl是利用URL语法在命令行方式下工作的开源文件传输工具.\r\n</p>\r\n<p>\r\n	2. curl_init函数不可用，或者报错，其实是因为 curl 库没有开启。\r\n</p>\r\n<p>\r\n	3. curl 库需要几个动态链接库的支持：\r\n</p>\r\n<p>\r\n	&nbsp;&nbsp;&nbsp;&nbsp; php_curl.dll<br />\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;php5ts.dll<br />\r\n&nbsp; &nbsp; &nbsp;libeay32.dll<br />\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ssleay32.dll\r\n</p>\r\n<p>\r\n	&nbsp;&nbsp;&nbsp; 一般情况这几个都自带了，理论上是不需要处理。但如果按第四步做还不行，就把在PHP安装目录里面这个四个库拷到\r\n</p>\r\n<p>\r\n	&nbsp;&nbsp;&nbsp; C:/windows/system32 里面。然后重启。\r\n</p>\r\n<p>\r\n	4. 开启 curl 的方法：\r\n</p>\r\n<p>\r\n	&nbsp;&nbsp;&nbsp; a.找到php.ini ,修改extension=php_curl.dll 把前面的分号去掉.\r\n</p>\r\n<p>\r\n	&nbsp;&nbsp;&nbsp; b.然后重启服务器.\r\n</p>\r\n<p>\r\n	5. curl 常用函数：\r\n	&nbsp;&nbsp;&nbsp;&nbsp;\r\n</p>\r\n<ul class=\"chunklist chunklist_reference\">\r\n	<li>\r\n		curl_close — 关闭一个cURL会话\r\n	</li>\r\n	<li>\r\n		curl_copy_handle — 复制一个cURL句柄和它的所有选项\r\n	</li>\r\n	<li>\r\n		curl_errno — 返回最后一次的错误号\r\n	</li>\r\n	<li>\r\n		curl_error — 返回一个保护当前会话最近一次错误的字符串\r\n	</li>\r\n	<li>\r\n		curl_exec — 执行一个cURL会话\r\n	</li>\r\n	<li>\r\n		curl_getinfo — 获取一个cURL连接资源句柄的信息\r\n	</li>\r\n	<li>\r\n		curl_init — 初始化一个cURL会话\r\n	</li>\r\n	<li>\r\n		curl_multi_add_handle — 向curl批处理会话中添加单独的curl句柄\r\n	</li>\r\n	<li>\r\n		curl_multi_close — 关闭一组cURL句柄\r\n	</li>\r\n	<li>\r\n		curl_multi_exec — 解析一个cURL批处理句柄\r\n	</li>\r\n	<li>\r\n		curl_multi_getcontent — 如果设置了CURLOPT_RETURNTRANSFER，则返回获取的输出的文本流\r\n	</li>\r\n	<li>\r\n		curl_multi_info_read — 获取当前解析的cURL的相关传输信息\r\n	</li>\r\n        <li>\r\n		curl_multi_remove_handle — 移除curl批处理句柄资源中的某个句柄资源\r\n	</li>\r\n	<li>\r\n		curl_multi_select — 等待所有cURL批处理中的活动连接\r\n	</li>\r\n	<li>\r\n		curl_setopt_array — 为cURL传输会话批量设置选项\r\n	</li>\r\n	<li>\r\n		curl_setopt — 设置一个cURL传输选项\r\n	</li>\r\n	<li>\r\n		curl_version — 获取cURL版本信息\r\n	</li>\r\n	<li>\r\n		curl_multi_init — 返回一个新cURL批处理句柄\r\n	</li>\r\n	\r\n</ul>\r\n<p>\r\n	<br />\r\n</p>');
 INSERT INTO `content` VALUES ('46', 'mysql如何把一表的某个字体更新到另一表的相同字段。', '<div align=\"center\">\r\n	<h2>\r\n		<br />\r\n	</h2>\r\n	<h2>\r\n		mysql如何把一表的某个字体更新到另一表的相同字段\r\n	</h2>\r\n	<p>\r\n		<br />\r\n	</p>\r\n	<p align=\"left\">\r\n		1.当你想把一个表里的某个字段里的值更新到另一个表里面相同的字段的值，用insert into肯定是不行，因为他会写入一条新的记录，而且要做到批量更新。找了很多地方，才找到，现在把他发上来。\r\n	</p>\r\n	<p align=\"left\">\r\n		2.表的结构如下：\r\n	</p>\r\n	<p align=\"left\">\r\n		&nbsp;&nbsp;&nbsp; table1:\r\n	</p>\r\n	<p align=\"left\">\r\n		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; id B C D\r\n	</p>\r\n	<p align=\"left\">\r\n		&nbsp;&nbsp;&nbsp; table 2:\r\n	</p>\r\n	<p align=\"left\">\r\n		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; id E F G D\r\n	</p>\r\n	<p align=\"left\">\r\n		想要把table2里面的 D 字段更新到table1里面的 D 字段，而且是table1.id = table2.id，记录一一对应：\r\n	</p>\r\n	<p align=\"left\">\r\n		那么想要完成这个需求，sql语句如下：\r\n	</p>\r\n	<div align=\"left\">\r\n<pre class=\"brush:sql\">UPDATE table1 t1,table2 t2 SET t1.D=t2.D WHERE t1.id=t2.id</pre>\r\n<br />\r\n	</div>\r\n</div>');
 INSERT INTO `content` VALUES ('47', 'wamp5下的虚拟主机的配置，wamp5如何配置虚拟主机。', '<h2 style=\"text-align:center;\">\r\n	wamp5虚拟主机的配置\r\n</h2>\r\n<p>\r\n	<br />\r\n</p>\r\n<pre>wamp5虚拟主机的配置如下：</pre>\r\n<pre><span style=\"font-family:\'sans serif\', tahoma, verdana, helvetica;line-height:1.5;\">1.首先打你安装目录下的Apache配置文件C:\\wamp\\bin\\apache\\apache2.2.22\\conf\\htttpd.conf ,在里面查找 </span></pre>\r\n<pre><span style=\"font-family:\'sans serif\', tahoma, verdana, helvetica;line-height:1.5;\">&nbsp;&nbsp;&nbsp;&nbsp;#Include conf/extra/httpd-vhosts.conf</span></pre>\r\n<pre><span style=\"font-family:\'sans serif\', tahoma, verdana, helvetica;line-height:1.5;\">&nbsp;&nbsp;&nbsp;&nbsp;找到后把前面的 ‘‘#’’号去掉。 </span></pre>\r\n<pre><span style=\"font-family:\'sans serif\', tahoma, verdana, helvetica;line-height:1.5;\">2.在Apache配置目录里面找到C:\\wamp\\bin\\apache\\apache2.2.22\\conf\\extra\\httpd-vhosts.conf, 把里面的所有删除，然后在里面添加如下的内容：\r\n#默认端口，不需要修改\r\nNameVirtualHost *:80 \r\n\r\n#虚拟主机的相关配置，需要多个，复制多少，然后改一下域名和路径.\r\n<xmp>\r\n<VirtualHost *:80>\r\nServerName www.a.com\r\nServerAlias www.a.com\r\nDocumentRoot \"D:/wamp/www/a\"\r\n</VirtualHost>\r\n</xmp>\r\n需要多个虚拟主机时，就复制多个。改一下域名和路径就可以了。\r\n<pre><span style=\"font-family:\'sans serif\', tahoma, verdana, helvetica;line-height:1.5;\"><span style=\"font-family:\'sans serif\', tahoma, verdana, helvetica;line-height:1.5;\">3.修改你的host文件，把域名指向本机,host文件路径为C:\\Windows\\System32\\drivers\\etc\\hosts，在里面添加如下代码：\r\n127.0.0.1       www.a.com a.com www.b.com b.com\r\n4.重启你的服务器就可以了。</span><span style=\"font-family:\'sans serif\', tahoma, verdana, helvetica;line-height:1.5;\"></span></span></pre>\r\n</span></pre>');
+INSERT INTO `content` VALUES ('55', 'fasdfasdfaaaaaaaaaaaaaaaaaaaaaa', '<p>\r\n	asdfadf\r\n</p>\r\n<p>\r\n	as\r\n</p>\r\n<p>\r\n	df\r\n</p>\r\n<p>\r\n	as\r\n</p>\r\n<p>\r\n	df\r\n</p>\r\n<p>\r\n	asdfasdfasdf\r\n</p>\r\n<p>\r\n	aaaaaaaaaaaaaaaaaa\r\n</p>\r\n<p>\r\n	aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\n</p>\r\n<p>\r\n	asd\r\n</p>\r\n<p>\r\n	f\r\n</p>\r\n<p>\r\n	as\r\n</p>\r\n<p>\r\n	dfas\r\n</p>\r\n<p>\r\n	fasdfs\r\n</p>');
+INSERT INTO `content` VALUES ('56', 'asdfsadfasdfasdfasdf', '<p>\r\n	asdfasdf\r\n</p>\r\n<p>\r\n	asd\r\n</p>\r\n<p>\r\n	fas\r\n</p>\r\n<p>\r\n	as\r\n</p>\r\n<p>\r\n	df\r\n</p>\r\n<p>\r\n	asdf\r\n</p>\r\n<p>\r\n	as\r\n</p>\r\n<p>\r\n	df\r\n</p>\r\n<p>\r\n	asdf\r\n</p>\r\n<p>\r\n	df\r\n</p>\r\n<p>\r\n	as\r\n</p>\r\n<p>\r\n	df\r\n</p>\r\n<p>\r\n	asd\r\n</p>\r\n<p>\r\n	fasdf\r\n</p>\r\n<p>\r\n	asdfasdf\r\n</p>');
+INSERT INTO `content` VALUES ('57', 'asdfasdf', '<h2 align=\"center\">\r\n	<br />\r\n&nbsp;&nbsp; &nbsp;JS只能输入数字,数字和字母等的正则表达式<br />\r\n</h2>\r\n<p>\r\n	&nbsp;&nbsp; &nbsp;1.input框里面只能输入自然数：\r\n</p>\r\n<pre class=\"brush:jscript\"><input name=\"\" onkeyup=\"value=value.replace(/[^\\d]/,\'\');\" type=\"text\" /></pre>\r\n<p>\r\n	&nbsp;&nbsp;&nbsp; 2.input框里面只能输入数字，小数：\r\n</p>\r\n<pre class=\"brush:jscript\"><input name=\"\" onkeyup=\"value=value.replace(/[^\\d\\.]/,\'\');\" type=\"text\" /></pre>\r\n<p>\r\n	&nbsp;&nbsp;&nbsp; 3.input框里面只能输入字母：\r\n</p>\r\n<pre class=\"brush:jscript\"><input name=\"\" onkeyup=\"value=value.replace(/[^A-Za-z]/,\'\');\" type=\"text\" /></pre>');
 
 -- ----------------------------
--- Table structure for photo
+-- Table structure for `photo`
 -- ----------------------------
 DROP TABLE IF EXISTS `photo`;
 CREATE TABLE `photo` (
@@ -243,7 +250,7 @@ CREATE TABLE `photo` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for photo_comment
+-- Table structure for `photo_comment`
 -- ----------------------------
 DROP TABLE IF EXISTS `photo_comment`;
 CREATE TABLE `photo_comment` (
@@ -262,7 +269,7 @@ CREATE TABLE `photo_comment` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for tag
+-- Table structure for `tag`
 -- ----------------------------
 DROP TABLE IF EXISTS `tag`;
 CREATE TABLE `tag` (
@@ -295,7 +302,76 @@ INSERT INTO `tag` VALUES ('25', '1', '0', '2', 'NoSQL', '1', '');
 INSERT INTO `tag` VALUES ('26', '1', '0', '2', 'MongoDB', '1', '');
 
 -- ----------------------------
--- Table structure for users
+-- Table structure for `twitter`
+-- ----------------------------
+DROP TABLE IF EXISTS `twitter`;
+CREATE TABLE `twitter` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) DEFAULT NULL,
+  `title` tinytext COMMENT '博客内容',
+  `addtime` int(11) DEFAULT NULL COMMENT '添加时间',
+  `uptime` int(11) DEFAULT NULL COMMENT '修改时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of twitter
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `twitter_cate`
+-- ----------------------------
+DROP TABLE IF EXISTS `twitter_cate`;
+CREATE TABLE `twitter_cate` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(15) DEFAULT NULL COMMENT '分类名',
+  `pid` int(11) DEFAULT NULL,
+  `description` tinytext COMMENT '分类描述',
+  `status` tinyint(1) DEFAULT NULL,
+  `sort` tinyint(2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of twitter_cate
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `twitter_comment`
+-- ----------------------------
+DROP TABLE IF EXISTS `twitter_comment`;
+CREATE TABLE `twitter_comment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) DEFAULT NULL,
+  `uname` varchar(25) DEFAULT NULL COMMENT '用户名',
+  `content` tinytext COMMENT '评论内容',
+  `addtime` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of twitter_comment
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `twitter_picture`
+-- ----------------------------
+DROP TABLE IF EXISTS `twitter_picture`;
+CREATE TABLE `twitter_picture` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `twid` int(11) DEFAULT NULL,
+  `description` tinytext COMMENT '照片描述',
+  `picname` varchar(50) DEFAULT NULL COMMENT '图片名称',
+  `picpath` varchar(150) DEFAULT NULL COMMENT '图片路径',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of twitter_picture
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `users`
 -- ----------------------------
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (

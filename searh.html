@@ -45,43 +45,18 @@
  		.content .weibocont .weimain .weiinfo .operation a{height:20px;line-height:20px;}
  		.content{}
 	</style>
-	<script>
-		$(document).ready(function () {
-			var aa = $('#aaaaa');
-			var input = aa.children('input');
-			input.focus(function(){
-				$(this).keyup(function () {
-					aa.children('dl').remove();
-					var val = $(this).val();
-					alert(123);
-					$.ajax({
-						type:"POST",
-						url:"{:U('group/manage/seachtag',array('gid'=>4))}",
-						dataType:'json',
-					}).done(function (data){
-						JsonHtml(data,aa);
-					});
-				});
-				
-			});
-		});
-		
-		var JsonHtml = function (JData,Obj) {
-			var html = "<dl class='selectup' style='border:1px solid #ccc;width:120px;position:relative;top:30px;display:block;z-index:999;background:yellow;'>";
-			$.each(JData,function(key,val){
-				html = html+"<dd style='line-height:25px;height:25px;overflow:hidden;text-align:left;'>"+val+"</dd>";
-			});
-			html = html+"</dl>";
-			Obj.append(html);
-			$('.selectup').children('dd').click(function () {
-				alert($(this).text());
-			});
-		}
-	</script>
     <div class="content">
    		<!-- start left -->
+   		<script src="./Public/Js/findreturn.js" ></script>
+   		<script>
+   			$(function () {
+   				$('.as').ReFind({
+   					url : 'index.php'
+   				});
+   			});
+   		</script>
         <div>
-			<div id="aaaaa" style="clear:both;">
+			<div class="as" style="clear:both;">
 				<input type="text" name="text" id="tags" ShowName="name" SendFiter="tag_id" style="clear:both;position:absolute;height:25px;"/>
 				
 			</div>

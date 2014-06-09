@@ -1,4 +1,4 @@
-(function () {
+(function (jquery) {
 	
 		var Options = {
 			url  : 'index.php',
@@ -8,7 +8,7 @@
 			if(Obj && Obj === 'object'){
 				$.extend(Options,Obj);
 			}else{
-				alert('请传入一个正确并存在的元素对象!');
+				//alert('请传入一个正确并存在的元素对象!');
 			}
 			var EleObj = $(this);
 			var input = EleObj.children('input');
@@ -38,4 +38,4 @@
 				alert($(this).text());
 			});
 		}
-})(jquery)
+})(jQuery)
