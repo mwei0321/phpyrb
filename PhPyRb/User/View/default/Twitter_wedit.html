@@ -10,12 +10,19 @@
       <!-- End .content-box-header -->
       <div class="content-box-content">
         <div class="tab-content default-tab" id="tablebox">
-          
+         <form action="{:U('Twitter/upadd_photo')}" method="post" enctype="multipart/form-data">
         <!-- End #tab1 -->
         <h3>Twitter Add & Modification</h3>
         <div>
-        	<textarea cols="80" rows="5" name="content"></textarea>
+        	<p>
+              <label>Article Content:</label>
+            </p>
+            <p>
+            	<textarea class="text-input textarea wysiwyg" name="content" cols="30" rows="8">{$artinfo['content']}</textarea>
+            </p>
+            <p><input type="submit" value="submit" /></p>
         </div>
+        </form>
         <!-- start add image -->
 		<div id="upimage" style="width:600px;height:400px;">Your browser doesn't support native upload.</div>
 		<!-- end add image -->
@@ -32,10 +39,9 @@
 		$("#upimage").pluploadQueue({
 			// General settings
 			runtimes : 'html5',
-			url : "{:U('Album/photoupdata',array('albumid'=>$albumid))}",
+			url : "{:U('Twitter/upadd_photo',array('start'=>$start))}",
 //			chunk_size : '1mb',
-			unique_names : true,
-			
+			unique_names : true,			
 //			runtimes: 'gears,flash,silverlight,browserplus,html5', // 这里是说用什么技术引擎
 //          url: 'LibAddEdit', // 服务端上传路径
 //          max_file_size: '10mb', // 文件上传最大限制。
@@ -50,7 +56,6 @@
 					{title : "Zip files", extensions : "zip"}
 				]
 			},
-	
 			// Resize images on clientside if we can
 			// 是否生成缩略图（仅对图片文件有效）
 //			resize : {width : 320, height : 240, quality : 90}

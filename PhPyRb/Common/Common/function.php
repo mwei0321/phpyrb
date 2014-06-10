@@ -62,17 +62,24 @@
 		$allowExts = empty($config['allowExts']) ? 'jpg,png,gif,jpeg' : $config['allowExts'];
 		$upload -> allowExts = explode(',', $allowExts);
 		// 设置附件上传目录
-		$path = empty($config['path']) ? date('Y-m') . '/'  :  $config['path'];
-		$upload -> savePath = $config['path'] ? 'Uploads/' .$config['path'] : './Uploads/' . $path;
+		$pathd = date('Y-m') . '/';
+		$upload -> savePath = $config['path'] ? 'Uploads/' .$config['path'].'/'.$pathd : './Uploads/Photo/' . $pathd;
 		mkdir($upload -> savePath);
-		$path = 'Uploads/' . $path;
+		$path = $upload -> savePath;
 		// 设置上传文件规则
 		$upload -> saveRule = 'uniqid';
 		$upload -> diyname = 'phpyrb.com';
 		$upload -> uploadReplace = true;
 		if($thumb){
-			$upload -> thumb = TRUE;
-			$upload -> thumbRemoveOrigin = TRUE;
+			$pathname = $config['path'] ? 'Uploads/Thumb/'.$config['path'].'/'.$pathd : 'Uploads/Thumb/Photo/'.$pathd;
+			mkdir($pathname);
+			$upload -> thumb = TRUE; //是否保存缩略图
+// 			$upload -> thumbRemoveOrigin = TRUE; //是否移除原图
+			$upload ->thumbPath = $pathname;// 缩略图保存路径
+			$upload ->thumbFile = 'phpyrb-';// 缩略图文件名
+			$upload ->thumbMaxWidth   =  $config['ImgWidth'] ? $config['ImgWidth'] : '220';// 缩略图最大宽度
+			$upload ->thumbMaxHeight  =  $config['ImgHeight'] ? $config['ImgHeight'] : '240';// 缩略图最大高度
+// 			$upload ->thumbExt  = '';// 缩略图扩展名
 		}
 		if (!$upload -> upload()) {
 			// 捕获上传异常
@@ -83,8 +90,9 @@
 		} else {
 			// 取得成功上传的文件信息
 			$uploadList = $upload -> getUploadFileInfo();
-			//$imgpath = $path . $uploadList[0]['savename'];
-			$uploadList['path']=$path;
+			$uploadList = count($uploadList) < 2 ? $uploadList[0] : $uploadList;
+// 			$uploadList = $path . $uploadList[0]['savename'];
+// 			$uploadList['path']=$path;
 		}
 		return $uploadList;
 	}
@@ -105,7 +113,7 @@
 			$where = array();
 			$where["$_upfiled"] = $_data["$_upfiled"];
 			unset($_data["$_upfiled"]);
-			// 				dump($_data);exit;
+// 			dump($_data);exit;
 			$reid = $model->where($where)->save($_data);
 		}else{
 			$reid = $model->add($_data);

@@ -16,15 +16,16 @@
 	use PhPyRb\Article;
 	
 	class IniController extends Controller{
-		protected $User;
+		protected $User,$uid;
 		function _initialize(){
 // 			$this->User = D('User');
 			//用户登入
 			if($_REQUEST['only'] == 'mw'){
 				$_SESSION['uid'] = 1;
 			}
+			$this->uid = $_SESSION['uid'];
 			//判断用户登入
-			if(empty($_SESSION['uid'])){
+			if(empty($this->uid)){
 				header("Location:".U('Login/index'));
 			}
 			//清除缓存

@@ -64,6 +64,11 @@
 			$this->display();
 		}
 		
+		/**
+		 * 照片编辑页
+		 * @author MaWei (http://www.phpyrb.com)
+		 * @date 2014-6-10 上午10:13:43
+		 */
 		function photo(){
 			$photo = $this->photo->albumtophoto($_REQUEST['albumid']);
 			$this->assign('photo',$photo);
@@ -72,13 +77,18 @@
 			$this->display();
 		}
 		
+		/**
+		 * 添加、修改照片到相册
+		 * @author MaWei (http://www.phpyrb.com)
+		 * @date 2014-6-10 上午10:12:59
+		 */
 		function photoupdata(){
 			$data = array();
 			$data['album'] = $_REQUEST['albumid'];
 			$data['addtime'] = time();
 			$upload = _uploads(array());
-			$data['path'] = $upload['path'].$upload['0']['savename'];
-			$data['name'] = $data['alt'] = array_shift((explode('.', $upload['0']['name'])));
+			$data['path'] = $upload['path'];
+			$data['name'] = $data['alt'] = array_shift((explode('.', $upload['name'])));
 			$reid = add_updata($data,'Photo');
 			if($reid === FALSE){
 				echo FALSE;
@@ -97,7 +107,7 @@
 			$data['name'] = $_REQUEST['name'];
 			$data['description'] = $_REQUEST['description'];
 			$upload = _uploads(array('path'=>'cover/'.$_SESSION['uid'].'/'),TRUE);
-			$data['cover'] = $upload['path'].'phpyrb-'.$upload['0']['savename'];
+			$data['cover'] = $upload['path'].'phpyrb-'.$upload['savename'];
 			$data['uid'] = $_SESSION['uid'];
 			$data['permission'] = $_REQUEST['status'];
 			$_REQUEST['albumid'] ? $data['id'] = $_REQUEST['albumid'] : FALSE;

@@ -29,7 +29,7 @@ class UploadFile {//类定义开始
         'thumbMaxWidth'     =>  '220',// 缩略图最大宽度
         'thumbMaxHeight'    =>  '240',// 缩略图最大高度
         'thumbPrefix'       =>  'phpyrb-',// 缩略图前缀
-        'thumbSuffix'       =>  '',
+        'thumbSuffix'       =>  '',//后缀
         'thumbPath'         =>  '',// 缩略图保存路径
         'thumbFile'         =>  '',// 缩略图文件名
         'thumbExt'          =>  '',// 缩略图扩展名        
@@ -46,6 +46,7 @@ class UploadFile {//类定义开始
         'saveRule'          =>  'uniqid',// 上传文件命名规则
         'hashType'          =>  'md5_file',// 上传文件Hash规则函数名
         'diyname'			=>  '', //自定义文件名
+        'saveThumbPath'     =>  '', //缩略图保存路径
         );
 
     // 错误信息
@@ -126,9 +127,10 @@ class UploadFile {//类定义开始
                     }else{
                         $prefix     =   isset($thumbPrefix[$i])?$thumbPrefix[$i]:$thumbPrefix[0];
                         $suffix     =   isset($thumbSuffix[$i])?$thumbSuffix[$i]:$thumbSuffix[0];
-                        $thumbname  =   $prefix.basename($filename,'.'.$file['extension']).$suffix;
                     }
-                    Image::thumb($filename,$thumbPath.$thumbname.'.'.$thumbExt,'',$thumbWidth[$i],$thumbHeight[$i],true);                    
+                    $thumbname  =   $prefix.basename($filename,'.'.$file['extension']);
+                    $this->saveThumbPath = $thumbPath.$thumbname.'.'.$thumbExt;
+                    Image::thumb($filename,$thumbPath.$thumbname.'.'.$thumbExt,'',$thumbWidth[$i],$thumbHeight[$i],true);
                 }
                 if($this->thumbRemoveOrigin) {
                     // 生成缩略图之后删除原图
@@ -184,8 +186,8 @@ class UploadFile {//类定义开始
                 if(!isset($file['key']))   $file['key']    =   $key;
                 $file['extension']  =   $this->getExt($file['name']);
                 $file['savepath']   =   $savePath;
-                $file['savename']   =   $this->diyname ? $this->getdiyname($file) : $this->getSaveName($file);
-
+                $file['savename']   =   $this->getdiyname($file);
+                $file['path'] = $savePath.$file['savename'];
                 // 自动检查附件
                 if($this->autoCheck) {
                     if(!$this->check($file))
@@ -198,6 +200,7 @@ class UploadFile {//类定义开始
                     $fun =  $this->hashType;
                     $file['hash']   =  $fun($this->autoCharset($file['savepath'].$file['savename'],'utf-8','gbk'));
                 }
+                $this->thumb ? $file['thumb'] = $this->saveThumbPath : false;
                 //上传成功后保存文件信息，供其他地方调用
                 unset($file['tmp_name'],$file['error']);
                 $fileInfo[] = $file;
@@ -345,7 +348,7 @@ class UploadFile {//类定义开始
     * @date 2014-5-24  下午4:00:29
     */
     private function getdiyname($_filename){
-    	$saveName = $this->diyname.'-'.date('Y-m-d-H-m-s').".".$_filename['extension'];
+    	$saveName = $this->diyname.'-'.date('YmdHms').substr(uniqid(),-5).".".$_filename['extension'];
     	return $saveName;
     }
 
