@@ -61,11 +61,35 @@ body .date a img{border:none;background:none;}
 .content .right .sidebar .two {width:45%;float:left;}
 .content .right .sidebar ul li{margin-left:22px;border-bottom:1px #cdcdcd dashed;min-height:22px;height:auto;margin-top:7px;line-height:22px;}
 .content .right .sidebar ul li a{color:#999;}
+/* start page */
 #page{width:80%;min-width:800px;float:right; margin:10px auto 50px;}
 #page p{height:35px;max-width:450px;width:auto;font-size:14px;padding:5px auto;margin:20px auto;line-height:35px;}
 #page a,#page span{width:27px;border:1px solid #ccc;height:25px;margin:3px; 5px auto 0px;display:block;float:left;line-height:25px;text-align:center;}
 #page .nowpage {color:#eee;background:#B2B2B2; font-weight:700;border:1px solid #888;}
 #page p .textpage{width:40px;}
+/* end page */
+
+/* start twitter */
+.content .weiboleft{width:150px;height:auto;background:#efefef;margin-left:20px;float:left;}
+.content .weiboleft dl dd{height:35px;font-size:14px;line-height:35px;text-align:center;}
+.content .weibocont {float:left;min-width:670px;min-height:800px;font-size:14px;}
+.content .weibocont .wei{margin-bottom:20px;box-shadow:3px 3px 8px 1px #ccc;border-radius:3px;}
+.content .weibocont .wei .weiface{width:60px;float:left;padding:20px;height:50px;}
+.content .weibocont .wei .weiface img{width:60px;height:60px;}
+.content .weibocont .weimain{float:left;width:auto;margin-top:10px;}
+.content .weibocont .weimain .userinfo{height:35px;line-height:30px;clear:all;}
+.content .weibocont .weimain .topic{line-height:22px;padding:3px 0;margin-bottom:10px;}
+.content .weibocont .weimain .topicimg{clear:both;width:440px;height:auto;}
+.content .weibocont .weimain .topicimg .mutlimg dd{width:100px;height:100px;float:left;margin:5px;}
+.content .weibocont .weimain .topicimg .mutlimg dd img{width:100px;height:100px;}
+.content .weibocont .weimain .topicimg .singleimg {max-width:140px;max-height:400px;overflow: hidden;padding:5px 15px;}
+.content .weibocont .weimain .topicimg .singleimg img{max-width:140px;}
+.content .weibocont .weimain .weiinfo{clear:both;height:25px;margin-top:10px;font-size:12px;}
+.content .weibocont .weimain .weiinfo .sendtime{width:200px;float:left;}
+.content .weibocont .weimain .weiinfo .operation{width:110px;float:right;}
+.content .weibocont .weimain .weiinfo .operation input{width:15px;height:15px;}
+.content .weibocont .weimain .weiinfo .operation a{height:20px;line-height:20px;}
+/* end twitter */
 
 .footer{width:85%;height:120px;margin:100px auto;}
 .footer p{height:25px;line-height:25px;margin:10px auto;text-align:center;}

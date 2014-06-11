@@ -1,0 +1,59 @@
+<extend name="Twitter:Public" />
+<!-- start left -->
+<block name="weiboleft">
+	<div class="weiboleft">
+		<dl>
+			<volist name="tcate" id="c">
+				<dd>{$c['name']}</dd>
+			</volist>
+		</dl>
+	</div>
+</block>
+<!-- end left -->
+
+<!-- start wei -->
+<block name="weibocont">
+	<volist name="tlist" id="t">
+	<div class="wei">
+		<div class="weiface">
+			<img src="./Public/Image/bg-login.gif" />
+		</div>
+		<div class="weimain">
+			<div class="userinfo">
+				<a href="{:U('Twitter/index')}" title="###" >PhPyRb-MaWei</a>
+			</div>
+			<div class="topic">
+				{$t['title']}
+			</div>
+			<div class="topicimg">
+				<div class="mutlimg">
+					<dl>
+						<volist name="t['path']" id='p'>
+							<dd><img src="{$p['thumb']}" alt="{$p['description']}" hpath="{$p['path']}"/></dd>
+						</volist>
+					</dl>
+				</div>
+				<div class="clr"> </div>
+				<div class="singleimg">
+					<img src="./Uploads/2014-05/7.jpg" alt="alt11" />
+				</div>
+			</div>
+			<div class="clr"> </div>
+			<div class="weiinfo">
+				<div class="sendtime">
+					<span>今天 2014－06</span>
+					<span>姓名 </span>
+				</div>
+				<div class="operation">
+					<a href="###">评论</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+					<a href="###">收藏</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+					<a href="###">转发</a>        					
+				</div>
+			</div>
+			<div class="clr"> </div>
+		</div>
+		<div class="clr"> </div>
+		</div>
+	</volist>
+</block>
+       	

@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+    <head>
+        <title>
+            <block name="title">
+                python学习,马伟博客,python博客,php博客 ,Python博客,马伟个人博客,PhPyRb博客
+            </block>
+        </title>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <meta name="keywords" content="<block name="keywords">PHP,Pythoy,Ruby,Js,Jquery,HTML5,Css,Ajax,python学习,个人主页,博客,网站建设,PHP建站</block>" />
+        <meta name="description" content="<block name="description">pythob学习,深圳PHP博客,马伟个人博客,python博客</block>" />
+        <link href="./Public/Css/base.css" rel="stylesheet" type="text/css" />
+        <link type="text/css" rel="stylesheet" href="./Public/SyntaxHighlighter/styles/shCore.css"/>
+        <link type="text/css" rel="stylesheet" href="./Public/SyntaxHighlighter/styles/shThemeDefault.css"/>
+    </head>
+    <body>
+        <div class="header">
+            <div class="logo">
+                <h1><a href="{:U('Article/index')}">PhPyRb<span> Blog</span></a>
+                    <small style="font-size:13px;">
+                        &nbsp;&nbsp;&nbsp;MaWei
+                    </small>
+                </h1>
+				<p><span>Ph</span>P + <span>Py</span>thon + <span>R</span>u<span>b</span>y</p>
+            </div>
+			<div class="menu">
+	            <div class="menu_nav">
+	            	<ul>
+	                	<volist name="catemean" id="c">
+	                        <li>
+	                            <a href="{:U('Article/catags',array('cate'=>$c['id']))}" title="{$c['description']}">{$c['name']}</a>
+	                        </li>
+						</volist>
+						<li><a href="{:U('Album/index')}">Album</a></li>
+					</ul>
+	                <div class="search">
+	                    <form method="get" action="{:U('Article/search')}">
+	                        <input type="search" name="keywords" value="{$_REQUEST['keywords']}" style="width:160px;height:36px;line-height:36px;background:none;border:0px;font-size:16px;"/>
+							<input type="submit" value=" " style="width:72px;height:25px;margin-left:3px;cursor:pointer; border:none;background:url(Public/Image/searchbtn.png) no-repeat 0 -1px;"/>
+	                    </form>
+	                </div>
+	            </div>
+			</div>
+        </div>
+    <div class="content">
+   		<!-- start left -->
+   		<block name="weiboleft">
+   			<div class="weiboleft">
+				<dl>
+					<dd>不作不会死</dd>
+					<dd>不作不会死</dd>
+					<dd>不作不会死</dd>
+					<dd>不作不会死</dd>
+					<dd>不作不会死</dd>
+				</dl>
+			</div>
+   		</block>
+        <!-- end left -->
+        <!-- start centent -->
+        <div class="weibocont">
+        	<!-- start wei -->
+        <block name="weibocont">
+        	<div class="wei">
+        		<div class="weiface">
+        			<img src="./Public/Image/bg-login.gif" />
+        		</div>
+        		<div class="weimain">
+        			<div class="userinfo">
+        				<a href="###" title="###" >不作不会死</a>
+        			</div>
+        			<div class="topic">
+        				asdfasdfasdfasdf
+        				<br />sdasdfgsdfasdfas
+        				asdfasdfasdf
+        			</div>
+        			<div class="topicimg">
+        				<div class="mutlimg">
+        					<dl>
+        						<dd><img src="./Public/Image/bg-login.gif" /></dd>
+        						<dd><img src="./Public/Image/bg-login.gif" /></dd>
+        						<dd><img src="./Public/Image/bg-login.gif" /></dd>
+        						<dd><img src="./Public/Image/bg-login.gif" /></dd>
+        						<dd><img src="./Public/Image/bg-login.gif" /></dd>
+        						<dd><img src="./Public/Image/bg-login.gif" /></dd>
+        						<dd><img src="./Public/Image/bg-login.gif" /></dd>
+        						<dd><img src="./Public/Image/bg-login.gif" /></dd>
+        					</dl>
+        				</div>
+        				<div class="clr"> </div>
+        				<div class="singleimg">
+        					<img src="./Uploads/2014-05/7.jpg" alt="alt11" />
+        				</div>
+        			</div>
+        			<div class="clr"> </div>
+        			<div class="weiinfo">
+        				<div class="sendtime">
+        					<span>今天 2014－06</span>
+        					<span>姓名 </span>
+        				</div>
+        				<div class="operation">
+        					<a href="###">评论</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+        					<a href="###">收藏</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+        					<a href="###">转发</a>        					
+        				</div>
+        			</div>
+        			<div class="clr"> </div>
+        		</div>
+        		<div class="clr"> </div>
+        	</div>
+       	</block>
+        	<div class="clr"> </div>
+        	<!-- end wei -->
+        </div>
+       	<!-- start right -->
+        <div class="weiboright">
+        	
+        </div>
+        <!-- end right -->
+	</div>
+	<div class="clr"> </div>
+
+   <div class="footer">
+        <p class="lr">© Copyright <a href="http://www.phpyrb.com">http://www.phpyrb.com http://www.cloudsskill.com</a>.</p>
+        <p class="lf">Collect from: <a href="http://www.phpyrb.com" title="马伟博客" target="_blank">马伟博客</a></p>
+        <div class="clr"> </div>
+   </div>
+	
+</body>	
+</html>

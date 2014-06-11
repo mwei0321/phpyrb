@@ -56,10 +56,12 @@
             <li><a href="{:U('Album/index')}">Calendar Settings</a></li>
           </ul>
         </li>
-        <li> <a href="{:U('Twitter/index')}" class="nav-top-item {if $view == 'Twitter'} current {/if}"> WeiBo </a>
+        <li> <a href="{:U('Twitter/index')}" class="nav-top-item {if $view == 'Twitter'} current {/if}"> Twitter </a>
           <ul>
-            <li><a href="{:U('Twitter/index')}" {if $action == 'wlist'} class="current" {/if}>Album List</a></li>
-            <li><a href="{:U('Twitter/wedit')}" {if $action == 'wmedit'} class="current" {/if}>Create Album</a></li>
+            <li><a href="{:U('Twitter/index')}" {if $action == 'wlist'} class="current" {/if}>Twitter List</a></li>
+            <li><a href="{:U('Twitter/wedit')}" {if $action == 'wmedit'} class="current" {/if}>Create Twitter</a></li>
+            <li><a href="{:U('Twitter/tcate')}" {if $action == 'wmedit'} class="current" {/if}>Manage TwitterCate</a></li>
+            <li><a href="{:U('Twitter/cedit')}" {if $action == 'wmedit'} class="current" {/if}>Create & modify TwitterCate</a></li>
             <li><a href="{:U('Twitter/index')}">Calendar Settings</a></li>
           </ul>
         </li>

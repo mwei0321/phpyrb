@@ -106,7 +106,7 @@
 	 * @author MaWei ( http://www.phpyrb.com )
 	 * @date 2014-4-17 下午1:50:15
 	 */
-	function add_updata($_data = array(),$_model = 'Article',$_upfiled = 'id'){
+	function add_updata($_data = array(),$_model = 'Article',$_upfiled = 'id',$_debug = FALSE){
 		$model = M("$_model");
 		$reid = FALSE;
 		if($_data["$_upfiled"]){
@@ -121,7 +121,46 @@
 // 		dump($_data);
 // 		echo $model->getLastSql();
 // 		exit;
+		if($_debug){
+			dump($_data);
+			echo $model->getLastSql();
+			//exit;
+		}
 		return $reid;
+	}
+	
+	/**
+	 * 合并二维数组里面一些相同的元素
+	 * @param array $data
+	 * @param string $_key 共同点的下标
+	 * @param string $_mergeKey 需要合并的字段
+	 * @return array $new
+	 * @author MaWei (http://www.phpyrb.com)
+	 * @date 2014-6-11 下午3:38:27
+	 */
+	function merge_array($_data,$_key = 'id',$_mergeKey = array('description','path','thumb')){
+		$new = array();
+		$i = 0;
+		foreach ($_data as $k => $v){
+			if(!empty($new[$v[$_key]])){
+				foreach ($_mergeKey as $key => $val){
+					$new[$v[$_key]]['image'][$i]["$val"] = $v["$val"];
+				}
+				unset($_data["$k"]);
+				$i++;
+			}else{
+				foreach ($v as $key => $val){
+					if(!in_array($key, $_mergeKey)){
+						$new[$v[$_key]][$key] = $val;
+					}else{
+						$new[$v[$_key]]['image'][$i][$key] = $val;
+					}
+				}
+				$i++;
+			}
+		}
+// 		dump($new);
+		return $new;
 	}
 	
 	/**

@@ -16,11 +16,12 @@
 	use PhPyRb\Article;
 	
 	class IniController extends Controller{
-		protected $article;
+		protected $article,$uid;
 		function _initialize(){
 			import('Article');
 			import('Page');
 			$_SESSION['uid'] = 1;
+			$this->uid = 1;
 			$this->article = new Article();
 // 			S('Article',new Article());
 			if($_REQUEST['delcache'] = 'y'){

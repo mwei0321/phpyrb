@@ -1,0 +1,61 @@
+<!-- 引入公同模板 -->
+<extend name="Public:base" />
+
+<!-- 内容 -->
+<block name="content" >
+	<div class="content-box-header">
+        <h3>Categorys & Tags Edit</h3>
+		<ul class="content-box-tabs">
+            <li>
+                <a href="#tab1" class="default-tab">Categorys List</a>
+            </li>
+            <!-- href must be unique and match the id of target div -->
+            <li>
+            </li>
+        </ul>
+        <div class="clear"></div>
+      </div>
+      <!-- End .content-box-header -->
+      <div class="content-box-content">
+        <div class="tab-content default-tab" id="tab1">
+          <form action="{:U('Twitter/upadd_cate')}" method="post">
+			<input type="hidden" name="cid" value="{$cinfo['id']}" />
+            <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
+            <p>
+              <label>Category Name</label>
+              <input class="text-input " type="text" name="name" value="{$cinfo['name']}"/>
+              <!-- span class="input-notification error png_bg">Error message</span --> 
+			</p>
+			<!--p>
+              <label>Parent Category</label>
+              <select name="cate">
+                <option value="{$c['id']}" {if $c['id'] == $cinfo[$cateid]['pid']} selected="selected" {/if}>{$c['tree']}{$c['name']}</option>
+              </select>
+            </p -->
+			<p>
+              <label>Category Status</label>
+              <select name="status" >
+                <option value="1" {if $cinfo['status']} selected="selected" {/if}>show</option>
+                <option value="0" {if $cinfo['status'] == 0} selected="selected" {/if}>hidden</option>
+              </select>
+            </p>
+			<p>
+				<label>Menu Order</label>
+				<input class="text-input " type="text" name="order" value="{$cinfo['sort']}" />
+			</p>
+			<p>
+              <label>Category Description</label>
+              <input class="text-input large-input" type="text" name="des" value="{$cinfo['description']}"/>
+              <!-- span class="input-notification error png_bg">Error message</span --> 
+			</p>
+            <p>
+              <input class="button" type="submit" value="Submit" />
+            </p>
+            <div class="clear"></div>
+            <!-- End .clear -->
+          </form>
+        </div>
+		<!-- End .tab1 -->
+		
+        <!-- End #tab2 -->
+</block>
