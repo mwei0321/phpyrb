@@ -26,17 +26,22 @@
 				{$t['title']}
 			</div>
 			<div class="topicimg">
+				{if count($t['image']) > 1}
 				<div class="mutlimg">
 					<dl>
-						<volist name="t['path']" id='p'>
+						<volist name="t['image']" id='p'>
 							<dd><img src="{$p['thumb']}" alt="{$p['description']}" hpath="{$p['path']}"/></dd>
 						</volist>
 					</dl>
 				</div>
 				<div class="clr"> </div>
+				{else}
 				<div class="singleimg">
-					<img src="./Uploads/2014-05/7.jpg" alt="alt11" />
+					<volist name="t['image']" id='i'>
+					<img src="{$i['path']}" alt="{$i['description']}" />
+					</volist>
 				</div>
+				{/if}
 			</div>
 			<div class="clr"> </div>
 			<div class="weiinfo">

@@ -123,6 +123,7 @@
 			$data['addtime'] = time();
 			$data['cateid'] = $_REQUEST['cate'];
 			$reid = add_updata($data,'Twitter');
+// 			dump($reid);dump($_SESSION['twiphote']);exit;
 			if($reid === false){
 				$this->error('发布失败！',U('Twitter/wedit'));
 			}else{
@@ -149,7 +150,6 @@
 				$data = array();
 				$_REQUEST['twid'] ? $data['twid'] = $_REQUEST['twid'] : FALSE;
 				$data['description'] = $_REQUEST['des'];
-				$data['ctime'] = time();
 				$config = array();
 				$config['ImgWidth'] = 100;
 				$config['Imgheight'] = 100;
@@ -158,6 +158,7 @@
 				$data['path'] = str_replace('\\',"/",$upload['path']);
 				$data['thumb'] = str_replace('\\',"/",$upload['thumb']);
 				$data['description'] = $upload['savename'];
+// 				dump($upload);dump($data);exit;
 				$reid = add_updata($data,'TwitterPicture');
 				if($reid === false){
 					echo 0;

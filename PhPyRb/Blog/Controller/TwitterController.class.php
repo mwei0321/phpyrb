@@ -38,6 +38,7 @@
 			$tlist = $this->twitter->twitterlist($this->uid,"$page->firstRow,$page->listRows");
 // 			dump($tlist);
 // 			exit;
+// print_r($tlist);exit;
 			$this->assign('tlist',$tlist);
 			$this->display();
 		}

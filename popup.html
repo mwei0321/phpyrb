@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+<head>
+    <title>qq</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+   	<meta name="keywords" content="python 基础笔记 python基础 " />
+    <meta name="description" content="python的基础运算符，注释，逻辑运算符，运算优先级，字符串，列表，元组等" />
+    <link href="./Public/Css/base.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <h1><a href="/index.php?m=Index&a=index">PhPyRb<span> Blog</span></a><small style="font-size:13px;">&nbsp;&nbsp;&nbsp;MaWei</small></h1>
+        </div>
+        <div class="menu_nav">
+            <ul>
+	      		<li><a href="##">home</a></li>
+	      		<li><a href="##">home</a></li>
+	      		<li><a href="##">home</a></li>
+	      		<li><a href="##">home</a></li>
+	      		<li><a href="##">home</a></li>
+            </ul>
+        </div>
+   </div>
+	<script type="text/javascript" src="./Public/Js/jquery-1.11.0.min.js"></script>
+	<script>
+		var Swidth = window.screen.width;
+		var Sheight = window.screen.height;
+		var Bwidth = $(window).width();
+		var Bheight = $(window).height();
+	</script>
+	<!--div >
+		<div>
+			
+		</div>
+		<div>
+			<dl>
+				<dd><a href="./Public/Image/aa.png"><img src="./Public/Image/aa.png" /></a></dd>
+				<dd><a href="./Public/Image/aa.png"><img src="./Public/Image/aa.png" /></a></dd>
+				<dd><a href="./Public/Image/aa.png"><img src="./Public/Image/aa.png" /></a></dd>
+				<dd><a href="./Public/Image/aa.png"><img src="./Public/Image/aa.png" /></a></dd>
+				<dd><a href="./Public/Image/aa.png"><img src="./Public/Image/aa.png" /></a></dd>
+				<dd><a href="./Public/Image/aa.png"><img src="./Public/Image/aa.png" /></a></dd>
+				<dd><a href="./Public/Image/aa.png"><img src="./Public/Image/aa.png" /></a></dd>
+			</dl>
+		</div>
+	</div -->
+	<div class="clr"> </div>
+	<style>
+		.back{display:block;position:fixed;filter:Alpha(Opacity=90);top:0;opacity:0.9;background:#ccc;z-index:500;}
+		.back .show{display:block;}
+		.back .show #bigpics{margin-top:20px;overflow:hidden;position:relative;}
+		.back .show dl dd{float:left;}
+		.back .show .bigpics img{z-index:999;top:20px;}
+		
+		.back .show .thumbpics {margin-top:20px;height:100px;overflow:hidden;position:fixed;}
+		.back .show .thumbpics dd{margin-right:10px;filter:Alpha(Opacity=60);top:0;opacity:0.6;border:1px solid yellow;broder-raduis:5px;}
+		.back .show .thumbpics img{width:100px;height:100px;}
+		.active{box-shadow:2px 2px 2px 1px blue;}
+	</style>
+	<script>
+	var Bwidth = $(document).width();
+	var Bheight = $(document).height();
+	var offH = Bheight*0.7;
+	//var offH = Bheight - $('.thumbpics').height()+240;	
+	$(function () {
+		var thumbObj = $('.thumbpics');
+		var thumNum = thumbObj.find('dd').length;
+		var image = new Image();
+		thumbObj.css({
+			'left': (Bwidth - 100) / 2 + "px",
+			'top' : (Bheight-150) + 'px'
+		});
+		$('.back').css({'width':Bwidth+'px','height':Bheight+'px'});
+		thumbObj.find('dd').each(function () {
+			$(this).click(function () {
+				var index = $(this).index();
+				$(this).addClass('active').siblings('dd').removeClass('active');
+				thumbObj.css('left',((Bwidth-100)/2-index*110)+'px');
+				var src = $(this).children('img').attr('bigpic')+index+'.jpg';
+				image.src = src;
+				var showimg = $('#bigpics').children('img');
+				showimg.attr('src',src);
+				if(image.complete){
+					showpic(image.width,image.height,showimg);
+				}else{
+					image.onload=function(){
+						//showimg.attr('src','./Public/Image/loading.gif');
+						showpic(image.width,image.height,showimg);						
+					}
+				}
+			});
+		});
+	});
+	
+	var showpic = function (imgW,imgH,Obj) {
+		var w = imgW;
+		var h = imgH;
+		if(imgH > offH){
+			w = (offH * imgW) / imgH;
+		}
+		/*
+var propor = imgH / imgW;
+		for(i=0;h >= offH;i++){
+			w = Math.floor(w - propor * 10);
+		}
+		if(w > Bwidth - 200){
+			for(i=0;w >= Bwidth-200;i++){
+				w = Math.floor(w - propor * 10);
+			}
+		}
+*/
+		var left = (Bwidth-w)/2 + 'px';
+		Obj.css({'width':w + 'px','left':left,'position':'fixed'});
+	}
+</script>
+	<div class="back">
+		<div class="show">
+			<div id="bigpics">
+				<img src="./Public/Image/aa.png" />
+			</div>
+			<div class="clr"></div>
+			<div class="clr"></div>
+			<div class="thumbpics">
+				<dl>
+					<dd><img src="./Public/Image/aa.png" bigpic="http://www.p.com/Uploads/2014-05/" alt="1"/></dd>
+					<dd><img src="./Public/Image/aa.png" bigpic="http://www.p.com/Uploads/2014-05/" alt="1"/></dd>
+					<dd><img src="./Public/Image/aa.png" bigpic="http://www.p.com/Uploads/2014-05/" alt="1"/></dd>
+					<dd><img src="./Public/Image/aa.png" bigpic="http://www.p.com/Uploads/2014-05/" alt="1"/></dd>
+					<dd><img src="./Public/Image/aa.png" bigpic="http://www.p.com/Uploads/2014-05/" alt="1"/></dd>
+					<dd><img src="./Public/Image/aa.png" bigpic="http://www.p.com/Uploads/2014-05/" alt="1"/></dd>
+					<dd><img src="./Public/Image/aa.png" bigpic="http://www.p.com/Uploads/2014-05/" alt="1"/></dd>
+					<dd><img src="./Public/Image/aa.png" bigpic="http://www.p.com/Uploads/2014-05/" alt="1"/></dd>
+					<dd><img src="./Public/Image/aa.png" bigpic="http://www.p.com/Uploads/2014-05/" alt="1"/></dd>
+					<dd><img src="./Public/Image/aa.png" bigpic="http://www.p.com/Uploads/2014-05/" alt="1"/></dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+   <div class="footer">
+        <p class="lr">© Copyright <a href="http://www.phpyrb.com">http://www.phpyrb.com http://www.cloudsskill.com</a>.</p>
+        <p class="lf">Collect from: <a href="http://www.phpyrb.com" title="马伟博客" target="_blank">马伟博客</a></p>
+        <div class="clr"> </div>
+   </div>
+	
+</body>	
+</html>

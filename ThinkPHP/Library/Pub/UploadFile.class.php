@@ -186,7 +186,7 @@ class UploadFile {//类定义开始
                 if(!isset($file['key']))   $file['key']    =   $key;
                 $file['extension']  =   $this->getExt($file['name']);
                 $file['savepath']   =   $savePath;
-                $file['savename']   =   basename($file['name'],'.'.$file['extension']).'-www.phpyrb.com';
+                $file['savename']   =   basename($file['name'],'.'.$file['extension']).'-www.phpyrb.com.'.$file['extension'];
 //                 $file['savename']   =   $this->getdiyname($file);
                 $file['path'] = $savePath.$file['savename'];
                 // 自动检查附件

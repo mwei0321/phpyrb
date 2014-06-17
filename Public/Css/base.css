@@ -73,7 +73,7 @@ body .date a img{border:none;background:none;}
 .content .weiboleft{width:150px;height:auto;background:#efefef;margin-left:20px;float:left;}
 .content .weiboleft dl dd{height:35px;font-size:14px;line-height:35px;text-align:center;}
 .content .weibocont {float:left;min-width:670px;min-height:800px;font-size:14px;}
-.content .weibocont .wei{margin-bottom:20px;box-shadow:3px 3px 8px 1px #ccc;border-radius:3px;}
+.content .weibocont .wei{margin-bottom:20px;border:dashed 1px #ccc;}
 .content .weibocont .wei .weiface{width:60px;float:left;padding:20px;height:50px;}
 .content .weibocont .wei .weiface img{width:60px;height:60px;}
 .content .weibocont .weimain{float:left;width:auto;margin-top:10px;}
