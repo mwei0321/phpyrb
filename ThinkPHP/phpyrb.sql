@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2014-06-09 18:39:18
+Date: 2014-06-20 17:29:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -241,6 +241,7 @@ CREATE TABLE `photo` (
   `name` varchar(50) NOT NULL COMMENT '相片名',
   `alt` varchar(50) NOT NULL COMMENT '标签',
   `path` varchar(120) NOT NULL COMMENT '路径',
+  `thumb` varchar(150) DEFAULT NULL COMMENT '缩略图路径',
   `addtime` int(11) NOT NULL COMMENT '添加时间表',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='照片';
@@ -308,15 +309,18 @@ DROP TABLE IF EXISTS `twitter`;
 CREATE TABLE `twitter` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `uid` int(11) DEFAULT NULL,
+  `cateid` int(11) DEFAULT NULL COMMENT '分类ID',
   `title` tinytext COMMENT '博客内容',
   `addtime` int(11) DEFAULT NULL COMMENT '添加时间',
-  `uptime` int(11) DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of twitter
 -- ----------------------------
+INSERT INTO `twitter` VALUES ('7', '1', '1', 'asdfasdf\r\nasd\r\nfasdf', '1402453156');
+INSERT INTO `twitter` VALUES ('8', '1', '1', 'asdfas\r\nas\r\nfasdfasdf', '1402464389');
+INSERT INTO `twitter` VALUES ('9', '1', '1', 'no zuo no die', '1402464494');
 
 -- ----------------------------
 -- Table structure for `twitter_cate`
@@ -330,11 +334,13 @@ CREATE TABLE `twitter_cate` (
   `status` tinyint(1) DEFAULT NULL,
   `sort` tinyint(2) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of twitter_cate
 -- ----------------------------
+INSERT INTO `twitter_cate` VALUES ('3', 'no zuo no die', '0', '不作不会死', '1', '98');
+INSERT INTO `twitter_cate` VALUES ('5', '旅行意义', '0', '旅行意义在那里，旅行的魅力。', '1', '90');
 
 -- ----------------------------
 -- Table structure for `twitter_comment`
@@ -358,17 +364,25 @@ CREATE TABLE `twitter_comment` (
 -- ----------------------------
 DROP TABLE IF EXISTS `twitter_picture`;
 CREATE TABLE `twitter_picture` (
-  `id` int(11) NOT NULL DEFAULT '0',
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `twid` int(11) DEFAULT NULL,
   `description` tinytext COMMENT '照片描述',
-  `picname` varchar(50) DEFAULT NULL COMMENT '图片名称',
-  `picpath` varchar(150) DEFAULT NULL COMMENT '图片路径',
+  `path` varchar(150) DEFAULT NULL COMMENT '图片路径',
+  `thumb` varchar(150) DEFAULT NULL COMMENT '缩略图路径',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of twitter_picture
 -- ----------------------------
+INSERT INTO `twitter_picture` VALUES ('13', '7', 'b4e0ac7fjw1eh241u20wtg206y03u1kx-www.phpyrb.com', 'Uploads/Twitter/2014-06/b4e0ac7fjw1eh241u20wtg206y03u1kx-www.phpyrb.com', 'Uploads/Thumb/Twitter/2014-06/b4e0ac7fjw1eh241u20wtg206y03u1kx-www.phpyrb.com.gif');
+INSERT INTO `twitter_picture` VALUES ('14', '7', 'c286bebajw1eh8o7jriddg20af06fe81-www.phpyrb.com', 'Uploads/Twitter/2014-06/c286bebajw1eh8o7jriddg20af06fe81-www.phpyrb.com', 'Uploads/Thumb/Twitter/2014-06/c286bebajw1eh8o7jriddg20af06fe81-www.phpyrb.com.gif');
+INSERT INTO `twitter_picture` VALUES ('15', '8', 'o7jriddg20af06fe81-www.phpyrb.com', 'Uploads/Twitter/2014-06/b4e0ac7fjw1eh241u20wtg206y03u1kx-www.phpyrb.com', '');
+INSERT INTO `twitter_picture` VALUES ('16', '8', '7cc15f8ajw1eh2093bqz3g206t0541eo-www.phpyrb.com', 'Uploads/Twitter/2014-06/7cc15f8ajw1eh2093bqz3g206t0541eo-www.phpyrb.com', 'Uploads/Thumb/Twitter/2014-06/7cc15f8ajw1eh2093bqz3g206t0541eo-www.phpyrb.com.gif');
+INSERT INTO `twitter_picture` VALUES ('17', '8', 'o7jriddg20af06fe81-www.phpyrb.com', 'Uploads/Twitter/2014-06/b4e0ac7fjw1eh241u20wtg206y03u1kx-www.phpyrb.com', '');
+INSERT INTO `twitter_picture` VALUES ('18', '9', '81089241jw1eh8nz7k5edg209e02ztzz-www.phpyrb.com', 'Uploads/Twitter/2014-06/81089241jw1eh8nz7k5edg209e02ztzz-www.phpyrb.com', 'Uploads/Thumb/Twitter/2014-06/81089241jw1eh8nz7k5edg209e02ztzz-www.phpyrb.com.gif');
+INSERT INTO `twitter_picture` VALUES ('19', '9', 'b4e0ac7fjw1eh241u20wtg206y03u1kx-www.phpyrb.com', 'Uploads/Twitter/2014-06/b4e0ac7fjw1eh241u20wtg206y03u1kx-www.phpyrb.com', 'Uploads/Thumb/Twitter/2014-06/b4e0ac7fjw1eh241u20wtg206y03u1kx-www.phpyrb.com.gif');
+INSERT INTO `twitter_picture` VALUES ('20', '9', 'c286bebajw1eh8o7jriddg20af06fe81-www.phpyrb.com', 'Uploads/Twitter/2014-06/c286bebajw1eh8o7jriddg20af06fe81-www.phpyrb.com', 'Uploads/Thumb/Twitter/2014-06/c286bebajw1eh8o7jriddg20af06fe81-www.phpyrb.com.gif');
 
 -- ----------------------------
 -- Table structure for `users`
