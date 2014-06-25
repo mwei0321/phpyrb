@@ -13,6 +13,8 @@
 		bgColor     : '#ccc',
 		EditW		: 400,
 		EditH		: 600,
+		ThumbW		: 100,
+		ThumbH		: 100,
 	}
 	
 	var Html = function (Obj) {
@@ -23,6 +25,16 @@
 		$('#phpyrb').fadeTo(300,Options.bgOpacity);
 		$('#show').css({'width':Options.EditW+'px','height':Options.EditH+'px','left':(SreenW-Options.EditW)/2+'px','top':(SreenH-Options.EditH)/2+'px'});
 		
+	}
+	
+	var MultiImg = function (Obj){
+		var html = "<div id='phpyrb'></div><div id='bigimg'><img src='' /></div><div id='thumbimg'><dl></dl></div>";
+		Obj.append(html);
+		
+	}
+	
+	var BigImg = function(url){
+		$('#bigimg').children('img').attr('src',url);
 	}
 	
 	var SimpleEdit = function (){
