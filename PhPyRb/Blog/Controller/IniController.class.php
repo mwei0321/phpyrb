@@ -20,9 +20,8 @@
 		function _initialize(){
 			import('Article');
 			import('Page');
-			$_SESSION['uid'] = 1;
-			$this->uid = 1;
-			$this->article = new Article();
+			$this->uid = $_SESSION['uid'] ? $_SESSION['uid'] : 1;
+			$this->article = new Article($this->uid);
 // 			S('Article',new Article());
 			if($_REQUEST['delcache'] = 'y'){
 				S('CateList',NULL);

@@ -1,0 +1,10 @@
+.clr{clear:both;margin:0px;padding:0px;}
+.phpyrb{display:block;position:fixed;filter:Alpha(Opacity=90);top:0;opacity:0.9;background:#ccc;z-index:500;}
+.phpyrb #phpyrbshow{display:block;}
+.phpyrb #phpyrbshow #bigpic{margin:20px auto;z-index:999;overflow:hidden;position:relative;}
+.phpyrb #phpyrbshow dl dd{float:left;}
+
+.phpyrb #phpyrbshow #thumpics {margin-top:20px;height:100px;overflow:hidden;position:fixed;}
+.phpyrb #phpyrbshow #thumpics dd{margin-right:10px;filter:Alpha(Opacity=60);top:0;opacity:0.6;border:1px solid yellow;broder-raduis:5px;}
+.phpyrb #phpyrbshow #thumpics img{width:100px;height:100px;}
+.active{box-shadow:2px 2px 2px 1px blue;}

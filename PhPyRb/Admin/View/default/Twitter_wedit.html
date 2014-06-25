@@ -1,0 +1,72 @@
+<!-- 引入公共模板 -->
+<extend name="Public:base" />
+
+<!-- 内容 -->
+<block name="content" >
+	<div class="content-box-header">
+        <h3>Article List Mange</h3>
+        <div class="clear"></div>
+      </div>
+      <!-- End .content-box-header -->
+      <div class="content-box-content">
+        <div class="tab-content default-tab" id="tablebox">
+         <form action="{:U('Twitter/upadd_topic')}" method="post" enctype="multipart/form-data">
+        <!-- End #tab1 -->
+        <h3>Twitter Add & Modification</h3>
+        <div>
+        	<p>
+        		<label>Twitter Categorys</label>
+        		<select name="cate">
+        			<volist name="cate" id="c">
+        			<option value="{$c['id']}">{$c['name']}</option>
+        			</volist>
+        		</select>
+        	</p>
+        	<p>
+              <label>Twitter Content:</label>
+            </p>
+            <p>
+            	<textarea class="text-input textarea wysiwyg" name="content" cols="30" rows="8">{$artinfo['content']}</textarea>
+            </p>
+            <p><input type="submit" value="submit" /></p>
+        </div>
+        </form>
+        <!-- start add image -->
+		<div id="upimage" style="width:600px;height:400px;">Your browser doesn't support native upload.</div>
+		<!-- end add image -->
+		<div class="clear"></div>
+      </div>
+      <!-- End .content-box-content -->
+    </div>
+	<script type="text/javascript" src="/Public/Js/uploadjs/plupload.full.min.js"></script>
+	<script type="text/javascript" src="/Public/Js/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="/Public/Js/uploadjs/jquery.plupload.queue/jquery.plupload.queue.min.js"></script>
+	<link type="text/css" rel="stylesheet" href="/Public/Js/uploadjs/jquery.plupload.queue/css/jquery.plupload.queue.css" />
+	<script>
+		// Setup html5 version
+		$("#upimage").pluploadQueue({
+			// General settings
+			runtimes : 'html5',
+			url : "{:U('Twitter/upadd_photo',array('start'=>$start,'twid'=>$twid))}",
+//			chunk_size : '1mb',
+			unique_names : true,			
+//			runtimes: 'gears,flash,silverlight,browserplus,html5', // 这里是说用什么技术引擎
+//          url: 'LibAddEdit', // 服务端上传路径
+//          max_file_size: '10mb', // 文件上传最大限制。
+//          chunk_size: '1mb', // 上传分块每块的大小，这个值小于服务器最大上传限制的值即可。
+//          unique_names: true, // 上传的文件名是否唯一
+			
+			//  这个数组是选择器，就是上传文件时限制的上传文件类型
+			filters : {
+				max_file_size : '10mb',
+				mime_types: [
+					{title : "Image files", extensions : "jpg,gif,png"},
+					{title : "Zip files", extensions : "zip"}
+				]
+			},
+			// Resize images on clientside if we can
+			// 是否生成缩略图（仅对图片文件有效）
+//			resize : {width : 320, height : 240, quality : 90}
+		});
+	</script>
+</block>

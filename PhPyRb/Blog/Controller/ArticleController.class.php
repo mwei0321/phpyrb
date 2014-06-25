@@ -48,9 +48,9 @@ use Pub\Page;
 		*/
 		function catags(){
 			$where = $_REQUEST['cate'] ? 'a.cateid='.$_REQUEST['cate'] : 'FIND_IN_SET('.$_REQUEST['tag'].',tags)';
-			$where .= ' AND a.uid='.$_SESSION['uid'];
+			$where .= ' AND a.uid='.$this->uid;
 			$countwhere['_string'] = $_REQUEST['cate'] ? 'cateid='.$_REQUEST['cate'] : 'FIND_IN_SET('.$_REQUEST['tag'].',tags)';
-			$countwhere = array_merge($countwhere,array('uid'=>$_SESSION['uid'],'status'=>1));
+			$countwhere = array_merge($countwhere,array('uid'=>$this->uid,'status'=>1));
 			$count = $this->article->count('Article',$countwhere);
 			$page = new Page($count,15);
 			$artlist = $this->article->articles("$page->firstRow,$page->listRows",$where);
@@ -94,7 +94,7 @@ use Pub\Page;
 			$data['content'] = $_REQUEST['comment'];
 			$data['artid'] = $_REQUEST['artid'];
 			$data['addtime'] = time();
-			$data['uid'] = $_SESSION['uid'];
+			$data['uid'] = $this->uid;
 			$reid = $this->article->add_updata($data,'ArticleComment');
 			if($reid === FALSE){
 				$this->error('评论失败！',U('Article/content',array('artid'=>$_REQUEST['artid'])));

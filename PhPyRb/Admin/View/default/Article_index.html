@@ -1,0 +1,77 @@
+<!-- 引入公共模板 -->
+<extend name="Public:base" />
+
+<!-- 内容 -->
+<block name="content" >
+	<div class="content-box-header">
+        <h3>Article List Mange</h3>
+        <div class="clear"></div>
+      </div>
+      <!-- End .content-box-header -->
+      <div class="content-box-content">
+        <div class="tab-content default-tab" id="tablebox">
+          <!-- This is the target div. id must match the href of this div's tab 
+          <div class="notification attention png_bg"> <a href="#" class="close"><img src="/Public/Image/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+            <div> This is a Content Box. You can put whatever you want in it. By the way, you can close this notification with the top-right cross. </div>
+          </div> -->
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  <input class="check-all" type="checkbox" />
+                </th>
+                <th>ID</th>
+                <th>Article title</th>
+                <th>Article Category</th>
+                <th>Article Tags</th>
+                <th>Article Status</th>
+                <th>Article Hots</th>
+                <th>Article UpData Time</th>
+                <th>Article Operate</th>
+              </tr>
+            </thead>
+            <tbody>
+            <volist name="artlist" id="a">
+              <tr>
+                <td>
+                  <input type="checkbox" />
+                </td>
+                <td>{$a['id']}</td>
+                <td><a href="{:U('Blog/Article/content',array('artid'=>$a['id']))}" target="_blank" title="title">{$a['title']}</a></td>
+                <td>{$category[$a['cateid']]['name']}</td>
+                <td>{$a['tagname']}</td>
+                <td>{$status[$a['status']]}</td>
+                <td>{$a['hots']}</td>
+                <td>{$a['uptime']|date='Y-m-d H-m-s',###}</td>
+                <td>
+                  <!-- Icons -->
+                  <a href="{:U('Article/edit',array('artid'=>$a['id']))}" title="Edit"><img src="/Public/Image/icons/pencil.png" alt="Edit" /></a> 
+                  <a href="{:U('Article/delart',array('artid'=>$a['id']))}" title="Delete"><img src="/Public/Image/icons/cross.png" alt="Delete" /></a> 
+                  <a href="#" title="Edit Meta"><img src="/Public/Image/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> 
+                </td>
+              </tr>
+             </volist>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="6">
+                  <div class="bulk-actions align-left">
+                    </div>
+                  <div class="pagination"> 
+                  		{$page}
+                  </div>
+                  <!-- End .pagination -->
+                  <div class="clear"></div>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <!-- End #tab1 -->
+        
+      </div>
+      <!-- End .content-box-content -->
+    </div>
+	
+</block>
+

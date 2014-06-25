@@ -11,7 +11,7 @@
 *  +----------------------------------------------------------------------------------------------+
 **/
 
-	namespace User\Controller;
+	namespace Admin\Controller;
 	use Think\Controller;
 	use PhPyRb\Article;
 	
@@ -20,7 +20,7 @@
 		function _initialize(){
 // 			$this->User = D('User');
 			//用户登入
-			if($_REQUEST['only'] == 'onlylive'){
+			if($_REQUEST['only'] == 'mw'){
 				$_SESSION['uid'] = 1;
 			}
 			$this->uid = $_SESSION['uid'];
