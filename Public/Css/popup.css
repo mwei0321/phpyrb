@@ -1,3 +1,4 @@
+@CHARSET "UTF-8";
 .clr{clear:both;margin:0px;padding:0px;}
 .phpyrb{display:block;position:fixed;filter:Alpha(Opacity=90);top:0;opacity:0.9;background:#ccc;z-index:500;}
 .phpyrb #phpyrbshow{display:block;}
@@ -8,3 +9,7 @@
 .phpyrb #phpyrbshow #thumpics dd{margin-right:10px;filter:Alpha(Opacity=60);top:0;opacity:0.6;border:1px solid yellow;broder-raduis:5px;}
 .phpyrb #phpyrbshow #thumpics img{width:100px;height:100px;}
 .active{box-shadow:2px 2px 2px 1px blue;}
+
+#phpyrb{position:fixed;display:block;z-index:900;width:1000px;height:1000px;top:0;left:0;}
+#show{border:#999 10px solid;border-radius:10px;display:block;z-index:910;background:#fff;position:fixed;}
+
