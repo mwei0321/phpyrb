@@ -10,7 +10,7 @@
 	//初始化配置
 	var Options = {
 		bgOpacity   : '0.6',
-		bgColor     : '#ccc',
+		bgColor     : '#666',
 		EditW		: 400,
 		EditH		: 600,
 		ThumbW		: 100,
@@ -28,17 +28,39 @@
 	}
 	
 	var MultiImg = function (Obj){
-		var html = "<div id='phpyrb'></div><div id='bigimg'><img src='' /></div><div id='thumbimg'><dl></dl></div>";
+		var html = "<div id='phpyrb'></div><div id='bigimg'><img src='##' /></div><div id='thumbimg'><dl></dl></div>";
 		Obj.append(html);
 		
+	}
+	
+	$.fn.PopupImg = function (Obj){
+		//遮照层
+		var html = "<div id='phpyrb'></div>";
+		//大图显示
+		html += "<div id='bigimg'><img src='##'/></div>";
+		//缩略图
+		html += "<div id='thumbimg' style='width:"+SreenW+";height:"+Options.ThumbH+"px;top:"+(SreenH-Options.ThumbH-20)+"px;left:"+(SreenW-Options.ThumbW)/2+"px'><dl></dl></div>";
+		//把html插入页面
+		$('body').prepend(html);
+		
+		$(this).each(function (){
+			var ObjImg = $(this).find('dd');
+			ObjImg.click(function (){
+				var parenthtml = $(this).parent('dl').html();
+				$('#thumbimg').children('dl').append(parenthtml);
+				$('#phpyrb').css({'dispaly':'block','width':SreenW+'px','height':SreenH+'px','background':Options.bgColor,}).fadeTo(500,0.8);
+				var bigimg = $(this).children('img').attr('bigimg');
+				$('#bigimg').css({'display':'block'}).children('img').attr('src',bigimg);
+			});
+		});
 	}
 	
 	var BigImg = function(url){
 		$('#bigimg').children('img').attr('src',url);
 	}
 	
-	var SimpleEdit = function (){
-		
+	var SimpleEdit = function (Obj){
+		var html = "<div id='phpyrb'></div><div id='show'><texteare name='content'></texteare></div>";
 	}
 	
 	$.fn.Popup = function (Obj){

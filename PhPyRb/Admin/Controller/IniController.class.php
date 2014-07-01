@@ -16,7 +16,7 @@
 	use PhPyRb\Article;
 	
 	class IniController extends Controller{
-		protected $User,$uid;
+		protected $User,$uid,$Article;
 		function _initialize(){
 // 			$this->User = D('User');
 			//用户登入
@@ -35,20 +35,23 @@
 			}
 			//导入文章类
 			import('Article');
+			$this->Article = new Article();
 			//缓存文章对像
-			S('Article',new Article(),10000);
+// 			if(! $this->Article){
+// 				S('Article',new Article(),10000);
+// 			}
 			//缓存分类
 			if(! S('CateList')){
-				$cate = S('Article')->catelist(array('uid'=>1));
-				$levelcate = S('Article')->level($cate);
+				$cate = $this->Article->catelist(array('uid'=>1));
+				$levelcate = $this->Article->level($cate);
 				S('CateList',$levelcate,10000);
 			}
 			//缓存标签
 			if(! S('Tags')){
-				S('Tags',S('Article')->tags(),10000);
+				S('Tags',$this->Article->tags(),10000);
 			}
-// 			$this->assign('category',S('Article')->catelist());
-// 			$this->assign('tags',S('Article')->tags());
+// 			$this->assign('category',$this->Article->catelist());
+// 			$this->assign('tags',$this->Article->tags());
 			$this->assign('category',S('CateList'));
 			
 			$this->assign('tags',S('Tags'));

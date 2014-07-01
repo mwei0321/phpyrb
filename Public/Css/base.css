@@ -81,7 +81,7 @@ body .date a img{border:none;background:none;}
 .content .weibocont .weimain .topic{line-height:22px;padding:3px 0;margin-bottom:10px;}
 .content .weibocont .weimain .topicimg{clear:both;width:440px;height:auto;}
 .content .weibocont .weimain .topicimg .mutlimg dd{width:100px;height:100px;float:left;margin:5px;}
-.content .weibocont .weimain .topicimg .mutlimg dd img{width:100px;height:100px;}
+.content .weibocont .weimain .topicimg .mutlimg dd img{cursor:pointer;width:100px;height:100px;}
 .content .weibocont .weimain .topicimg .singleimg {max-width:140px;max-height:400px;overflow: hidden;padding:5px 15px;}
 .content .weibocont .weimain .topicimg .singleimg img{max-width:140px;}
 .content .weibocont .weimain .weiinfo{clear:both;height:25px;margin-top:10px;font-size:12px;}

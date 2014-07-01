@@ -26,12 +26,13 @@
 		 * @author MaWei (http://www.phpyrb.com)
 		 * @date 2014-6-11 下午3:42:45
 		 */
-		function twitterlist($_uid,$_limit = '0,10'){
+		function twitterlist($_limit = '0,10',$_uid = null){
 			$m = M('Twitter');
+			$where = $_uid ? array('uid'=>$_uid) : 1; 
 			if($_limit == 'count'){
-				return $m->where(array('uid'=>$_uid))->count();
+				return $m->where($where)->count();
 			}
-			$reid = $m->field('id')->where(array('uid'=>$_uid))->order('id DESC')->limit($_limit)->select();
+			$reid = $m->field('id')->where($where)->order('id DESC')->limit($_limit)->select();
 			$tlist = $this->twiinfo(arr2to1($reid));
 			return $tlist;
 		}

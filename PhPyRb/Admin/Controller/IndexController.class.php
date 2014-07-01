@@ -16,12 +16,11 @@
 	use PhPyRb\Article;
 	
 	class IndexController extends IniController{
-		protected $Article,$categorys,$tags;
+		protected $categorys,$tags;
 		function _initialize(){
 			parent::_initialize();
 			import('Article');
 			import('Page');
-			$this->Article = new Article();
 			if(! S('CateList')){
 				S('CateList',$this->Article->catelist(),10000);
 			}

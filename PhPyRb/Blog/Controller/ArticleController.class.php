@@ -48,7 +48,6 @@ use Pub\Page;
 		*/
 		function catags(){
 			$where = $_REQUEST['cate'] ? 'a.cateid='.$_REQUEST['cate'] : 'FIND_IN_SET('.$_REQUEST['tag'].',tags)';
-			$where .= ' AND a.uid='.$this->uid;
 			$countwhere['_string'] = $_REQUEST['cate'] ? 'cateid='.$_REQUEST['cate'] : 'FIND_IN_SET('.$_REQUEST['tag'].',tags)';
 			$countwhere = array_merge($countwhere,array('uid'=>$this->uid,'status'=>1));
 			$count = $this->article->count('Article',$countwhere);

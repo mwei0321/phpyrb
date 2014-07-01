@@ -29,11 +29,11 @@
 		*/
 		function index(){
 			import('Page');
-			$artcount = S('Article')->count();
-			$tags = S('Article')->tags();
+			$artcount = $this->Article->count();
+			$tags = $this->Article->tags();
 			$page = new Page($artcount,30);
 			$limit = "$page->firstRow,$page->listRows";
-			$artlist = S('Article')->artlist($limit);
+			$artlist = $this->Article->artlist($limit);
 			foreach ($artlist as $k => $v){
 				$str = '';
 				foreach ($v['tags'] as $key => $val){
@@ -55,7 +55,7 @@
 		*/
 		function edit(){
 			if($_REQUEST['artid']){
-				$artinfo = S('Article')->artinfo($_REQUEST['artid']);
+				$artinfo = $this->Article->artinfo($_REQUEST['artid']);
 // 				dump($artinfo);exit;
 				$this->assign('artinfo',$artinfo);
 			}
@@ -82,14 +82,14 @@
 			$_REQUEST['artid'] ? $data['uptime'] = time() : $data['uptime'] = $data['addtime'] = time();
 			//判断文章是添加还是更新
 			$_REQUEST['artid'] ? FALSE : $temp['types'] = $data['types'] = 'ad';
-			$artid = S('Article')->add_updata($data);
+			$artid = $this->Article->add_updata($data);
 			if($artid === FALSE){
 				$this->error('更新失败！',U('Article/edit',array('artid'=>$_REQUEST['artid'])));
 			}else {
 				$temp['artid'] = $_REQUEST['artid'] ? $_REQUEST['artid'] : $artid;
 				$temp['description'] = $_REQUEST['description'];
 				$temp['content'] = $_REQUEST['content'];
-				$ret = S('Article')->add_updata($temp,'Content','artid');
+				$ret = $this->Article->add_updata($temp,'Content','artid');
 				if($ret === FALSE){
 					$this->error('文章内容更新失败',U('Article/edit',array('artid'=>$_REQUEST['artid'])));
 				}else {

@@ -18,8 +18,7 @@
 	class Article{
 		static $catelevel;
 		protected $uid;
-		function __construct($_uid){
-			$this->uid = $_uid;
+		function __construct(){
 			self::$catelevel = array();
 		}
 		
@@ -33,7 +32,7 @@
 		 * @date 2014-4-17 下午1:50:15
 		 */
 		function artlist($_limit = '0,25',$_order = 'uptime DESC',$_where = FALSE){
-			$_where = $_where ? $_where : array('uid'=>$this->uid);
+			$_where = $_where ? $_where : 1;
 			$artlsit = M('Article')->where($_where)->order($_order)->limit($_limit)->select();
 // 			echo M('Article')->getLastSql();exit;
 			$artlsit = $this->_strtoarr($artlsit);
@@ -62,9 +61,9 @@
 		* @author MaWei (http://www.phpyrb.com)
 		* @date 2014-5-25  下午3:01:39
 		*/
-		function menu($_model = 'Category',$_limit = '0,10'){
+		function menu($_model = 'Category',$_limit = '0,10',$_uid = null){
 			$model = M("$_model");
-			$where = array('uid'=>$this->uid,'menu'=>1);
+			$where = array('uid'=>$_uid,'menu'=>1);
 			$menu = $model->field('name,id,description')->where($where)->order('sort DESC')->limit($_limit)->select();
 // 			echo $model->getlastsql();
 			return $menu;	
@@ -72,14 +71,14 @@
 		
 		/**
 		* 返回分类下的文章数
-		* @param  string $_uid
+		* @param  int $_uid
 		* @return array $count
 		* @author MaWei (http://www.phpyrb.com)
 		* @date 2014-5-1  下午10:14:58
 		*/
-		function catecount(){
+		function catecount($_uid = 1){
 			$cate = M();
-			$sql = "SELECT count(id) cout,cateid FROM `article` WHERE uid=".$this->uid." GROUP BY cateid";
+			$sql = "SELECT count(id) cout,cateid FROM `article` WHERE uid=".$_uid." GROUP BY cateid";
 			$count = $cate->query($sql);
 			return fieldtokey($count,'cateid');
 		}
@@ -126,7 +125,7 @@
 		* @date 2014-4-27  下午5:33:45
 		*/
 		function articles($_limit = '0,15',$_where = FALSE,$_order = 'uptime DESC',$_count = FALSE){
-			$_where = $_where ? $_where : 'a.uid='.$this->uid.' ';
+			$_where = $_where ? $_where : 1;
 			$field = empty($_count) ? "id,title,author,hots,uptime,keyword,tags,cateid,content" : 'count(id) cout';
 			$sql = "SELECT $field FROM `article` a LEFT JOIN `content` c ON a.id=c.artid WHERE $_where AND a.`status`=1 ORDER BY $_order LIMIT $_limit";
 			$art = M();

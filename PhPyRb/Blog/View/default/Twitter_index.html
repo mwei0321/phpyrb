@@ -13,6 +13,7 @@
 
 <!-- start wei -->
 <block name="weibocont">
+	
 	<volist name="tlist" id="t">
 	<div class="wei">
 		<div class="weiface">
@@ -30,11 +31,10 @@
 				<div class="mutlimg">
 					<dl>
 						<volist name="t['image']" id='p'>
-							<dd><img src="{$p['thumb']}" alt="{$p['description']}" hpath="{$p['path']}"/></dd>
+							<dd><img src="{$p['thumb']}" alt="{$p['description']}" BigImg="{$p['path']}"/></dd>
 						</volist>
 					</dl>
 				</div>
-				<div class="clr"> </div>
 				{else}
 				<div class="singleimg">
 					<volist name="t['image']" id='i'>
@@ -42,6 +42,7 @@
 					</volist>
 				</div>
 				{/if}
+				<div class="clr"> </div>
 			</div>
 			<div class="clr"> </div>
 			<div class="weiinfo">

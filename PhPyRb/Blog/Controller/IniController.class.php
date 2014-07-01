@@ -20,8 +20,7 @@
 		function _initialize(){
 			import('Article');
 			import('Page');
-			$this->uid = $_SESSION['uid'] ? $_SESSION['uid'] : 1;
-			$this->article = new Article($this->uid);
+			$this->article = new Article();
 // 			S('Article',new Article());
 			if($_REQUEST['delcache'] = 'y'){
 				S('CateList',NULL);
@@ -48,5 +47,10 @@
 			$this->assign('catemean',S('Menu'));
 			$this->assign('cates',S('CateList'));
 			$this->assign('tags',S('Tags'));
+		}
+		
+		function _uid(){
+			$name = $_REQUEST['name'];
+			$id = M('User')->where(array('uname'=>$name))->find();
 		}
 	}
