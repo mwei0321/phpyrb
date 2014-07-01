@@ -44,15 +44,20 @@
 		$('body').prepend(html);
 		
 		$(this).each(function (){
-			var ObjImg = $(this).find('dd');
-			ObjImg.click(function (){
-				var parenthtml = $(this).parent('dl').html();
-				$('#thumbimg').children('dl').append(parenthtml);
-				$('#phpyrb').css({'dispaly':'block','width':SreenW+'px','height':SreenH+'px','background':Options.bgColor,}).fadeTo(500,0.8);
+			var parenthtml = $(this).find('dl').html();
+			$('#thumbimg').children('dl').append(parenthtml);
+			$('#phpyrb').css({'dispaly':'block','width':SreenW+'px','height':SreenH+'px','background':Options.bgColor,}).fadeTo(500,0.8);
+			$(this).find('dd').each(function (){
+				$(this).click(function (){
+					$('#thumbimg').css('left',(SreenW/2-(Options.ThumbW+20)*$(this).index())+'px');
+					$('#bigimg').css({'display':'block'}).children('img').css({'width':'1000px','height':'500px'}).attr('src',bigimg);
+				});
 				var bigimg = $(this).children('img').attr('bigimg');
-				$('#bigimg').css({'display':'block'}).children('img').attr('src',bigimg);
+				
 			});
 		});
+	}
+	var thumbclick = function (){
 	}
 	
 	var BigImg = function(url){
