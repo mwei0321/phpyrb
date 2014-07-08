@@ -29,7 +29,7 @@
 			}
 			$onearray[] = $v["$_field"];
 		}
-		return $onearray;
+		return array_unique($onearray);
 	}
 	
 	/**
