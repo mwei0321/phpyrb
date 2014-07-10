@@ -4,11 +4,45 @@
 <title>HTML5上传图片预览</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="http://www.codefans.net/ajaxjs/jquery-1.6.2.min.js"></script>
+<script src="./download.js"></script>
+<script>
+	var selectedRange;
+	getCurrentRange = function () {
+		var sel = window.getSelection();
+		if (sel.getRangeAt && sel.rangeCount) {
+			return sel.getRangeAt(0);
+		}
+	},
+	saveSelection = function () {
+		selectedRange = getCurrentRange();
+	},
+	restoreSelection = function () {
+		var selection = window.getSelection();
+		if (selectedRange) {
+			try {
+				selection.removeAllRanges();
+			} catch (ex) {
+				document.body.createTextRange().select();
+				document.selection.empty();
+			}
+
+			selection.addRange(selectedRange);
+		}
+	},
+	
+	// $(function (){
+		// $('.nn').mouseup(function (){
+			// saveSelection();
+			// alert(selectedRange);
+			// selectedRange = selectedRange+'11111111111';
+			// restoreSelection();
+		// });
+	// });
+</script>
 </head>
 <body>
 	
 	<div>
-		<img src="./Uploads/Twitter/2014-06/1.jpg" />
 	</div>
 	
 	<style>
@@ -16,8 +50,28 @@
 		.nn{z-index:1000;height:100%;width:100%;top:0;left:0;position:fixed;overflow:auto;_position:absolute;_background:#fff;_opacity:1;}
 	</style>
 	<div class="show">
-		<div class="nn">asdagadgaf
+		<div class="nn">asdagad
+			asd
+			fasdfasf
+			sdf
+			a
+			dfa
+			sdf
+			as
+			dfasdfasdfasgaf
 		</div>
+		<ul>
+			<li><input type="checkbox" value="bbbb" name="aa"><a href="###">werqwer</a></li>
+			<li><input type="checkbox" value="bbbb" name="aa"><a href="###">werqwer</a></li>
+			<li><input type="checkbox" value="bbbb" name="aa"><a href="###">werqwer</a></li>
+			<li><input type="checkbox" value="bbbb" name="aa"><a href="###">werqwer</a></li>
+			<li><input type="checkbox" value="bbbb" name="aa"><a href="###">werqwer</a></li>
+			<li><input type="checkbox" value="bbbb" name="aa"><a href="###">werqwer</a></li>
+			<li><input type="checkbox" value="bbbb" name="aa"><a href="###">werqwer</a></li>
+			<li><input type="checkbox" value="bbbb" name="aa"><a href="###">werqwer</a></li>
+			<li><input type="checkbox" value="bbbb" name="aa"><a href="###">werqwer</a></li>
+		</ul>
+		<input type="button" value="download" />
 	</div>
 </body>
 </html>
