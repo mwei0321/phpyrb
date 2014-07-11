@@ -17,5 +17,5 @@
 #phpyrb{position:fixed;display:block;z-index:900;top:0;left:0;}
 #bigimg{position:absolute;top:30px;z-index:990;display:none;}
 #bigimg img{border:10px solid #333;border-radius:10px;}
-#thumbimg{overflow:hidden;z-index:910;position:absolute;display:block;}
+#thumbimg{overflow:hidden;z-index:910;position:absolute;display:none;}
 #thumbimg dl dd{float:left;}

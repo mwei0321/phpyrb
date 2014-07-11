@@ -55,7 +55,7 @@
 		
 		$(this).each(function (){
 			var ObjImg = $(this).find('dd');
-			ObjImg.click(function (){
+			ObjImg.click(function (){	
 				$('#imgpopup').show();
 				var parenthtml = $(this).parent('dl').html();
 				var bigimg = $(this).children('img').attr('bigimg');
@@ -75,6 +75,8 @@
 				});
 			});
 		});
+	}
+	var thumbclick = function (){
 	}
 	
 	var showpic = function (src) {

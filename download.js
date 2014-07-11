@@ -1,41 +1,3 @@
-// JavaScript Document
-
-// JavaScript Document
-//CopyRight  www.xiaodianlv.com
-
-
-function tableColor()
-{
-   var tb = document.getElementById("download-table");
-   var trs = tb.getElementsByTagName("tr");
-   for(var i=0; i<trs.length; i++)
-   {
-      if(i%2 != 0)
-	  {
-	     trs[i].style.backgroundColor = "#ffffff";
-		 	  trs[i].onmouseover = function() {
-		  this.style.backgroundColor = "#cccccc";
-		  }
-		  
-	  trs[i].onmouseout = function() {
-		    this.style.backgroundColor = "#ffffff";
-		  }
-	  }
-
-   }
-}
-
-
-
-function checkAll(str,checked) {
-    var a = document.getElementsByName(str);
-    var n = a.length;
-
-    for (var i = 0; i < n; i++) {
-        a[i].checked = checked;
-    }
-    em_size(str);
-}
 
 var check_link = ''; //永远传值
 function download(str, i, first) {
@@ -46,7 +8,7 @@ function download(str, i, first) {
         if(a[i].checked) {
             window.location=a[i].value;
             if (first)
-                timeout = 6000;
+                timeout = 3000;
             else
                 timeout = 500;
             i++;
@@ -56,8 +18,6 @@ function download(str, i, first) {
     }
 
 }
-
-
 
 function copy(str) {
     
