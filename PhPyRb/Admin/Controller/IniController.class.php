@@ -21,9 +21,9 @@
 // 			$this->User = D('User');
 			//用户登入
 			if($_REQUEST['only'] == 'mw'){
-				$_SESSION['uid'] = 1;
+				$_SESSION['phpyrb_uid'] = 1;
 			}
-			$this->uid = $_SESSION['uid'];
+			$this->uid = $_SESSION['phpyrb_uid'];
 			//判断用户登入
 			if(empty($this->uid)){
 				header("Location:".U('Login/index'));

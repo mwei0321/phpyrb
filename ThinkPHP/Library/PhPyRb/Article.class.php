@@ -63,7 +63,9 @@
 		*/
 		function menu($_model = 'Category',$_limit = '0,10',$_uid = null){
 			$model = M("$_model");
-			$where = array('uid'=>$_uid,'menu'=>1);
+			$where = array();
+			$where['menu'] = 1;
+			$_uid && $where['uid'] = $_uid;
 			$menu = $model->field('name,id,description')->where($where)->order('sort DESC')->limit($_limit)->select();
 // 			echo $model->getlastsql();
 			return $menu;	

@@ -41,7 +41,7 @@
 			$where['passwd'] = sha1('phpyrb'.$_REQUEST['password'].'mw');
 			$model = M("Users");
 			$info = $model->where($where)->find();
-			$_SESSION['userinfo'] = $info;
+			$_SESSION['phpyrb_id'] = $info['id'];
 			$this->redirect('Article/index');
 		}
 		
