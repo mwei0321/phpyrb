@@ -12,7 +12,7 @@
 **/
 namespace Pub;
 
-class Page{
+class AjaxPage{
 	public $firstRow; // 起始行数
 	public $listRows; // 列表每页显示行数
 	public $parameter; // 分页跳转时要带的参数
@@ -25,6 +25,7 @@ class Page{
 	private $url     = ''; //当前链接URL
 	private $nowPage = 1;
 	private $action  = '';
+	private $ajax    = false;
 
 	// 分页显示定制
 	private $config  = array(
@@ -34,7 +35,8 @@ class Page{
 			'first'  => '1...',
 			'last'   => '...%TOTAL_PAGE%',
 // 			'theme'  => '%HEADER% %FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END% <a href="javascript:void(0);">%NOW_PAGE%/%TOTAL_PAGE%页</a>',
-			'theme'  => '%FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END% ',
+			'theme'  => '%HEADER% %UP_PAGE% %FIRST% %LINK_PAGE% %END% %DOWN_PAGE% <a href="javascript:void(0);">%NOW_PAGE%/%TOTAL_PAGE%页</a>',
+// 			'theme'  => '%FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END% ',
 	);
 
 	/**
@@ -43,15 +45,16 @@ class Page{
 	 * @param array $listRows  每页显示记录数
 	 * @param array $parameter  分页跳转的参数
 	*/
-	public function __construct($totalRows, $listRows, $parameter = array(),$_url = FALSE) {
+	public function __construct($totalRows, $listRows,$_ajax = null, $parameter = array(),$_url = FALSE) {
 		C('VAR_PAGE') && $this->p = C('VAR_PAGE'); //设置分页参数名称
 		/* 基础设置 */
 		$this->totalRows  = $totalRows; //设置总记录数
 		$this->listRows   = $listRows;  //设置每页显示行数
 		$this->parameter  = empty($parameter) ? $_GET : $parameter;
-		$this->nowPage    = empty($_GET[$this->p]) ? 1 : intval($_GET[$this->p]);
+		$this->nowPage    = empty($_REQUEST[$this->p]) ? 1 : intval($_REQUEST[$this->p]);
 		$this->firstRow   = $this->listRows * ($this->nowPage - 1);
 		$this->action     = $_url ? $_url : ACTION_NAME;
+		$this->ajax       = $_ajax;
 	}
 
 	/**
@@ -71,7 +74,12 @@ class Page{
 	 * @return string
 	 */
 	private function url($page){
-		return str_replace('PAGE', $page, $this->url);
+		if($this->ajax){
+			return 'javascript:AjaxPages('.$page.');';
+		}else{
+			return str_replace('PAGE', $page, $this->url);
+		}
+		
 	}
 
 	/**
@@ -94,11 +102,11 @@ class Page{
 		$now_cool_page      = $this->rollPage/2;
 		$now_cool_page_ceil = ceil($now_cool_page);
 		$this->lastSuffix && $this->config['last'] = $this->totalPages;
-
+		
 		//上一页
 		$up_row  = $this->nowPage - 1;
 		$up_page = $up_row > 0 ? '<a href="' . $this->url($up_row) . '">' . $this->config['prev'] . '</a>' : '';
-
+		
 		//下一页
 		$down_row  = $this->nowPage + 1;
 		$down_page = ($down_row <= $this->totalPages) ? '<a href="' . $this->url($down_row) . '">' . $this->config['next'] . '</a>' : '';
@@ -128,21 +136,23 @@ class Page{
 			if($page > 0 && $page != $this->nowPage){
 
 				if($page <= $this->totalPages){
-					$link_page .= '<a class="number" href="' . $this->url($page) . '">' . $page . '</a>';
+					$link_page .= '<a href="' . $this->url($page) . '">' . $page . '</a>';
 				}else{
 					break;
 				}
 			}else{
 				if($page > 0 && $this->totalPages != 1){
-					$link_page .= '<a class="nowpage" href="#">' . $page . '</a>';
+					$link_page .= '<a class="current" href="javascript:void(0);">' . $page . '</a>';
 				}
 			}
 		}
 
 		//替换分页内容
-		return str_replace(
+		$show = str_replace(
 				array('%HEADER%', '%NOW_PAGE%', '%UP_PAGE%', '%DOWN_PAGE%', '%FIRST%', '%LINK_PAGE%', '%END%', '%TOTAL_ROW%', '%TOTAL_PAGE%'),
 				array($this->config['header'], $this->nowPage, $up_page, $down_page, $the_first, $link_page, $the_end, $this->totalRows, $this->totalPages),
 				$this->config['theme']);
+		$script = '<script>var AjaxPages = function (p){$.ajax({type:"post",url:"'.str_replace('&p=PAGE','', $this->url).'",data:"ajaxPage=y&p="+p,dataType:"json"}).done(function (e){if(e){$("#repid").html(e.html);$("#repacepages").html(e.show);}});}</script>';
+		return $this->ajax ? $script.'<div id="repacepages">'.$show.'</div>' : $show;
 	}
 }
