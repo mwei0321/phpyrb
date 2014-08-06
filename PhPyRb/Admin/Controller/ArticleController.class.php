@@ -73,7 +73,7 @@
 			$temp = array();
 			$_REQUEST['artid'] ? $data['id'] = $_REQUEST['artid'] : FALSE;
 			$data['title'] = $_REQUEST['title'];
-			$data['uid'] = $_SESSION['uid'];
+			$data['uid'] = $this->uid;
 			$data['cateid'] = $_REQUEST['cate'];
 			$data['author'] = $_REQUEST['author'];
 			$data['keyword'] = $_REQUEST['keyword'];

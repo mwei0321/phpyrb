@@ -12,7 +12,7 @@
 **/
 namespace Pub;
 
-class AjaxPage{
+class Page{
 	public $firstRow; // 起始行数
 	public $listRows; // 列表每页显示行数
 	public $parameter; // 分页跳转时要带的参数
