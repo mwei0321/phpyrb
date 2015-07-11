@@ -41,7 +41,7 @@
 				S('Menu',$this->article->menu(),50000);
 // 				
 			}
-			dump(S('Menu'));
+// 			dump(S('Menu'));
 // 			$this->assign('catecount',S('Article')->catecount());
 // 			$this->assign('catemean',S('Article')->level(S('CateList'),2));
 			$this->assign('catecount',$this->article->catecount());
