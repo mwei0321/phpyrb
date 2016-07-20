@@ -1,20 +1,20 @@
 <?php
 /**
 *  +----------------------------------------------------------------------------------------------+
-*   | Explain:  
+*   | Explain:
 *  +----------------------------------------------------------------------------------------------+
 *   | Author: ONLY <491518132@qq.com>
 *  +----------------------------------------------------------------------------------------------+
-*   | Creater Time : 2014-1-17 	
+*   | Creater Time : 2014-1-17
 *  +----------------------------------------------------------------------------------------------+
-*   | Link :		http://www.phpyrb.com	     
+*   | Link :		http://www.phpyrb.com
 *  +----------------------------------------------------------------------------------------------+
 **/
 
 	namespace Blog\Controller;
 	use Think\Controller;
 	use PhPyRb\Article;
-	
+
 	class IniController extends Controller{
 		protected $article,$uid;
 		function _initialize(){
@@ -39,7 +39,7 @@
 			}
 			if(! S('Menu')){
 				S('Menu',$this->article->menu(),50000);
-// 				
+//
 			}
 // 			dump(S('Menu'));
 // 			$this->assign('catecount',S('Article')->catecount());
@@ -49,7 +49,7 @@
 			$this->assign('cates',S('CateList'));
 			$this->assign('tags',S('Tags'));
 		}
-		
+
 		function _uid(){
 			$name = $_REQUEST['name'];
 			$id = M('User')->where(array('uname'=>$name))->find();

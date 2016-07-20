@@ -7,35 +7,34 @@
         <meta name="description" content="<block name="description">pythob学习,深圳PHP博客,马伟个人博客,python博客</block>" />
         <link href="./Public/Css/base.css" rel="stylesheet" type="text/css" />
         <link type="text/css" rel="stylesheet" href="./Public/SyntaxHighlighter/styles/shCore.css"/>
+        <link type="text/css" rel="stylesheet" href="./Public/Css/prism.css"/>
         <link type="text/css" rel="stylesheet" href="./Public/SyntaxHighlighter/styles/shThemeDefault.css"/>
     </head>
     <body>
         <div class="header">
-            <div class="logo">
-                <h1><a href="{:U('Article/index')}">PhPyRb<span> Blog</span></a>
-                    <small style="font-size:13px;">
-                        &nbsp;&nbsp;&nbsp;MaWei
-                    </small>
-                </h1>
-				<p><span>Ph</span>P + <span>Py</span>thon + <span>R</span>u<span>b</span>y</p>
-            </div>
-			<div class="menu">
-	            <div class="menu_nav">
-	            	<ul>
-	                	<volist name="catemean" id="c">
-	                        <li>
-	                            <a href="{:U('Article/catags',array('cate'=>$c['id']))}" title="{$c['description']}">{$c['name']}</a>
-	                        </li>
-						</volist>
-						<li><a href="{:U('Album/index')}">Album</a></li>
-						<li><a href="{:U('Twitter/index')}">Twitter</a></li>
-					</ul>
-	                <div class="search">
-	                    <form method="get" action="{:U('Article/search')}">
-	                        <input type="search" name="keywords" value="{$_REQUEST['keywords']}" style="width:160px;height:36px;line-height:36px;background:none;border:0px;font-size:16px;"/>
-							<input type="submit" value=" " style="width:72px;height:25px;margin-left:3px;cursor:pointer; border:none;background:url(Public/Image/searchbtn.png) no-repeat 0 -1px;"/>
-	                    </form>
-	                </div>
-	            </div>
-			</div>
+        	<div class="header_nav">
+        		<div class="logo inline"><a href="{:U('Article/index')}">PhPython Blog</a></div>
+        		<div class="inline">
+	        	<dl class="mean">
+	        		<dd>
+	        			<a href="**" title="">学习,马伟</a>
+	        			<dl class="">
+	        				<dd><a href="aa">学习,马伟</a>
+	        				<dd><a href="aa">学习,马伟</a>
+	        				<dd><a href="aa">学习,马伟</a>
+	        			</dl>
+	        		</dd>
+	        		<dd>
+	        			<a href="**" title="">学习,马伟</a>
+	        			<dl>
+	        				<dd><a href="aa">学习,马伟</a>
+	        				<dd><a href="aa">学习,马伟</a>
+	        				<dd><a href="aa">学习,马伟</a>
+	        				<dd><a href="aa">学习,马伟</a>
+	        			</dl>
+	        		</dd>
+	        	</dl>
+	        	</div>
+	        	<div class="clr"></div>
+        	</div>
         </div>
